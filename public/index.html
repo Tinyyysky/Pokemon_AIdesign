@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宝可梦设计工坊</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- 侧边栏 -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2 class="sidebar-title">设计历史</h2>
+                <div class="view-mode-toggle">
+                    <button class="view-mode-btn " data-mode="local">本地</button>
+                    <button class="view-mode-btn active" data-mode="server">服务器</button>
+                </div>
+                <button class="toggle-sidebar" id="toggleSidebar">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+            </div>
+            <h6 class='explain'style="color: rgb(147, 157, 165);">本地模式下不会保存数据到服务器</h6>
+            <button class="new-design-btn" id="newDesignBtn">
+                <i class="fas fa-plus"></i> 新建设计
+            </button>
+            <div class="design-search">
+                <input type="text" id="designSearch" placeholder="搜索设计ID...">
+                <button id="searchDesignBtn"><i class="fas fa-search"></i></button>
+            </div>
+            <ul class="history-list" id="historyList">
+                <!-- 历史记录将通过JavaScript动态生成 -->
+            </ul>
+        </div>
+
+        <!-- 主内容区 -->
+        <div class="main-content">
+            <div class="header">
+                <h1 class="header-title">AI宝可梦设计工坊</h1>
+                
+                <div class="header-actions">
+                    <button class="btn btn-outline" id="uploadToServerBtn" title="上传当前设计到服务器">
+                        <i class="fas fa-cloud-upload-alt"></i> 上传到服务器
+                    </button>
+                    <button class="btn btn-outline" id="saveDesignBtn">
+                        <i class="fas fa-save"></i> 保存设计
+                    </button>
+                    <button class="btn btn-secondary" id="shareBtn">
+                        <i class="fas fa-share-alt"></i> 分享设计
+                    </button>
+                    <button class="btn btn-secondary" id="generateArtBtn">
+                        <i class="fas fa-magic"></i> 生成立绘
+                    </button>
+                </div>
+            </div>
+
+            <!-- 宝可梦设计卡片 -->
+            <div class="pokemon-card" id="pokemonCard">
+                <div class="pokemon-header">
+                    <div class="pokemon-image-container" id="pokemonImageContainer">
+                        <img src="meizuo.png" alt="宝可梦立绘" class="pokemon-image" id="pokemonImage">
+                    </div>
+                    <div class="pokemon-basic-info">
+                        <h2 class="pokemon-name" id="pokemonName">未命名宝可梦</h2>
+                        <div class="pokemon-types" id="pokemonTypes">
+                            <!-- 类型将通过JavaScript动态生成 -->
+                        </div>
+                        <div class="pokemon-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">身高</span>
+                                <span class="stat-value-SHEN" id="pokemonHeight">0.0 m</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">体重</span>
+                                <span class="stat-value-SHEN" id="pokemonWeight">0.0 kg</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pokemon-attributes">
+                    <div class="attribute-section">
+                        <h3 class="section-title"><i class="fas fa-book-open"></i> 图鉴描述</h3>
+                        <p class="description-text" id="pokedexDescription">暂无描述</p>
+                    </div>
+
+                    <div class="attribute-section">
+                        <h3 class="section-title"><i class="fas fa-star"></i> 特性</h3>
+                        <ul class="abilities-list" id="abilitiesList">
+                            <!-- 特性将通过JavaScript动态生成 -->
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="attribute-section">
+                    <h3 class="section-title"><i class="fas fa-chart-bar"></i> 种族值</h3>
+                    <div class="stats-chart" id="statsChart">
+                        <!-- 种族值图表将通过JavaScript动态生成 -->
+                    </div>
+                </div>
+
+                <div class="moves-section">
+                    <h3 class="section-title"><i class="fas fa-bolt"></i> 技能</h3>
+                    <div class="move-tabs">
+                        <div class="move-tab active" data-tab="signature">专属技能</div>
+                        <div class="move-tab" data-tab="physical">物理技能</div>
+                        <div class="move-tab" data-tab="special">特殊技能</div>
+                        <div class="move-tab" data-tab="status">变化技能</div>
+                    </div>
+
+                    <div class="move-list active" data-tab-content="signature" id="signatureMoves">
+                        <!-- 专属技能将通过JavaScript动态生成 -->
+                    </div>
+
+                    <div class="move-list" data-tab-content="physical" id="physicalMoves">
+                        <!-- 物理技能将通过JavaScript动态生成 -->
+                    </div>
+
+                    <div class="move-list" data-tab-content="special" id="specialMoves">
+                        <!-- 特殊技能将通过JavaScript动态生成 -->
+                    </div>
+
+                    <div class="move-list" data-tab-content="status" id="statusMoves">
+                        <!-- 变化技能将通过JavaScript动态生成 -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI对话部分 -->
+            <div class="ai-section">
+                <div class="ai-header">
+                    <h3 class="ai-title">AI设计助手</h3>
+                    <div class="ai-settings">
+                        <div class="setting-group">
+                            <span class="setting-label">强度:</span>
+                            <select class="setting-select" id="aiStrength">
+                                <option value="low">低</option>
+                                <option value="medium" selected>中</option>
+                                <option value="high">高</option>
+                                <option value="god_2">二级神</option>
+                                <option value="god_1">一级神</option>
+                                <option value="zhun_god">幻兽&准神</option>
+                                <option value="custom">自定义</option>
+                            </select>
+                        </div>
+                        <div class="setting-group">
+                            <span class="setting-label">风格:</span>
+                            <select class="setting-select" id="aiStyle">
+                                <option value="balanced" selected>平衡</option>
+                                <option value="realistic">写实</option>
+                                <option value="fantasy">奇幻</option>
+                                <option value="cute">可爱</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-outline" id="aiSettingsBtn">
+                            <i class="fas fa-cog"></i> API设置
+                        </button>
+                    </div>
+                </div>
+
+                <div class="ai-conversation" id="aiConversation">
+                    <div class="message message-ai">
+                        你好！我是宝可梦设计AI助手。你可以告诉我你想要设计的宝可梦的特点，我会帮你生成完整的宝可梦数据。
+                    </div>
+                </div>
+
+                <div class="ai-input-area">
+                    <textarea class="ai-input" id="aiInput" placeholder="输入你的设计需求... ctrl+enter提交"></textarea>
+                    <button class="ai-submit" id="aiSubmit">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- API设置模态框 -->
+    <div class="modal" id="apiSettingsModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeApiSettingsModal">&times;</button>
+            <h3 class="modal-title">API设置</h3>
+            
+            <div class="form-group">
+                <label class="form-label">AI API提供商</label>
+                <select class="form-select" id="aiProvider">
+                    <option value="deepseek">DeepSeek</option>
+                    <option value="custom">自定义</option>
+                </select>
+            </div>
+
+            <div id="deepseekSettings">
+                <div class="form-group">
+                    <label class="form-label">DeepSeek API Key</label>
+                    <input type="password" class="form-input" id="deepseekApiKey" placeholder="输入你的DeepSeek API Key">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">模型</label>
+                    <select class="form-select" id="deepseekModel">
+                        <option value="deepseek-chat" selected>DeepSeek-V3</option>
+                        <option value="deepseek-reasoner">DeepSeek-R1</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="customAiSettings" style="display: none;">
+                <div class="form-group">
+                    <label class="form-label">API端点</label>
+                    <input type="text" class="form-input" id="customApiEndpoint" placeholder="https://api.example.com/v1">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">API Key</label>
+                    <input type="password" class="form-input" id="customApiKey" placeholder="输入你的API Key">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">模型名称</label>
+                    <input type="text" class="form-input" id="customModelName" placeholder="模型名称">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">立绘生成API</label>
+                <select class="form-select" id="artProvider">
+                    <option value="none">使用DS调用pollination AI</option>
+                    <option value="custom">自定义</option>
+                </select>
+            </div>
+
+            <div id="customArtSettings" style="display: none;">
+                <div class="form-group">
+                    <label class="form-label">API端点</label>
+                    <input type="text" class="form-input" id="customArtEndpoint" placeholder="https://api.example.com/v1">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">API Key</label>
+                    <input type="password" class="form-input" id="customArtKey" placeholder="输入你的API Key">
+                </div>
+            </div>
+
+            <button class="btn btn-primary" id="saveApiSettings">保存设置</button>
+        </div>
+    </div>
+
+    <!-- 分享面板模态框 -->
+    <div class="modal" id="shareModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeShareModal">&times;</button>
+            <h3 class="modal-title">分享宝可梦设计</h3>
+            <div class="share-actions">
+                <button class="btn btn-primary" id="copyImageBtn">
+                    <i class="fas fa-copy"></i> 复制图片
+                </button>
+                <button class="btn btn-secondary" id="saveImageBtn">
+                    <i class="fas fa-download"></i> 保存图片
+                </button>
+            </div>
+            <div class="share-preview" id="sharePreview"></div>
+            
+        </div>
+    </div>
+
+    <!-- 设计表单模态框 -->
+    <div class="modal" id="designFormModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeDesignFormModal">&times;</button>
+            <h3 class="modal-title">编辑宝可梦设计</h3>
+            
+            <div class="form-group">
+                <label class="form-label">宝可梦图片</label>
+                <div class="image-upload-container">
+                    <div class="image-preview" id="imagePreview">
+                        <img src="" alt="图片预览" class="preview-image" id="previewImage">
+                    </div>
+                    <input type="file" id="imageUpload" accept="image/*" class="image-upload-input">
+                    <label for="imageUpload" class="image-upload-label">
+                        <i class="fas fa-upload"></i> 选择图片
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">宝可梦名称</label>
+                <input type="text" class="form-input" id="designName" placeholder="输入宝可梦名称">
+            </div>
+
+            <div class="form-row">
+                <div class="form-col">
+                    <div class="form-group">
+                        <label class="form-label">身高 (m)</label>
+                        <input type="number" class="form-input" id="designHeight" step="0.1" min="0">
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-group">
+                        <label class="form-label">体重 (kg)</label>
+                        <input type="number" class="form-input" id="designWeight" step="0.1" min="0">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group"style="max-width: 400px;">
+                <label class="form-label">属性</label>
+                <div class="pokemon-types" id="designTypes">
+                    <!-- 类型选择将通过JavaScript动态生成 -->
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">图鉴描述</label>
+                <textarea class="form-input" id="designDescription" rows="3"></textarea>
+            </div>
+
+            <h4 class="section-title" style="margin: 20px 0 10px;">特性</h4>
+            <div class="form-row">
+                <div class="form-col">
+                    <div class="form-group">
+                        <label class="form-label">特性1</label>
+                        <input type="text" class="form-input" id="designAbility1" placeholder="特性名称">
+                        <textarea class="form-input" id="designAbilityDesc1" rows="2" placeholder="特性描述"></textarea>
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-group">
+                        <label class="form-label">特性2</label>
+                        <input type="text" class="form-input" id="designAbility2" placeholder="特性名称">
+                        <textarea class="form-input" id="designAbilityDesc2" rows="2" placeholder="特性描述"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">隐藏特性</label>
+                <input type="text" class="form-input" id="designAbilityHidden" placeholder="隐藏特性名称">
+                <textarea class="form-input" id="designAbilityHiddenDesc" rows="2" placeholder="隐藏特性描述"></textarea>
+            </div>
+
+            <h4 class="section-title" style="margin: 20px 0 10px;">种族值</h4>
+            <div class="form-row">
+                <div class="form-col">
+                    <div class="form-group">
+                        <label class="form-label">HP</label>
+                        <input type="number" class="form-input" id="designStatHp" min="1" max="255">
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-group">
+                        <label class="form-label">攻击</label>
+                        <input type="number" class="form-input" id="designStatAtk" min="1" max="255">
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-col">
+                    <div class="form-group">
+                        <label class="form-label">防御</label>
+                        <input type="number" class="form-input" id="designStatDef" min="1" max="255">
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-group">
+                        <label class="form-label">特攻</label>
+                        <input type="number" class="form-input" id="designStatSpAtk" min="1" max="255">
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-col">
+                    <div class="form-group">
+                        <label class="form-label">特防</label>
+                        <input type="number" class="form-input" id="designStatSpDef" min="1" max="255">
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-group">
+                        <label class="form-label">速度</label>
+                        <input type="number" class="form-input" id="designStatSpeed" min="1" max="255">
+                    </div>
+                </div>
+            </div>
+
+            <h4 class="section-title" style="margin: 20px 0 10px;">专属技能</h4>
+            <div class="form-group">
+                <label class="form-label">技能名称</label>
+                <input type="text" class="form-input" id="designMoveName" placeholder="技能名称">
+            </div>
+            <div class="form-row">
+                <div class="form-col">
+                    <div class="form-group">
+                        <label class="form-label">属性</label>
+                        <select class="form-select" id="designMoveType">
+                            <!-- 类型选项将通过JavaScript动态生成 -->
+                        </select>
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-group">
+                        <label class="form-label">技能类型</label>
+                        <select class="form-select" id="designMoveCategory">
+                            <option value="physical">物理</option>
+                            <option value="special">特殊</option>
+                            <option value="status">变化</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-col">
+                    <div class="form-group">
+                        <label class="form-label">威力</label>
+                        <input type="number" class="form-input" id="designMovePower" min="0" max="255">
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-group">
+                        <label class="form-label">命中率</label>
+                        <input type="number" class="form-input" id="designMoveAccuracy" min="0" max="100">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">PP</label>
+                <input type="number" class="form-input" id="designMovePp" min="1" max="40">
+            </div>
+            <div class="form-group">
+                <label class="form-label">技能描述</label>
+                <textarea class="form-input" id="designMoveDescription" rows="3"></textarea>
+            </div>
+
+            <button class="btn btn-primary" id="saveDesignForm">保存更改</button>
+        </div>
+    </div>
+</body>
+<script src="index.js" type="text/javascript"></script>
+</html>

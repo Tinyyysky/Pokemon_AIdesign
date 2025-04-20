@@ -1,0 +1,287 @@
+{
+  "currentDesign": {
+    "id": "m6j2pbie16surjbu093eyp",
+    "name": "哈基米",
+    "height": 0.3,
+    "weight": 3.5,
+    "types": [
+      "妖精",
+      "一般"
+    ],
+    "description": "一只可爱的蜂蜜色小猫宝可梦，灵感来源于网络热梗。身体覆盖着柔软的绒毛，眼睛大而圆，尾巴末端呈蜂蜜罐形状。平时喜欢哼歌，歌声能让周围生物感到愉悦。当生气时会进入\"棘背龙模式\"，背部毛发竖起形成锯齿状。",
+    "abilities": [
+      {
+        "name": "甜蜜歌声",
+        "description": "出场时降低对手攻击和特攻各1级"
+      },
+      {
+        "name": "柔软",
+        "description": "不会陷入麻痹状态"
+      },
+      {
+        "name": "愤怒模式",
+        "description": "HP低于1/3时攻击和特攻提升1级",
+        "isHidden": true
+      }
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 65,
+      "defense": 60,
+      "specialAttack": 85,
+      "specialDefense": 75,
+      "speed": 95
+    },
+    "signatureMove": {
+      "name": "蜂蜜狂欢",
+      "type": "妖精",
+      "category": "special",
+      "power": 90,
+      "accuracy": 100,
+      "pp": 10,
+      "description": "用甜美的歌声攻击敌方单体，30%概率使目标陷入魅惑状态"
+    },
+    "moves": {
+      "physical": [
+        {
+          "name": "抓",
+          "type": "一般",
+          "category": "physical",
+          "power": 40,
+          "accuracy": 100,
+          "pp": 35,
+          "description": "用爪子抓挠敌方单体"
+        },
+        {
+          "name": "嬉闹",
+          "type": "妖精",
+          "category": "physical",
+          "power": 90,
+          "accuracy": 90,
+          "pp": 10,
+          "description": "嬉闹着攻击敌方单体，10%概率降低目标攻击1级"
+        },
+        {
+          "name": "急速折返",
+          "type": "虫",
+          "category": "physical",
+          "power": 70,
+          "accuracy": 100,
+          "pp": 20,
+          "description": "攻击后快速返回替换宝可梦"
+        }
+      ],
+      "special": [
+        {
+          "name": "魅惑之声",
+          "type": "妖精",
+          "category": "special",
+          "power": 40,
+          "accuracy": 100,
+          "pp": 15,
+          "description": "用魅惑的歌声攻击敌方单体，必定命中"
+        },
+        {
+          "name": "魔法闪耀",
+          "type": "妖精",
+          "category": "special",
+          "power": 80,
+          "accuracy": 100,
+          "pp": 10,
+          "description": "释放耀眼的光芒攻击敌方全体"
+        },
+        {
+          "name": "高速星星",
+          "type": "一般",
+          "category": "special",
+          "power": 60,
+          "accuracy": 101,
+          "pp": 20,
+          "description": "发射星形光弹攻击敌方单体，必定命中"
+        }
+      ],
+      "status": [
+        {
+          "name": "撒娇",
+          "type": "妖精",
+          "category": "status",
+          "power": 0,
+          "accuracy": 100,
+          "pp": 20,
+          "description": "向对手撒娇，降低其攻击2级"
+        },
+        {
+          "name": "治愈铃声",
+          "type": "一般",
+          "category": "status",
+          "power": 0,
+          "accuracy": 101,
+          "pp": 5,
+          "description": "治愈全队所有异常状态"
+        },
+        {
+          "name": "电磁波",
+          "type": "电",
+          "category": "status",
+          "power": 0,
+          "accuracy": 90,
+          "pp": 20,
+          "description": "向对手发出微弱的电击，使其陷入麻痹状态"
+        }
+      ]
+    },
+    "imageUrl": "meizuo.png",
+    "createdAt": "2025-04-19T15:28:22.862Z",
+    "updatedAt": "2025-04-20T03:30:00.611Z",
+    "source": "server"
+  },
+  "designHistory": [
+    {
+      "id": "m6j2pbie16surjbu093eyp",
+      "name": "哈基米",
+      "height": 0.3,
+      "weight": 3.5,
+      "types": [
+        "妖精",
+        "一般"
+      ],
+      "description": "一只可爱的蜂蜜色小猫宝可梦，灵感来源于网络热梗。身体覆盖着柔软的绒毛，眼睛大而圆，尾巴末端呈蜂蜜罐形状。平时喜欢哼歌，歌声能让周围生物感到愉悦。当生气时会进入\"棘背龙模式\"，背部毛发竖起形成锯齿状。",
+      "abilities": [
+        {
+          "name": "甜蜜歌声",
+          "description": "出场时降低对手攻击和特攻各1级"
+        },
+        {
+          "name": "柔软",
+          "description": "不会陷入麻痹状态"
+        },
+        {
+          "name": "愤怒模式",
+          "description": "HP低于1/3时攻击和特攻提升1级",
+          "isHidden": true
+        }
+      ],
+      "stats": {
+        "hp": 70,
+        "attack": 65,
+        "defense": 60,
+        "specialAttack": 85,
+        "specialDefense": 75,
+        "speed": 95
+      },
+      "signatureMove": {
+        "name": "蜂蜜狂欢",
+        "type": "妖精",
+        "category": "special",
+        "power": 90,
+        "accuracy": 100,
+        "pp": 10,
+        "description": "用甜美的歌声攻击敌方单体，30%概率使目标陷入魅惑状态"
+      },
+      "moves": {
+        "physical": [
+          {
+            "name": "抓",
+            "type": "一般",
+            "category": "physical",
+            "power": 40,
+            "accuracy": 100,
+            "pp": 35,
+            "description": "用爪子抓挠敌方单体"
+          },
+          {
+            "name": "嬉闹",
+            "type": "妖精",
+            "category": "physical",
+            "power": 90,
+            "accuracy": 90,
+            "pp": 10,
+            "description": "嬉闹着攻击敌方单体，10%概率降低目标攻击1级"
+          },
+          {
+            "name": "急速折返",
+            "type": "虫",
+            "category": "physical",
+            "power": 70,
+            "accuracy": 100,
+            "pp": 20,
+            "description": "攻击后快速返回替换宝可梦"
+          }
+        ],
+        "special": [
+          {
+            "name": "魅惑之声",
+            "type": "妖精",
+            "category": "special",
+            "power": 40,
+            "accuracy": 100,
+            "pp": 15,
+            "description": "用魅惑的歌声攻击敌方单体，必定命中"
+          },
+          {
+            "name": "魔法闪耀",
+            "type": "妖精",
+            "category": "special",
+            "power": 80,
+            "accuracy": 100,
+            "pp": 10,
+            "description": "释放耀眼的光芒攻击敌方全体"
+          },
+          {
+            "name": "高速星星",
+            "type": "一般",
+            "category": "special",
+            "power": 60,
+            "accuracy": 101,
+            "pp": 20,
+            "description": "发射星形光弹攻击敌方单体，必定命中"
+          }
+        ],
+        "status": [
+          {
+            "name": "撒娇",
+            "type": "妖精",
+            "category": "status",
+            "power": 0,
+            "accuracy": 100,
+            "pp": 20,
+            "description": "向对手撒娇，降低其攻击2级"
+          },
+          {
+            "name": "治愈铃声",
+            "type": "一般",
+            "category": "status",
+            "power": 0,
+            "accuracy": 101,
+            "pp": 5,
+            "description": "治愈全队所有异常状态"
+          },
+          {
+            "name": "电磁波",
+            "type": "电",
+            "category": "status",
+            "power": 0,
+            "accuracy": 90,
+            "pp": 20,
+            "description": "向对手发出微弱的电击，使其陷入麻痹状态"
+          }
+        ]
+      },
+      "imageUrl": "meizuo.png",
+      "createdAt": "2025-04-19T15:28:22.862Z",
+      "updatedAt": "2025-04-20T03:30:00.611Z",
+      "source": "server"
+    }
+  ],
+  "apiSettings": {
+    "aiProvider": "deepseek",
+    "deepseekApiKey": "",
+    "deepseekModel": "deepseek-chat",
+    "customApiEndpoint": "",
+    "customApiKey": "",
+    "customModelName": "",
+    "artProvider": "none",
+    "customArtEndpoint": "",
+    "customArtKey": ""
+  }
+}
