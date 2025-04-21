@@ -1841,7 +1841,9 @@ function addUserMessage(content) {
 function addAiMessage(content) {
     const message = document.createElement('div');
     message.className = 'message message-ai';
-    
+     // 生成唯一ID用于关联数据
+     const messageId = 'msg-' + Date.now();
+     message.dataset.messageId = messageId;
     // 检查内容是否是JSON格式
     try {
         const jsonData = content;
@@ -1853,7 +1855,32 @@ function addAiMessage(content) {
         toggleButton.className = 'toggle-collapse';
         toggleButton.textContent = '查看完整响应';
         toggleButton.innerHTML += '<i class="fas fa-chevron-down"></i>';
-        
+        // console.log('jsonData',jsonData)
+         // 还原按钮 - 添加数据属性
+         const restoreButton = document.createElement('button');
+         restoreButton.className = 'restore-design';
+         restoreButton.dataset.targetId = messageId; // 关联消息ID
+         restoreButton.textContent = '还原设计';
+         restoreButton.innerHTML += '<i class="fas fa-undo"></i>';
+        message.appendChild(restoreButton);
+        restoreButton.addEventListener('click', () => {
+            //是否还原设计
+            const confirmRestore = confirm('是否还原设计？');
+            if (confirmRestore) {
+                if (jsonData.name&&jsonData.types&&jsonData.stats) {
+                currentDesign = {id:currentDesign.id,...jsonData,
+                    createdAt: currentDesign.createdAt,
+                    updatedAt: currentDesign.updatedAt,
+                    imageUrl:currentDesign.imageUrl}; // 还原设计数据
+                renderDesign(currentDesign); // 渲染设计
+                saveData(); // 保存数据
+                showMessage('设计已还原', 'success'); // 显示成功消息
+                // 还原设计逻辑
+                }else {
+                    showMessage('设计数据不完整，无法还原', 'warning'); // 显示警告消息
+                }
+            }
+        });
         const fullContent = document.createElement('pre');
         fullContent.className = 'collapsible-content';
         fullContent.textContent = formattedContent;
