@@ -1,3 +1,4 @@
+// import './css/index.css';  // 确保路径正确
 // 宝可梦类型数据
 const pokemonTypes = [
     { name: '一般', color: 'var(--normal)' },
@@ -98,6 +99,8 @@ const closeApiSettingsModal = document.getElementById('closeApiSettingsModal');
 const aiProvider = document.getElementById('aiProvider');
 const deepseekSettings = document.getElementById('deepseekSettings');
 const customAiSettings = document.getElementById('customAiSettings');
+const temperaturevalue = document.getElementById('model-temperature');
+const modeltextlength = document.getElementById('modelContextLength');
 const deepseekApiKey = document.getElementById('deepseekApiKey');
 const deepseekModel = document.getElementById('deepseekModel');
 const customApiEndpoint = document.getElementById('customApiEndpoint');
@@ -146,7 +149,9 @@ let apiSettings = {
     customModelName: '',
     artProvider: 'none',
     customArtEndpoint: '',
-    customArtKey: ''
+    customArtKey: '',
+    temperature: 1,
+    modeltextlength: 1
 };
 
 // 初始化
@@ -305,6 +310,7 @@ async function loadData() {
         }
     }
 }
+//从后端获取AI对话历史
 async function loadConversationHistory(designId) {
     try {
         const response = await fetch(`/api/conversations/${designId}`);
@@ -337,6 +343,7 @@ async function loadConversationHistory(designId) {
         
         // 滚动到底部
         aiConversation.scrollTop = aiConversation.scrollHeight;
+        console.log('加载对话历史:', data.messages);
         
     } catch (error) {
         console.error('加载对话错误:', error);
@@ -363,6 +370,21 @@ async function loadConversationHistory(designId) {
         welcomeMsg.className = 'message message-ai';
         welcomeMsg.textContent = '你好！我是宝可梦设计AI助手。你可以告诉我你想要设计的宝可梦的特点，我会帮你生成完整的宝可梦数据。';
         aiConversation.appendChild(welcomeMsg);
+    }
+}
+
+
+//获取对话历史数据
+async function getConversationHistory(designId) {
+    try {
+        const response = await fetch(`/api/conversations/${designId}`);
+        if (!response.ok) throw new Error('获取对话失败');
+        
+        const data = await response.json();
+        return data.messages;
+    } catch (error) {
+        console.error('获取对话历史失败:', error);
+        return [];
     }
 }
 // 保存数据到后端或本地
@@ -413,6 +435,9 @@ function updateApiSettingsForm() {
         document.getElementById('artProvider').value = apiSettings.artProvider || 'none';
         document.getElementById('customArtEndpoint').value = apiSettings.customArtEndpoint || '';
         document.getElementById('customArtKey').value = apiSettings.customArtKey || '';
+        document.getElementById('model-temperature').value = apiSettings.temperature || 1;
+        document.getElementById('modelContextLength').value = apiSettings.modeltextlength || 1;
+        document.getElementById("temperature-value").textContent = apiSettings.temperature || 1;
     }
 }
 
@@ -427,7 +452,10 @@ function loadApiSettings() {
     artProvider.value = apiSettings.artProvider;
     customArtEndpoint.value = apiSettings.customArtEndpoint;
     customArtKey.value = apiSettings.customArtKey;
-    
+    temperaturevalue.value = apiSettings.temperature ;
+    // console.log(temperaturevalue.value);
+    modeltextlength.value = apiSettings.modeltextlength;
+    // console.log('上下文',modeltextlength.value);
     toggleAiProviderSettings();
     toggleArtProviderSettings();
 }
@@ -443,9 +471,11 @@ function saveApiSettingsHandler() {
         customModelName: customModelName.value,
         artProvider: artProvider.value,
         customArtEndpoint: customArtEndpoint.value,
-        customArtKey: customArtKey.value
+        customArtKey: customArtKey.value,
+        temperature: parseFloat(temperaturevalue.value),
+        modeltextlength: modeltextlength.value
     };
-    
+    // console.log(apiSettings);
     saveData();
     apiSettingsModal.classList.remove('active');
     
@@ -1447,7 +1477,9 @@ async function sendAiMessage() {
         /// 调用API
         let response;
         if (apiSettings.aiProvider === 'deepseek') {
-            response = await callDeepSeekApi(systemPrompt, message);
+            // response = await callDeepSeekApi(systemPrompt, message);//无上下文调用
+            response =await messages_callDeepSeekApi(systemPrompt,await getConversationHistory(currentDesign.id));//有上下文调用
+            console.log(response)
         } else {
             response = await callCustomAiApi(systemPrompt, message);
         }
@@ -1572,7 +1604,6 @@ async function sendAiMessage() {
 
         // 添加错误消息
         addAiMessage(`抱歉，发生了错误: ${error.message}`);
-        console.error('AI请求错误:', error);
         showMessage('AI请求失败', 'danger');
     } finally {
         // 重新启用输入和按钮
@@ -1582,7 +1613,9 @@ async function sendAiMessage() {
     }
 }
 
-// 调用DeepSeek API
+
+
+// 无上下文调用DeepSeek API
 async function callDeepSeekApi(systemPrompt, userMessage) {
     if (!apiSettings.deepseekApiKey) {
         throw new Error('未配置DeepSeek API Key');
@@ -1596,7 +1629,7 @@ async function callDeepSeekApi(systemPrompt, userMessage) {
         },
         body: JSON.stringify({
             model: apiSettings.deepseekModel,
-            temperature: 1.5,
+            temperature: apiSettings.temperature,
             messages: [
                 { role: 'system', content: systemPrompt },
                 { role: 'user', content: userMessage }
@@ -1610,6 +1643,41 @@ async function callDeepSeekApi(systemPrompt, userMessage) {
     }
     
     const data = await response.json();
+    return data.choices[0].message.content;
+}
+//有上下文调用DeepSeek API
+async function messages_callDeepSeekApi(systemPrompt,messages) {
+    if (!apiSettings.deepseekApiKey) {
+        throw new Error('未配置DeepSeek API Key');
+    }
+    const apiMessages = messages.map(({ role, content }) => ({
+        role,
+        content: typeof content === 'string' ? content : JSON.stringify(content) // 确保 content 是字符串
+    }));
+    console.log('apimessages',apiMessages)
+    const postmessages = [{ role: 'system', content: systemPrompt },
+        ...(apiMessages.slice(-apiSettings.modeltextlength)) ]
+        console.log('postmessages',postmessages)
+    const response = await fetch('https://api.deepseek.com/chat/completions', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${apiSettings.deepseekApiKey}`
+        },
+        body: JSON.stringify({
+            model: apiSettings.deepseekModel,
+            temperature: apiSettings.temperature,
+            messages: postmessages,
+            stream: false
+        })
+    });
+    
+    if (!response.ok) {
+        throw new Error(`API请求失败: ${response.status}`);
+    }
+    
+    const data = await response.json();
+    // console.log(data)
     return data.choices[0].message.content;
 }
 
@@ -1769,7 +1837,7 @@ function addUserMessage(content) {
     aiConversation.scrollTop = aiConversation.scrollHeight;
 }
 
-// 添加AI消息到对话
+// 添加AI消息到对话，AI上下文显示
 function addAiMessage(content) {
     const message = document.createElement('div');
     message.className = 'message message-ai';
@@ -1779,7 +1847,7 @@ function addAiMessage(content) {
         const jsonData = content;
         const formattedContent = JSON.stringify(jsonData, null, 2);
         const contentPreview = document.createElement('div');
-        contentPreview.textContent = `AI返回了设计数据，已自动应用到当前设计中,已为你设计了新的宝可梦: ${jsonData.name}`;
+        contentPreview.textContent = `AI返回了设计数据，已为你设计了新的宝可梦: 「 ${jsonData.name} 」，并自动应用到当前设计中。`;
         
         const toggleButton = document.createElement('button');
         toggleButton.className = 'toggle-collapse';
@@ -1918,10 +1986,57 @@ document.addEventListener("DOMContentLoaded", function() {
         e.preventDefault(); // 如果是表单提交，阻止默认行为
         
         // 这里写你的提交逻辑...
-        console.log('提交内容:', textarea.value);
+        // console.log('提交内容:', textarea.value);
 
         // 提交后清空并恢复高度
         textarea.value = '';
         textarea.style.height = initialHeight; // 重置为初始高度
     });
 });
+
+const backToTopButton = document.getElementById('back-to-top');
+        
+// 监听滚动事件
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 600) {
+        backToTopButton.classList.add('show');
+    } else {
+        backToTopButton.classList.remove('show');
+    }
+});
+
+// 点击回到顶部
+backToTopButton.addEventListener('click', () => {
+    scrollToTop(600); // 600ms内完成滚动
+});
+
+// 平滑滚动函数
+function scrollToTop(duration) {
+    const start = window.pageYOffset;
+    const startTime = performance.now();
+    
+    function scrollStep(timestamp) {
+        const currentTime = timestamp || performance.now();
+        const timeElapsed = currentTime - startTime;
+        const progress = Math.min(timeElapsed / duration, 1);
+        
+        window.scrollTo(0, start * (1 - easeOutCubic(progress)));
+        
+        if (timeElapsed < duration) {
+            window.requestAnimationFrame(scrollStep);
+        }
+    }
+    
+    // 缓动函数
+    function easeOutCubic(t) {
+        return (--t) * t * t + 1;
+    }
+    
+    window.requestAnimationFrame(scrollStep);
+}
+//模型温度调整
+function updateTemperature(val) {
+    document.getElementById("temperature-value").textContent = val;
+    document.getElementById("model-temperature").value = val;
+    console.log('模型温度:', temperaturevalue.value);
+}

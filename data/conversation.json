@@ -1,1 +1,523 @@
-{}
+{
+  "conversations": {
+    "m6j2pbie16surjbu093eyp": [
+      {
+        "role": "user",
+        "content": "哈基吗",
+        "designId": "m6j2pbie16surjbu093eyp",
+        "timestamp": "2025/4/21 12:41:51"
+      },
+      {
+        "role": "user",
+        "content": "哈基吗",
+        "designId": "m6j2pbie16surjbu093eyp",
+        "timestamp": "2025/4/21 12:42:01"
+      },
+      {
+        "role": "assistant",
+        "content": {
+          "name": "哈基吗",
+          "height": 0.6,
+          "weight": 12.5,
+          "types": [
+            "妖精",
+            "格斗"
+          ],
+          "description": "哈基吗是一种外形类似小型猫科动物的宝可梦，全身覆盖着柔软的粉色毛发，耳朵尖端和尾巴末端带有白色绒毛。它的眼睛大而圆，瞳孔呈现爱心形状。前爪异常发达，能够进行快速的连打攻击。设计灵感来源于家猫与拳击手的结合体，在可爱外表下隐藏着强大的近战能力。",
+          "abilities": [
+            {
+              "name": "柔软",
+              "description": "不会被麻痹"
+            },
+            {
+              "name": "技术高手",
+              "description": "使用低威力招式时威力会提高"
+            },
+            {
+              "name": "爱心拳",
+              "description": "使用拳类招式时威力提升30%",
+              "isHidden": true
+            }
+          ],
+          "stats": {
+            "hp": 75,
+            "attack": 90,
+            "defense": 70,
+            "specialAttack": 55,
+            "specialDefense": 80,
+            "speed": 110
+          },
+          "signatureMove": {
+            "name": "爱心连环拳",
+            "type": "妖精",
+            "category": "physical",
+            "power": 25,
+            "accuracy": 95,
+            "pp": 10,
+            "description": "用充满爱意的拳击连续攻击2-5次，每次攻击都有10%几率使目标陷入着迷状态(单体)"
+          },
+          "moves": {
+            "physical": [
+              {
+                "name": "击掌奇袭",
+                "type": "一般",
+                "category": "physical",
+                "power": 40,
+                "accuracy": 100,
+                "pp": 10,
+                "description": "必定能够先制攻击(单体)"
+              },
+              {
+                "name": "近身战",
+                "type": "格斗",
+                "category": "physical",
+                "power": 120,
+                "accuracy": 100,
+                "pp": 5,
+                "description": "攻击后自身防御和特防降低1级(单体)"
+              },
+              {
+                "name": "火焰拳",
+                "type": "火",
+                "category": "physical",
+                "power": 75,
+                "accuracy": 100,
+                "pp": 15,
+                "description": "有10%几率使目标灼伤(单体)"
+              },
+              {
+                "name": "雷电拳",
+                "type": "电",
+                "category": "physical",
+                "power": 75,
+                "accuracy": 100,
+                "pp": 15,
+                "description": "有10%几率使目标麻痹(单体)"
+              }
+            ],
+            "special": [
+              {
+                "name": "魔法闪耀",
+                "type": "妖精",
+                "category": "special",
+                "power": 80,
+                "accuracy": 100,
+                "pp": 10,
+                "description": "有10%几率降低目标命中率1级(群体)"
+              },
+              {
+                "name": "波导弹",
+                "type": "格斗",
+                "category": "special",
+                "power": 80,
+                "accuracy": 100,
+                "pp": 20,
+                "description": "必定命中(单体)"
+              },
+              {
+                "name": "暗影球",
+                "type": "幽灵",
+                "category": "special",
+                "power": 80,
+                "accuracy": 100,
+                "pp": 15,
+                "description": "有20%几率降低目标特防1级(单体)"
+              },
+              {
+                "name": "觉醒力量",
+                "type": "一般",
+                "category": "special",
+                "power": 60,
+                "accuracy": 100,
+                "pp": 15,
+                "description": "属性随机变化(单体)"
+              }
+            ],
+            "status": [
+              {
+                "name": "撒娇",
+                "type": "妖精",
+                "category": "status",
+                "power": 0,
+                "accuracy": 100,
+                "pp": 20,
+                "description": "使目标攻击降低2级(单体)"
+              },
+              {
+                "name": "快速防守",
+                "type": "格斗",
+                "category": "status",
+                "power": 0,
+                "accuracy": 100,
+                "pp": 15,
+                "description": "本回合内保护自己和队友免受先制攻击"
+              },
+              {
+                "name": "冥想",
+                "type": "超能力",
+                "category": "status",
+                "power": 0,
+                "accuracy": 100,
+                "pp": 20,
+                "description": "自身特攻和特防提升1级"
+              },
+              {
+                "name": "替身",
+                "type": "一般",
+                "category": "status",
+                "power": 0,
+                "accuracy": 100,
+                "pp": 10,
+                "description": "消耗1/4HP制造替身"
+              }
+            ]
+          }
+        },
+        "designId": "m6j2pbie16surjbu093eyp",
+        "timestamp": "2025/4/21 12:42:45"
+      }
+    ],
+    "uhiq243geldeuhq4hs4w8": [
+      {
+        "role": "user",
+        "content": "哈基1",
+        "designId": "uhiq243geldeuhq4hs4w8",
+        "timestamp": "2025/4/21 12:42:55"
+      },
+      {
+        "role": "assistant",
+        "content": {
+          "name": "炽沙狐",
+          "height": 0.9,
+          "weight": 28.5,
+          "types": [
+            "火",
+            "地面"
+          ],
+          "description": "炽沙狐是栖息在沙漠中的神秘宝可梦。它橙红色的毛发能反射阳光，尾巴末端的沙囊可以储存高温沙子。当遇到危险时，它会甩动尾巴撒出灼热的沙粒来保护自己。设计灵感来自沙漠狐狸和流沙现象，结合了火系的热情与地面的稳重特性。",
+          "abilities": [
+            {
+              "name": "沙之铠甲",
+              "description": "在沙暴天气时，防御和特防提升1个等级"
+            },
+            {
+              "name": "日照",
+              "description": "出场时，天气变为大晴天"
+            },
+            {
+              "name": "沙隐",
+              "description": "在沙暴天气时，闪避率提高",
+              "isHidden": true
+            }
+          ],
+          "stats": {
+            "hp": 75,
+            "attack": 95,
+            "defense": 80,
+            "specialAttack": 85,
+            "specialDefense": 70,
+            "speed": 95
+          },
+          "signatureMove": {
+            "name": "炽热沙暴",
+            "type": "火",
+            "category": "special",
+            "power": 90,
+            "accuracy": 95,
+            "pp": 10,
+            "description": "召唤灼热的沙暴攻击对手(全体)，30%几率使目标灼伤"
+          },
+          "moves": {
+            "physical": [
+              {
+                "name": "火焰拳",
+                "type": "火",
+                "category": "physical",
+                "power": 75,
+                "accuracy": 100,
+                "pp": 15,
+                "description": "用燃烧的拳头攻击对手(单体)"
+              },
+              {
+                "name": "地震",
+                "type": "地面",
+                "category": "physical",
+                "power": 100,
+                "accuracy": 100,
+                "pp": 10,
+                "description": "引发地震攻击周围所有宝可梦(全场)"
+              },
+              {
+                "name": "挖洞",
+                "type": "地面",
+                "category": "physical",
+                "power": 80,
+                "accuracy": 100,
+                "pp": 10,
+                "description": "第一回合钻入地下，第二回合攻击(单体)"
+              },
+              {
+                "name": "暗袭要害",
+                "type": "恶",
+                "category": "physical",
+                "power": 70,
+                "accuracy": 100,
+                "pp": 15,
+                "description": "容易击中要害(单体)"
+              }
+            ],
+            "special": [
+              {
+                "name": "喷射火焰",
+                "type": "火",
+                "category": "special",
+                "power": 90,
+                "accuracy": 100,
+                "pp": 15,
+                "description": "向对手发射猛烈火焰攻击(单体)"
+              },
+              {
+                "name": "大地之力",
+                "type": "地面",
+                "category": "special",
+                "power": 90,
+                "accuracy": 100,
+                "pp": 10,
+                "description": "向对手脚下释放能量(单体)，10%几率降低特防"
+              },
+              {
+                "name": "能量球",
+                "type": "草",
+                "category": "special",
+                "power": 90,
+                "accuracy": 100,
+                "pp": 10,
+                "description": "发射生命能量球(单体)，10%几率降低特防"
+              },
+              {
+                "name": "污泥炸弹",
+                "type": "毒",
+                "category": "special",
+                "power": 90,
+                "accuracy": 100,
+                "pp": 10,
+                "description": "投掷污泥进行攻击(单体)，30%几率使目标中毒"
+              }
+            ],
+            "status": [
+              {
+                "name": "鬼火",
+                "type": "火",
+                "category": "status",
+                "power": 0,
+                "accuracy": 85,
+                "pp": 15,
+                "description": "用诡异的火焰使对手灼伤(单体)"
+              },
+              {
+                "name": "沙暴",
+                "type": "岩石",
+                "category": "status",
+                "power": 0,
+                "accuracy": 100,
+                "pp": 10,
+                "description": "召唤沙暴5回合(全场)"
+              },
+              {
+                "name": "冥想",
+                "type": "超能力",
+                "category": "status",
+                "power": 0,
+                "accuracy": 100,
+                "pp": 20,
+                "description": "静心凝神，提高特攻和特防(自身)"
+              },
+              {
+                "name": "集气",
+                "type": "一般",
+                "category": "status",
+                "power": 0,
+                "accuracy": 100,
+                "pp": 30,
+                "description": "集中精神，更容易击中要害(自身)"
+              }
+            ]
+          }
+        },
+        "designId": "uhiq243geldeuhq4hs4w8",
+        "timestamp": "2025/4/21 12:43:40"
+      }
+    ],
+    "l979qekgi28a8z7rtqrz7v": [
+      {
+        "role": "user",
+        "content": "123",
+        "designId": "l979qekgi28a8z7rtqrz7v",
+        "timestamp": "2025/4/21 19:15:44"
+      },
+      {
+        "role": "assistant",
+        "content": {
+          "name": "晶岩兽",
+          "height": 1.2,
+          "weight": 85,
+          "types": [
+            "岩石",
+            "钢"
+          ],
+          "description": "晶岩兽是一种由特殊矿物构成的宝可梦，全身覆盖着闪耀的晶体结构。它的身体呈现出深灰色与浅蓝色的渐变，背部生长着几簇尖锐的晶簇，能够反射阳光发出炫目的光芒。晶岩兽栖息在矿山深处，以稀有矿石为食，通过吸收矿物质来强化自身的晶体装甲。",
+          "abilities": [
+            {
+              "name": "晶体装甲",
+              "description": "受到物理攻击时，有30%几率使攻击方的攻击降低1级"
+            },
+            {
+              "name": "坚硬",
+              "description": "不会被一击必杀招式打倒"
+            },
+            {
+              "name": "结晶反射",
+              "description": "受到特殊攻击时，有30%几率使攻击方的特攻降低1级",
+              "isHidden": true
+            }
+          ],
+          "stats": {
+            "hp": 80,
+            "attack": 95,
+            "defense": 110,
+            "specialAttack": 60,
+            "specialDefense": 85,
+            "speed": 50
+          },
+          "signatureMove": {
+            "name": "晶簇突刺",
+            "type": "岩石",
+            "category": "physical",
+            "power": 90,
+            "accuracy": 95,
+            "pp": 15,
+            "description": "用背部尖锐的晶簇刺向对手，有10%几率使目标防御降低1级(单体攻击)"
+          },
+          "moves": {
+            "physical": [
+              {
+                "name": "岩崩",
+                "type": "岩石",
+                "category": "physical",
+                "power": 75,
+                "accuracy": 90,
+                "pp": 10,
+                "description": "投掷巨大的岩石攻击对手，有30%几率使目标畏缩(单体攻击)"
+              },
+              {
+                "name": "铁头",
+                "type": "钢",
+                "category": "physical",
+                "power": 80,
+                "accuracy": 100,
+                "pp": 15,
+                "description": "用坚硬的头部撞击对手，有30%几率使目标畏缩(单体攻击)"
+              },
+              {
+                "name": "地震",
+                "type": "地面",
+                "category": "physical",
+                "power": 100,
+                "accuracy": 100,
+                "pp": 10,
+                "description": "引发地震攻击周围所有宝可梦(群体攻击)"
+              },
+              {
+                "name": "金属爪",
+                "type": "钢",
+                "category": "physical",
+                "power": 50,
+                "accuracy": 95,
+                "pp": 35,
+                "description": "用钢铁之爪撕裂对手，有10%几率提升自身攻击1级(单体攻击)"
+              }
+            ],
+            "special": [
+              {
+                "name": "力量宝石",
+                "type": "岩石",
+                "category": "special",
+                "power": 80,
+                "accuracy": 100,
+                "pp": 20,
+                "description": "发射宝石般的光芒攻击对手(单体攻击)"
+              },
+              {
+                "name": "加农光炮",
+                "type": "钢",
+                "category": "special",
+                "power": 80,
+                "accuracy": 100,
+                "pp": 10,
+                "description": "发射强烈的光束攻击对手，有10%几率降低目标特防1级(单体攻击)"
+              },
+              {
+                "name": "大地之力",
+                "type": "地面",
+                "category": "special",
+                "power": 90,
+                "accuracy": 100,
+                "pp": 10,
+                "description": "引发大地的力量攻击对手，有10%几率降低目标特防1级(单体攻击)"
+              },
+              {
+                "name": "原始之力",
+                "type": "岩石",
+                "category": "special",
+                "power": 60,
+                "accuracy": 100,
+                "pp": 5,
+                "description": "用原始的力量攻击对手，有10%几率提升自身所有能力1级(单体攻击)"
+              }
+            ],
+            "status": [
+              {
+                "name": "铁壁",
+                "type": "钢",
+                "category": "status",
+                "power": 0,
+                "accuracy": 100,
+                "pp": 15,
+                "description": "使身体变得像钢铁一样坚硬，大幅提升自身防御2级"
+              },
+              {
+                "name": "岩石打磨",
+                "type": "岩石",
+                "category": "status",
+                "power": 0,
+                "accuracy": 100,
+                "pp": 20,
+                "description": "打磨身体减少空气阻力，大幅提升自身速度2级"
+              },
+              {
+                "name": "隐形岩",
+                "type": "岩石",
+                "category": "status",
+                "power": 0,
+                "accuracy": 100,
+                "pp": 20,
+                "description": "在对手场地撒下尖锐的岩石，替换上场的宝可梦会受到伤害(全场效果)"
+              },
+              {
+                "name": "金属音",
+                "type": "钢",
+                "category": "status",
+                "power": 0,
+                "accuracy": 85,
+                "pp": 40,
+                "description": "发出刺耳的金属音，大幅降低对手特防2级(单体效果)"
+              }
+            ]
+          }
+        },
+        "designId": "l979qekgi28a8z7rtqrz7v",
+        "timestamp": "2025/4/21 19:16:36"
+      }
+    ]
+  }
+}

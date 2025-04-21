@@ -24,7 +24,8 @@ module.exports = {
         type: 'asset/resource',
         generator: {
           filename: 'images/[name][ext]'
-        }
+        },
+        include: path.resolve(__dirname, 'public/images')
       }
     ]
   },

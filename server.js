@@ -13,6 +13,7 @@ app.use(cors());
 app.use(express.json({ limit: '50mb' }));  // 增加 JSON 请求体大小限制
 app.use(express.urlencoded({ limit: '50mb', extended: true }));  // 增加 URL 编码请求体大小限制
 app.use(express.static('public'));
+// app.use(express.static(path.join(__dirname, 'dist')));// 静态文件目录
 
 // 数据文件路径
 const DATA_FILE = path.join(__dirname, 'data', 'designs.json');
@@ -156,7 +157,6 @@ app.post('/api/conversations', (req, res) => {
 app.get('/api/conversations/:designId', (req, res) => {
     try {
         const { designId } = req.params;
-        
         if (!designId) {
             return res.status(400).json({ error: '缺少designId参数' });
         }
@@ -177,7 +177,6 @@ app.get('/api/conversations/:designId', (req, res) => {
                 suggestion: '请确认ID是否正确或对话是否已保存'
             });
         }
-
         // 返回该designId的所有对话
         res.status(200).json({
             status: 'success',
@@ -243,3 +242,4 @@ initializeDataFile();
 app.listen(PORT, () => {
     console.log(`服务器运行在 http://localhost:${PORT}`);
 });
+module.exports = app;

@@ -1,275 +1,329 @@
 {
   "currentDesign": {
-    "id": "m6j2pbie16surjbu093eyp",
-    "name": "哈基米",
-    "height": 0.3,
-    "weight": 3.5,
+    "id": "l979qekgi28a8z7rtqrz7v",
+    "name": "晶岩兽",
+    "height": 1.2,
+    "weight": 85,
     "types": [
-      "妖精",
-      "一般"
+      "岩石",
+      "钢"
     ],
-    "description": "一只可爱的蜂蜜色小猫宝可梦，灵感来源于网络热梗。身体覆盖着柔软的绒毛，眼睛大而圆，尾巴末端呈蜂蜜罐形状。平时喜欢哼歌，歌声能让周围生物感到愉悦。当生气时会进入\"棘背龙模式\"，背部毛发竖起形成锯齿状。",
+    "description": "晶岩兽是一种由特殊矿物构成的宝可梦，全身覆盖着闪耀的晶体结构。它的身体呈现出深灰色与浅蓝色的渐变，背部生长着几簇尖锐的晶簇，能够反射阳光发出炫目的光芒。晶岩兽栖息在矿山深处，以稀有矿石为食，通过吸收矿物质来强化自身的晶体装甲。",
     "abilities": [
       {
-        "name": "甜蜜歌声",
-        "description": "出场时降低对手攻击和特攻各1级"
+        "name": "晶体装甲",
+        "description": "受到物理攻击时，有30%几率使攻击方的攻击降低1级"
       },
       {
-        "name": "柔软",
-        "description": "不会陷入麻痹状态"
+        "name": "坚硬",
+        "description": "不会被一击必杀招式打倒"
       },
       {
-        "name": "愤怒模式",
-        "description": "HP低于1/3时攻击和特攻提升1级",
+        "name": "结晶反射",
+        "description": "受到特殊攻击时，有30%几率使攻击方的特攻降低1级",
         "isHidden": true
       }
     ],
     "stats": {
-      "hp": 70,
-      "attack": 65,
-      "defense": 60,
-      "specialAttack": 85,
-      "specialDefense": 75,
-      "speed": 95
+      "hp": 80,
+      "attack": 95,
+      "defense": 110,
+      "specialAttack": 60,
+      "specialDefense": 85,
+      "speed": 50
     },
     "signatureMove": {
-      "name": "蜂蜜狂欢",
-      "type": "妖精",
-      "category": "special",
+      "name": "晶簇突刺",
+      "type": "岩石",
+      "category": "physical",
       "power": 90,
-      "accuracy": 100,
-      "pp": 10,
-      "description": "用甜美的歌声攻击敌方单体，30%概率使目标陷入魅惑状态"
+      "accuracy": 95,
+      "pp": 15,
+      "description": "用背部尖锐的晶簇刺向对手，有10%几率使目标防御降低1级(单体攻击)"
     },
     "moves": {
       "physical": [
         {
-          "name": "抓",
-          "type": "一般",
+          "name": "岩崩",
+          "type": "岩石",
           "category": "physical",
-          "power": 40,
-          "accuracy": 100,
-          "pp": 35,
-          "description": "用爪子抓挠敌方单体"
-        },
-        {
-          "name": "嬉闹",
-          "type": "妖精",
-          "category": "physical",
-          "power": 90,
+          "power": 75,
           "accuracy": 90,
           "pp": 10,
-          "description": "嬉闹着攻击敌方单体，10%概率降低目标攻击1级"
+          "description": "投掷巨大的岩石攻击对手，有30%几率使目标畏缩(单体攻击)"
         },
         {
-          "name": "急速折返",
-          "type": "虫",
+          "name": "铁头",
+          "type": "钢",
           "category": "physical",
-          "power": 70,
+          "power": 80,
           "accuracy": 100,
-          "pp": 20,
-          "description": "攻击后快速返回替换宝可梦"
+          "pp": 15,
+          "description": "用坚硬的头部撞击对手，有30%几率使目标畏缩(单体攻击)"
+        },
+        {
+          "name": "地震",
+          "type": "地面",
+          "category": "physical",
+          "power": 100,
+          "accuracy": 100,
+          "pp": 10,
+          "description": "引发地震攻击周围所有宝可梦(群体攻击)"
+        },
+        {
+          "name": "金属爪",
+          "type": "钢",
+          "category": "physical",
+          "power": 50,
+          "accuracy": 95,
+          "pp": 35,
+          "description": "用钢铁之爪撕裂对手，有10%几率提升自身攻击1级(单体攻击)"
         }
       ],
       "special": [
         {
-          "name": "魅惑之声",
-          "type": "妖精",
+          "name": "力量宝石",
+          "type": "岩石",
           "category": "special",
-          "power": 40,
+          "power": 80,
           "accuracy": 100,
-          "pp": 15,
-          "description": "用魅惑的歌声攻击敌方单体，必定命中"
+          "pp": 20,
+          "description": "发射宝石般的光芒攻击对手(单体攻击)"
         },
         {
-          "name": "魔法闪耀",
-          "type": "妖精",
+          "name": "加农光炮",
+          "type": "钢",
           "category": "special",
           "power": 80,
           "accuracy": 100,
           "pp": 10,
-          "description": "释放耀眼的光芒攻击敌方全体"
+          "description": "发射强烈的光束攻击对手，有10%几率降低目标特防1级(单体攻击)"
         },
         {
-          "name": "高速星星",
-          "type": "一般",
+          "name": "大地之力",
+          "type": "地面",
+          "category": "special",
+          "power": 90,
+          "accuracy": 100,
+          "pp": 10,
+          "description": "引发大地的力量攻击对手，有10%几率降低目标特防1级(单体攻击)"
+        },
+        {
+          "name": "原始之力",
+          "type": "岩石",
           "category": "special",
           "power": 60,
-          "accuracy": 101,
-          "pp": 20,
-          "description": "发射星形光弹攻击敌方单体，必定命中"
+          "accuracy": 100,
+          "pp": 5,
+          "description": "用原始的力量攻击对手，有10%几率提升自身所有能力1级(单体攻击)"
         }
       ],
       "status": [
         {
-          "name": "撒娇",
-          "type": "妖精",
+          "name": "铁壁",
+          "type": "钢",
+          "category": "status",
+          "power": 0,
+          "accuracy": 100,
+          "pp": 15,
+          "description": "使身体变得像钢铁一样坚硬，大幅提升自身防御2级"
+        },
+        {
+          "name": "岩石打磨",
+          "type": "岩石",
           "category": "status",
           "power": 0,
           "accuracy": 100,
           "pp": 20,
-          "description": "向对手撒娇，降低其攻击2级"
+          "description": "打磨身体减少空气阻力，大幅提升自身速度2级"
         },
         {
-          "name": "治愈铃声",
-          "type": "一般",
+          "name": "隐形岩",
+          "type": "岩石",
           "category": "status",
           "power": 0,
-          "accuracy": 101,
-          "pp": 5,
-          "description": "治愈全队所有异常状态"
-        },
-        {
-          "name": "电磁波",
-          "type": "电",
-          "category": "status",
-          "power": 0,
-          "accuracy": 90,
+          "accuracy": 100,
           "pp": 20,
-          "description": "向对手发出微弱的电击，使其陷入麻痹状态"
+          "description": "在对手场地撒下尖锐的岩石，替换上场的宝可梦会受到伤害(全场效果)"
+        },
+        {
+          "name": "金属音",
+          "type": "钢",
+          "category": "status",
+          "power": 0,
+          "accuracy": 85,
+          "pp": 40,
+          "description": "发出刺耳的金属音，大幅降低对手特防2级(单体效果)"
         }
       ]
     },
     "imageUrl": "meizuo.png",
-    "createdAt": "2025-04-19T15:28:22.862Z",
-    "updatedAt": "2025-04-20T03:30:00.611Z",
+    "createdAt": "2025-04-21T11:14:56.343Z",
+    "updatedAt": "2025-04-21T11:16:36.383Z",
     "source": "server"
   },
   "designHistory": [
     {
-      "id": "m6j2pbie16surjbu093eyp",
-      "name": "哈基米",
-      "height": 0.3,
-      "weight": 3.5,
+      "id": "l979qekgi28a8z7rtqrz7v",
+      "name": "晶岩兽",
+      "height": 1.2,
+      "weight": 85,
       "types": [
-        "妖精",
-        "一般"
+        "岩石",
+        "钢"
       ],
-      "description": "一只可爱的蜂蜜色小猫宝可梦，灵感来源于网络热梗。身体覆盖着柔软的绒毛，眼睛大而圆，尾巴末端呈蜂蜜罐形状。平时喜欢哼歌，歌声能让周围生物感到愉悦。当生气时会进入\"棘背龙模式\"，背部毛发竖起形成锯齿状。",
+      "description": "晶岩兽是一种由特殊矿物构成的宝可梦，全身覆盖着闪耀的晶体结构。它的身体呈现出深灰色与浅蓝色的渐变，背部生长着几簇尖锐的晶簇，能够反射阳光发出炫目的光芒。晶岩兽栖息在矿山深处，以稀有矿石为食，通过吸收矿物质来强化自身的晶体装甲。",
       "abilities": [
         {
-          "name": "甜蜜歌声",
-          "description": "出场时降低对手攻击和特攻各1级"
+          "name": "晶体装甲",
+          "description": "受到物理攻击时，有30%几率使攻击方的攻击降低1级"
         },
         {
-          "name": "柔软",
-          "description": "不会陷入麻痹状态"
+          "name": "坚硬",
+          "description": "不会被一击必杀招式打倒"
         },
         {
-          "name": "愤怒模式",
-          "description": "HP低于1/3时攻击和特攻提升1级",
+          "name": "结晶反射",
+          "description": "受到特殊攻击时，有30%几率使攻击方的特攻降低1级",
           "isHidden": true
         }
       ],
       "stats": {
-        "hp": 70,
-        "attack": 65,
-        "defense": 60,
-        "specialAttack": 85,
-        "specialDefense": 75,
-        "speed": 95
+        "hp": 80,
+        "attack": 95,
+        "defense": 110,
+        "specialAttack": 60,
+        "specialDefense": 85,
+        "speed": 50
       },
       "signatureMove": {
-        "name": "蜂蜜狂欢",
-        "type": "妖精",
-        "category": "special",
+        "name": "晶簇突刺",
+        "type": "岩石",
+        "category": "physical",
         "power": 90,
-        "accuracy": 100,
-        "pp": 10,
-        "description": "用甜美的歌声攻击敌方单体，30%概率使目标陷入魅惑状态"
+        "accuracy": 95,
+        "pp": 15,
+        "description": "用背部尖锐的晶簇刺向对手，有10%几率使目标防御降低1级(单体攻击)"
       },
       "moves": {
         "physical": [
           {
-            "name": "抓",
-            "type": "一般",
+            "name": "岩崩",
+            "type": "岩石",
             "category": "physical",
-            "power": 40,
-            "accuracy": 100,
-            "pp": 35,
-            "description": "用爪子抓挠敌方单体"
-          },
-          {
-            "name": "嬉闹",
-            "type": "妖精",
-            "category": "physical",
-            "power": 90,
+            "power": 75,
             "accuracy": 90,
             "pp": 10,
-            "description": "嬉闹着攻击敌方单体，10%概率降低目标攻击1级"
+            "description": "投掷巨大的岩石攻击对手，有30%几率使目标畏缩(单体攻击)"
           },
           {
-            "name": "急速折返",
-            "type": "虫",
+            "name": "铁头",
+            "type": "钢",
             "category": "physical",
-            "power": 70,
+            "power": 80,
             "accuracy": 100,
-            "pp": 20,
-            "description": "攻击后快速返回替换宝可梦"
+            "pp": 15,
+            "description": "用坚硬的头部撞击对手，有30%几率使目标畏缩(单体攻击)"
+          },
+          {
+            "name": "地震",
+            "type": "地面",
+            "category": "physical",
+            "power": 100,
+            "accuracy": 100,
+            "pp": 10,
+            "description": "引发地震攻击周围所有宝可梦(群体攻击)"
+          },
+          {
+            "name": "金属爪",
+            "type": "钢",
+            "category": "physical",
+            "power": 50,
+            "accuracy": 95,
+            "pp": 35,
+            "description": "用钢铁之爪撕裂对手，有10%几率提升自身攻击1级(单体攻击)"
           }
         ],
         "special": [
           {
-            "name": "魅惑之声",
-            "type": "妖精",
+            "name": "力量宝石",
+            "type": "岩石",
             "category": "special",
-            "power": 40,
+            "power": 80,
             "accuracy": 100,
-            "pp": 15,
-            "description": "用魅惑的歌声攻击敌方单体，必定命中"
+            "pp": 20,
+            "description": "发射宝石般的光芒攻击对手(单体攻击)"
           },
           {
-            "name": "魔法闪耀",
-            "type": "妖精",
+            "name": "加农光炮",
+            "type": "钢",
             "category": "special",
             "power": 80,
             "accuracy": 100,
             "pp": 10,
-            "description": "释放耀眼的光芒攻击敌方全体"
+            "description": "发射强烈的光束攻击对手，有10%几率降低目标特防1级(单体攻击)"
           },
           {
-            "name": "高速星星",
-            "type": "一般",
+            "name": "大地之力",
+            "type": "地面",
+            "category": "special",
+            "power": 90,
+            "accuracy": 100,
+            "pp": 10,
+            "description": "引发大地的力量攻击对手，有10%几率降低目标特防1级(单体攻击)"
+          },
+          {
+            "name": "原始之力",
+            "type": "岩石",
             "category": "special",
             "power": 60,
-            "accuracy": 101,
-            "pp": 20,
-            "description": "发射星形光弹攻击敌方单体，必定命中"
+            "accuracy": 100,
+            "pp": 5,
+            "description": "用原始的力量攻击对手，有10%几率提升自身所有能力1级(单体攻击)"
           }
         ],
         "status": [
           {
-            "name": "撒娇",
-            "type": "妖精",
+            "name": "铁壁",
+            "type": "钢",
+            "category": "status",
+            "power": 0,
+            "accuracy": 100,
+            "pp": 15,
+            "description": "使身体变得像钢铁一样坚硬，大幅提升自身防御2级"
+          },
+          {
+            "name": "岩石打磨",
+            "type": "岩石",
             "category": "status",
             "power": 0,
             "accuracy": 100,
             "pp": 20,
-            "description": "向对手撒娇，降低其攻击2级"
+            "description": "打磨身体减少空气阻力，大幅提升自身速度2级"
           },
           {
-            "name": "治愈铃声",
-            "type": "一般",
+            "name": "隐形岩",
+            "type": "岩石",
             "category": "status",
             "power": 0,
-            "accuracy": 101,
-            "pp": 5,
-            "description": "治愈全队所有异常状态"
-          },
-          {
-            "name": "电磁波",
-            "type": "电",
-            "category": "status",
-            "power": 0,
-            "accuracy": 90,
+            "accuracy": 100,
             "pp": 20,
-            "description": "向对手发出微弱的电击，使其陷入麻痹状态"
+            "description": "在对手场地撒下尖锐的岩石，替换上场的宝可梦会受到伤害(全场效果)"
+          },
+          {
+            "name": "金属音",
+            "type": "钢",
+            "category": "status",
+            "power": 0,
+            "accuracy": 85,
+            "pp": 40,
+            "description": "发出刺耳的金属音，大幅降低对手特防2级(单体效果)"
           }
         ]
       },
       "imageUrl": "meizuo.png",
-      "createdAt": "2025-04-19T15:28:22.862Z",
-      "updatedAt": "2025-04-20T03:30:00.611Z",
+      "createdAt": "2025-04-21T11:14:56.343Z",
+      "updatedAt": "2025-04-21T11:16:36.383Z",
       "source": "server"
     }
   ],
@@ -282,6 +336,8 @@
     "customModelName": "",
     "artProvider": "none",
     "customArtEndpoint": "",
-    "customArtKey": ""
+    "customArtKey": "",
+    "temperature": 1,
+    "modeltextlength": "1"
   }
 }
