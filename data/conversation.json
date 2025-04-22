@@ -2658,6 +2658,479 @@
         "designId": "68ppymaeym4lf60aqkz99m",
         "timestamp": "2025/4/22 21:07:29"
       }
+    ],
+    "amxa3l6uf1r2zcqwamal8r": [
+      {
+        "role": "user",
+        "content": "名称哈基米",
+        "designId": "amxa3l6uf1r2zcqwamal8r",
+        "timestamp": "2025/4/22 22:42:12"
+      },
+      {
+        "role": "user",
+        "content": "哈基米",
+        "designId": "amxa3l6uf1r2zcqwamal8r",
+        "timestamp": "2025/4/22 22:42:39"
+      }
+    ],
+    "whzojyc79v2ui17hwmb2x": [
+      {
+        "role": "user",
+        "content": "名称哈基米",
+        "designId": "whzojyc79v2ui17hwmb2x",
+        "timestamp": "2025/4/22 22:43:23"
+      },
+      {
+        "role": "assistant",
+        "content": {
+          "name": "哈基米",
+          "height": 1.2,
+          "weight": 45,
+          "types": [
+            "妖精",
+            "超能力"
+          ],
+          "description": "哈基米是一种优雅而神秘的宝可梦，外形类似小型猫科动物，全身覆盖着柔软的银白色毛发，眼睛呈现深邃的紫色。它的耳朵和尾巴末端有粉色的光晕，能够散发出安抚人心的能量。哈基米的设计灵感来源于月光下的精灵，象征着纯洁与智慧。",
+          "abilities": [
+            {
+              "name": "月光守护",
+              "description": "在月光天气下，特防和特攻提升50%"
+            },
+            {
+              "name": "心灵感应",
+              "description": "可以感知对手的行动，回避率提升10%"
+            },
+            {
+              "name": "月光之愈",
+              "description": "在月光天气下，每回合恢复最大HP的1/8",
+              "isHidden": true
+            }
+          ],
+          "stats": {
+            "hp": 80,
+            "attack": 60,
+            "defense": 70,
+            "specialAttack": 120,
+            "specialDefense": 110,
+            "speed": 90
+          },
+          "signatureMove": {
+            "name": "月光之吻",
+            "type": "妖精",
+            "category": "special",
+            "power": 90,
+            "accuracy": 100,
+            "pp": 15,
+            "description": "哈基米释放出一道温柔的月光能量，攻击单个目标。有30%的几率使目标陷入睡眠状态。"
+          },
+          "moves": {
+            "physical": [
+              {
+                "name": "抓",
+                "type": "一般",
+                "category": "physical",
+                "power": 40,
+                "accuracy": 100,
+                "pp": 35,
+                "description": "用爪子抓挠目标。"
+              },
+              {
+                "name": "暗影爪",
+                "type": "幽灵",
+                "category": "physical",
+                "power": 70,
+                "accuracy": 100,
+                "pp": 15,
+                "description": "用暗影之力形成的爪子攻击目标。"
+              },
+              {
+                "name": "嬉闹",
+                "type": "妖精",
+                "category": "physical",
+                "power": 90,
+                "accuracy": 90,
+                "pp": 10,
+                "description": "与目标嬉闹玩耍，攻击目标。"
+              },
+              {
+                "name": "精神利刃",
+                "type": "超能力",
+                "category": "physical",
+                "power": 70,
+                "accuracy": 100,
+                "pp": 20,
+                "description": "用精神力量形成的利刃攻击目标。"
+              }
+            ],
+            "special": [
+              {
+                "name": "月亮之力",
+                "type": "妖精",
+                "category": "special",
+                "power": 95,
+                "accuracy": 100,
+                "pp": 15,
+                "description": "释放月亮的能量攻击目标。"
+              },
+              {
+                "name": "精神强念",
+                "type": "超能力",
+                "category": "special",
+                "power": 90,
+                "accuracy": 100,
+                "pp": 10,
+                "description": "用强大的精神力量攻击目标。"
+              },
+              {
+                "name": "魔法闪耀",
+                "type": "妖精",
+                "category": "special",
+                "power": 80,
+                "accuracy": 100,
+                "pp": 10,
+                "description": "释放出耀眼的光芒攻击目标。"
+              },
+              {
+                "name": "暗影球",
+                "type": "幽灵",
+                "category": "special",
+                "power": 80,
+                "accuracy": 100,
+                "pp": 15,
+                "description": "投掷一团暗影能量攻击目标。"
+              }
+            ],
+            "status": [
+              {
+                "name": "冥想",
+                "type": "超能力",
+                "category": "status",
+                "power": 0,
+                "accuracy": 100,
+                "pp": 20,
+                "description": "集中精神，提升自己的特攻和特防。"
+              },
+              {
+                "name": "月光",
+                "type": "妖精",
+                "category": "status",
+                "power": 0,
+                "accuracy": 100,
+                "pp": 5,
+                "description": "恢复自身最大HP的一半，在月光天气下恢复全部HP。"
+              },
+              {
+                "name": "撒娇",
+                "type": "妖精",
+                "category": "status",
+                "power": 0,
+                "accuracy": 100,
+                "pp": 20,
+                "description": "向目标撒娇，降低目标的攻击。"
+              },
+              {
+                "name": "治愈铃声",
+                "type": "一般",
+                "category": "status",
+                "power": 0,
+                "accuracy": 100,
+                "pp": 5,
+                "description": "发出治愈的铃声，解除全队所有异常状态。"
+              }
+            ]
+          }
+        },
+        "designId": "whzojyc79v2ui17hwmb2x",
+        "timestamp": "2025/4/22 22:44:13"
+      }
+    ],
+    "duc75pcbbscx9gp9limgo": [
+      {
+        "role": "user",
+        "content": "设计一个很小的宝可梦",
+        "designId": "duc75pcbbscx9gp9limgo",
+        "timestamp": "2025/4/22 23:25:51"
+      },
+      {
+        "role": "assistant",
+        "content": {
+          "name": "微晶灵",
+          "height": 0.2,
+          "weight": 0.8,
+          "types": [
+            "岩石",
+            "妖精"
+          ],
+          "description": "微晶灵是一种由天然水晶孕育而成的微型宝可梦。它的身体由半透明的粉色水晶构成，内部闪烁着星尘般的光芒。头部有一对小巧的晶状耳朵，能够感知周围最细微的振动。虽然体型极小，但能够通过共鸣将水晶能量放大。设计灵感来源于矿物结晶和微型精灵的概念。",
+          "abilities": [
+            {
+              "name": "晶体共鸣",
+              "description": "受到特殊攻击时，有30%几率将伤害的50%反弹给攻击者"
+            },
+            {
+              "name": "魔法防守",
+              "description": "不会受到攻击以外的伤害"
+            },
+            {
+              "name": "晶核之力",
+              "description": "HP低于1/3时，岩石和妖精属性招式威力提升50%",
+              "isHidden": true
+            }
+          ],
+          "stats": {
+            "hp": 45,
+            "attack": 30,
+            "defense": 80,
+            "specialAttack": 110,
+            "specialDefense": 120,
+            "speed": 125
+          },
+          "signatureMove": {
+            "name": "星光折射",
+            "type": "妖精",
+            "category": "special",
+            "power": 80,
+            "accuracy": 100,
+            "pp": 15,
+            "description": "利用水晶折射星光攻击对手。必定先制攻击(先制度+1)，单体攻击"
+          },
+          "moves": {
+            "physical": [
+              {
+                "name": "岩石爆击",
+                "type": "岩石",
+                "category": "physical",
+                "power": 25,
+                "accuracy": 90,
+                "pp": 10,
+                "description": "向对手连续发射小岩石进行攻击。2-5次连续攻击"
+              }
+            ],
+            "special": [
+              {
+                "name": "月亮之力",
+                "type": "妖精",
+                "category": "special",
+                "power": 95,
+                "accuracy": 100,
+                "pp": 15,
+                "description": "借用月亮的力量攻击对手。有10%几率降低对手特攻"
+              },
+              {
+                "name": "力量宝石",
+                "type": "岩石",
+                "category": "special",
+                "power": 80,
+                "accuracy": 100,
+                "pp": 20,
+                "description": "发射宝石般的光芒进行攻击。单体攻击"
+              },
+              {
+                "name": "魔法闪耀",
+                "type": "妖精",
+                "category": "special",
+                "power": 80,
+                "accuracy": 100,
+                "pp": 10,
+                "description": "发出强光攻击对手。攻击目标周围所有宝可梦"
+              }
+            ],
+            "status": [
+              {
+                "name": "光墙",
+                "type": "超能力",
+                "category": "status",
+                "power": 0,
+                "accuracy": 100,
+                "pp": 30,
+                "description": "5回合内使我方受到的特殊攻击伤害减半"
+              },
+              {
+                "name": "冥想",
+                "type": "超能力",
+                "category": "status",
+                "power": 0,
+                "accuracy": 100,
+                "pp": 20,
+                "description": "静心凝神，提高自己的特攻和特防"
+              }
+            ]
+          }
+        },
+        "designId": "duc75pcbbscx9gp9limgo",
+        "timestamp": "2025/4/22 23:27:24"
+      }
+    ],
+    "7cr2xexyn4cn5utkiei9fq": [
+      {
+        "role": "user",
+        "content": "设计一个很大的宝可梦",
+        "designId": "7cr2xexyn4cn5utkiei9fq",
+        "timestamp": "2025/4/22 23:25:51"
+      },
+      {
+        "role": "assistant",
+        "content": {
+          "name": "巨岩霸",
+          "height": 4.2,
+          "weight": 650,
+          "types": [
+            "岩石",
+            "地面"
+          ],
+          "description": "巨岩霸是一种体型巨大的宝可梦，全身覆盖着坚硬的岩石甲壳，背部有多个突出的石柱。它的四肢粗壮有力，能够轻易粉碎地面。设计灵感来源于古代巨像和山岳巨人，象征着大地的力量和稳固。它的眼睛散发着暗红色的光芒，显得威严而不可侵犯。",
+          "abilities": [
+            {
+              "name": "坚硬岩石",
+              "description": "受到效果绝佳的攻击时，伤害减少25%"
+            },
+            {
+              "name": "沙之力",
+              "description": "沙暴天气时，岩石、地面和钢属性技能的威力提升30%"
+            },
+            {
+              "name": "不动如山",
+              "description": "不会被击退或强制替换下场",
+              "isHidden": true
+            }
+          ],
+          "stats": {
+            "hp": 120,
+            "attack": 130,
+            "defense": 140,
+            "specialAttack": 60,
+            "specialDefense": 80,
+            "speed": 40
+          },
+          "signatureMove": {
+            "name": "山崩地裂",
+            "type": "地面",
+            "category": "physical",
+            "power": 120,
+            "accuracy": 85,
+            "pp": 10,
+            "description": "猛烈震动地面攻击单体目标，有30%几率使目标陷入畏缩状态"
+          },
+          "moves": {
+            "physical": [
+              {
+                "name": "地震",
+                "type": "地面",
+                "category": "physical",
+                "power": 100,
+                "accuracy": 100,
+                "pp": 10,
+                "description": "引发地震攻击周围所有宝可梦"
+              },
+              {
+                "name": "岩石爆击",
+                "type": "岩石",
+                "category": "physical",
+                "power": 25,
+                "accuracy": 90,
+                "pp": 10,
+                "description": "连续发射2-5次岩石攻击单体目标"
+              },
+              {
+                "name": "重磅冲撞",
+                "type": "钢",
+                "category": "physical",
+                "power": 0,
+                "accuracy": 100,
+                "pp": 10,
+                "description": "用沉重身体撞击单体目标，自身越重威力越大"
+              },
+              {
+                "name": "臂锤",
+                "type": "格斗",
+                "category": "physical",
+                "power": 100,
+                "accuracy": 90,
+                "pp": 10,
+                "description": "用强力臂锤攻击单体目标，会降低自身速度"
+              }
+            ],
+            "special": [
+              {
+                "name": "大地之力",
+                "type": "地面",
+                "category": "special",
+                "power": 90,
+                "accuracy": 100,
+                "pp": 10,
+                "description": "引发大地之力攻击单体目标，有10%几率降低目标特防"
+              },
+              {
+                "name": "原始之力",
+                "type": "岩石",
+                "category": "special",
+                "power": 60,
+                "accuracy": 100,
+                "pp": 5,
+                "description": "用原始力量攻击单体目标，有10%几率提升自身所有能力"
+              },
+              {
+                "name": "恶之波动",
+                "type": "恶",
+                "category": "special",
+                "power": 80,
+                "accuracy": 100,
+                "pp": 15,
+                "description": "释放恶之波动攻击单体目标，有20%几率使目标畏缩"
+              },
+              {
+                "name": "喷射火焰",
+                "type": "火",
+                "category": "special",
+                "power": 90,
+                "accuracy": 100,
+                "pp": 15,
+                "description": "喷射高温火焰攻击单体目标，有10%几率使目标灼伤"
+              }
+            ],
+            "status": [
+              {
+                "name": "沙暴",
+                "type": "岩石",
+                "category": "status",
+                "power": 0,
+                "accuracy": 0,
+                "pp": 10,
+                "description": "召唤持续5回合的沙暴天气，岩石属性宝可梦特防提升50%"
+              },
+              {
+                "name": "隐形岩",
+                "type": "岩石",
+                "category": "status",
+                "power": 0,
+                "accuracy": 0,
+                "pp": 20,
+                "description": "在对手场地撒下隐形岩石，替换上场的宝可梦会受到伤害"
+              },
+              {
+                "name": "铁壁",
+                "type": "钢",
+                "category": "status",
+                "power": 0,
+                "accuracy": 0,
+                "pp": 15,
+                "description": "使自身防御大幅提升2级"
+              },
+              {
+                "name": "睡觉",
+                "type": "超能力",
+                "category": "status",
+                "power": 0,
+                "accuracy": 0,
+                "pp": 10,
+                "description": "进入睡眠状态2回合，恢复全部HP并治愈异常状态"
+              }
+            ]
+          }
+        },
+        "designId": "7cr2xexyn4cn5utkiei9fq",
+        "timestamp": "2025/4/22 23:26:46"
+      }
     ]
   }
 }

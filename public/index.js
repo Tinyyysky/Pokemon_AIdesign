@@ -61,7 +61,9 @@ function getDefaultDesign() {
         updatedAt: new Date().toISOString()
     };
 }
-
+// 分页相关变量
+let currentPage = 1;
+const itemsPerPage = 8;
 // 当前设计数据
 let currentDesign = {
     id: generateId(),
@@ -277,7 +279,7 @@ function filterDesignsByMode(mode) {
             item.style.display = 'none';
         }
     });
-    
+    currentPage=1;
     // 重新加载数据以确保显示正确的设计
     loadData();
 }
@@ -1207,15 +1209,22 @@ function getMoveCategoryName(category) {
     }
 }
 
-// 渲染历史记录列表
+
+// 渲染历史记录列表（带分页）
 async function renderHistoryList() {
     historyList.innerHTML = '';
     
-    designHistory.forEach(design => {
+    // 计算当前页的起始和结束索引
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const paginatedDesigns = designHistory.slice(startIndex, endIndex);
+    
+    // 渲染当前页的记录
+    paginatedDesigns.forEach(design => {
         const historyItem = document.createElement('li');
         historyItem.className = 'history-item';
         historyItem.dataset.id = design.id;
-        historyItem.dataset.source = design.source || 'local'; // 使用设计中的source字段
+        historyItem.dataset.source = design.source || 'local';
         if (design.id === currentDesign.id) {
             historyItem.classList.add('active');
         }
@@ -1224,13 +1233,11 @@ async function renderHistoryList() {
         nameSpan.className = 'history-item-name';
         nameSpan.textContent = design.name || '未命名宝可梦';
         
-        // 添加ID显示
         const idSpan = document.createElement('span');
         idSpan.className = 'history-item-id';
         idSpan.textContent = `ID: ${design.id.substring(0, 3)}...`;
         idSpan.title = design.id;
         
-        // 添加复制按钮
         const copyBtn = document.createElement('button');
         copyBtn.className = 'copy-id-btn';
         copyBtn.dataset.id = design.id;
@@ -1258,7 +1265,6 @@ async function renderHistoryList() {
                 renderHistoryList();
                 showMessage('设计已删除', 'success');
                 
-                // 如果删除的是当前设计，重置为默认设计
                 if (design.id === currentDesign.id) {
                     currentDesign = {
                         id: generateId(),
@@ -1313,7 +1319,6 @@ async function renderHistoryList() {
             currentDesign = {...design};
             renderDesign(currentDesign);
             
-            // 更新活动状态
             document.querySelectorAll('.history-item').forEach(item => {
                 item.classList.remove('active');
             });
@@ -1324,6 +1329,61 @@ async function renderHistoryList() {
         
         historyList.appendChild(historyItem);
     });
+    
+    // 渲染分页控件
+    renderPaginationControls();
+}
+
+// 渲染分页控件
+function renderPaginationControls() {
+    const totalPages = Math.ceil(designHistory.length / itemsPerPage);
+    console.log('totalpages',totalPages)
+    // 如果只有一页，不需要显示分页控件
+    if (totalPages <= 1) {
+        document.querySelector('.pagination-controls')?.remove();
+        return;}
+    
+    const paginationContainer = document.createElement('div');
+    paginationContainer.className = 'pagination-controls';
+    
+    // 上一页按钮
+    const prevButton = document.createElement('button');
+    prevButton.textContent = '上一页';
+    prevButton.disabled = currentPage === 1;
+    prevButton.addEventListener('click', () => {
+        if (currentPage > 1) {
+            currentPage--;
+            renderHistoryList();
+        }
+    });
+    
+    // 页码信息
+    const pageInfo = document.createElement('span');
+    pageInfo.textContent = `第 ${currentPage} 页 / 共 ${totalPages} 页`;
+    
+    // 下一页按钮
+    const nextButton = document.createElement('button');
+    nextButton.textContent = '下一页';
+    nextButton.disabled = currentPage === totalPages;
+    nextButton.addEventListener('click', () => {
+        if (currentPage < totalPages) {
+            currentPage++;
+            renderHistoryList();
+        }
+    });
+    
+    paginationContainer.appendChild(prevButton);
+    paginationContainer.appendChild(pageInfo);
+    paginationContainer.appendChild(nextButton);
+    
+    // 添加到历史记录列表后面
+    const historyContainer = historyList.parentNode;
+    const existingPagination = historyContainer.querySelector('.pagination-controls');
+    if (existingPagination) {
+        historyContainer.replaceChild(paginationContainer, existingPagination);
+    } else {
+        historyContainer.appendChild(paginationContainer);
+    }
 }
 
 // 填充设计表单
@@ -1799,7 +1859,7 @@ async function generateArt() {
     //     showMessage('未配置立绘生成API端点或API Key', 'warning');
     //     return;
     // }
-    
+    document.querySelectorAll('.view-mode-btn').forEach(b =>b.disabled=true)
     try {
         // 显示加载指示器
         pokemonImageContainer.innerHTML = '<div class="message-loading"><div class="loading-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>生成立绘中...</div>';
@@ -1847,6 +1907,7 @@ async function generateArt() {
         // pokemonImage.src = 'https://via.placeholder.com/150';
         showMessage(`立绘生成失败: ${error.message}`, 'danger');
     }
+    document.querySelectorAll('.view-mode-btn').forEach(b =>b.disabled=false)
 }
 // 生成立绘
 // async function generateArt() {

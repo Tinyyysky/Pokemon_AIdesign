@@ -309,7 +309,37 @@ body {
     justify-content: center;
     padding: 12px;
 }
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 5px;
+}
 
+.collapsed .pagination-controls {
+    display: none;
+}
+.pagination-controls button {
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.pagination-controls button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.pagination-controls span {
+    font-size: 14px;
+    color: #666;
+}
 /* 主内容区样式 */
 .main-content {
     flex: 1;
@@ -1028,6 +1058,7 @@ body {
     /* background-color: var(--primary); */
     transform: scale(1.1);
 }
+
 /* 响应式设计 */
 @media (max-width: 1200px) {
     .pokemon-attributes {
