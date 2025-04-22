@@ -66,9 +66,6 @@ pm/
 ## 贡献
 欢迎提交问题和贡献代码！请确保遵循贡献指南。
 
-## 许可证
-本项目使用 [ISC](https://opensource.org/licenses/ISC) 许可证。
-
 ## 使用截图
 ![图1](/public/images/示例1.png)
 ![图2](/public/images/示例2.png)

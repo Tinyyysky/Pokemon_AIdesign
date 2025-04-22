@@ -1,57 +1,48 @@
 {
   "currentDesign": {
     "id": "l979qekgi28a8z7rtqrz7v",
-    "name": "晶岩兽",
-    "height": 1.2,
-    "weight": 85,
+    "name": "焰铠兽",
+    "height": 1.6,
+    "weight": 85.5,
     "types": [
-      "岩石",
+      "火",
       "钢"
     ],
-    "description": "晶岩兽是一种由特殊矿物构成的宝可梦，全身覆盖着闪耀的晶体结构。它的身体呈现出深灰色与浅蓝色的渐变，背部生长着几簇尖锐的晶簇，能够反射阳光发出炫目的光芒。晶岩兽栖息在矿山深处，以稀有矿石为食，通过吸收矿物质来强化自身的晶体装甲。",
+    "description": "焰铠兽是一种全身覆盖着金属铠甲的宝可梦，其铠甲呈现出红黑相间的颜色，仿佛熔岩在金属表面流动。它的头部有一对弯曲的金属角，眼睛闪烁着炽热的光芒。焰铠兽的设计灵感来源于中世纪骑士和火山生物的结合，象征着力量与耐力的完美融合。",
     "abilities": [
       {
-        "name": "晶体装甲",
-        "description": "受到物理攻击时，有30%几率使攻击方的攻击降低1级"
+        "name": "熔岩护甲",
+        "description": "受到物理攻击时，有30%几率使攻击方灼伤"
       },
       {
-        "name": "坚硬",
-        "description": "不会被一击必杀招式打倒"
+        "name": "火焰之躯",
+        "description": "接触类攻击有30%几率使攻击方灼伤"
       },
       {
-        "name": "结晶反射",
-        "description": "受到特殊攻击时，有30%几率使攻击方的特攻降低1级",
+        "name": "钢铁意志",
+        "description": "不会被降低防御和特防，且不受沙暴天气影响",
         "isHidden": true
       }
     ],
     "stats": {
       "hp": 80,
-      "attack": 95,
-      "defense": 110,
-      "specialAttack": 60,
-      "specialDefense": 85,
-      "speed": 50
+      "attack": 100,
+      "defense": 90,
+      "specialAttack": 70,
+      "specialDefense": 80,
+      "speed": 60
     },
     "signatureMove": {
-      "name": "晶簇突刺",
-      "type": "岩石",
+      "name": "熔岩重击",
+      "type": "火",
       "category": "physical",
       "power": 90,
       "accuracy": 95,
       "pp": 15,
-      "description": "用背部尖锐的晶簇刺向对手，有10%几率使目标防御降低1级(单体攻击)"
+      "description": "用炽热的金属铠甲猛击对手，有20%几率使对手灼伤（单体攻击）"
     },
     "moves": {
       "physical": [
-        {
-          "name": "岩崩",
-          "type": "岩石",
-          "category": "physical",
-          "power": 75,
-          "accuracy": 90,
-          "pp": 10,
-          "description": "投掷巨大的岩石攻击对手，有30%几率使目标畏缩(单体攻击)"
-        },
         {
           "name": "铁头",
           "type": "钢",
@@ -59,16 +50,25 @@
           "power": 80,
           "accuracy": 100,
           "pp": 15,
-          "description": "用坚硬的头部撞击对手，有30%几率使目标畏缩(单体攻击)"
+          "description": "用钢铁般的头部猛撞对手，有30%几率使对手畏缩（单体攻击）"
         },
         {
-          "name": "地震",
+          "name": "火焰拳",
+          "type": "火",
+          "category": "physical",
+          "power": 75,
+          "accuracy": 100,
+          "pp": 15,
+          "description": "用燃烧的拳头攻击对手，有10%几率使对手灼伤（单体攻击）"
+        },
+        {
+          "name": "重踏",
           "type": "地面",
           "category": "physical",
-          "power": 100,
+          "power": 60,
           "accuracy": 100,
-          "pp": 10,
-          "description": "引发地震攻击周围所有宝可梦(群体攻击)"
+          "pp": 20,
+          "description": "用力踩踏地面攻击周围所有对手，并降低对方速度1级（群体攻击）"
         },
         {
           "name": "金属爪",
@@ -77,27 +77,36 @@
           "power": 50,
           "accuracy": 95,
           "pp": 35,
-          "description": "用钢铁之爪撕裂对手，有10%几率提升自身攻击1级(单体攻击)"
+          "description": "用钢铁之爪撕裂对手，有10%几率提升自身攻击1级（单体攻击）"
         }
       ],
       "special": [
         {
-          "name": "力量宝石",
-          "type": "岩石",
+          "name": "喷射火焰",
+          "type": "火",
           "category": "special",
-          "power": 80,
+          "power": 90,
           "accuracy": 100,
-          "pp": 20,
-          "description": "发射宝石般的光芒攻击对手(单体攻击)"
+          "pp": 15,
+          "description": "向对手发射猛烈火焰攻击，有10%几率使对手灼伤（单体攻击）"
         },
         {
-          "name": "加农光炮",
+          "name": "钢炮",
           "type": "钢",
           "category": "special",
           "power": 80,
           "accuracy": 100,
           "pp": 10,
-          "description": "发射强烈的光束攻击对手，有10%几率降低目标特防1级(单体攻击)"
+          "description": "发射钢铁炮弹攻击对手（单体攻击）"
+        },
+        {
+          "name": "热风",
+          "type": "火",
+          "category": "special",
+          "power": 95,
+          "accuracy": 90,
+          "pp": 10,
+          "description": "用灼热的风攻击对手，有10%几率使对手灼伤（群体攻击）"
         },
         {
           "name": "大地之力",
@@ -106,16 +115,7 @@
           "power": 90,
           "accuracy": 100,
           "pp": 10,
-          "description": "引发大地的力量攻击对手，有10%几率降低目标特防1级(单体攻击)"
-        },
-        {
-          "name": "原始之力",
-          "type": "岩石",
-          "category": "special",
-          "power": 60,
-          "accuracy": 100,
-          "pp": 5,
-          "description": "用原始的力量攻击对手，有10%几率提升自身所有能力1级(单体攻击)"
+          "description": "利用大地的力量攻击对手，有10%几率降低对手特防1级（单体攻击）"
         }
       ],
       "status": [
@@ -126,25 +126,25 @@
           "power": 0,
           "accuracy": 100,
           "pp": 15,
-          "description": "使身体变得像钢铁一样坚硬，大幅提升自身防御2级"
+          "description": "使身体变得如钢铁般坚硬，大幅提升自身防御2级"
         },
         {
-          "name": "岩石打磨",
-          "type": "岩石",
+          "name": "冥想",
+          "type": "超能力",
           "category": "status",
           "power": 0,
           "accuracy": 100,
           "pp": 20,
-          "description": "打磨身体减少空气阻力，大幅提升自身速度2级"
+          "description": "静心凝神，提升自身特攻和特防各1级"
         },
         {
-          "name": "隐形岩",
-          "type": "岩石",
+          "name": "火焰漩涡",
+          "type": "火",
           "category": "status",
           "power": 0,
-          "accuracy": 100,
-          "pp": 20,
-          "description": "在对手场地撒下尖锐的岩石，替换上场的宝可梦会受到伤害(全场效果)"
+          "accuracy": 85,
+          "pp": 15,
+          "description": "用火焰漩涡困住对手4-5回合，每回合造成伤害"
         },
         {
           "name": "金属音",
@@ -153,16 +153,62 @@
           "power": 0,
           "accuracy": 85,
           "pp": 40,
-          "description": "发出刺耳的金属音，大幅降低对手特防2级(单体效果)"
+          "description": "发出刺耳的金属音，大幅降低对手特防2级"
         }
       ]
     },
-    "imageUrl": "meizuo.png",
-    "createdAt": "2025-04-21T11:14:56.343Z",
-    "updatedAt": "2025-04-21T11:16:36.383Z",
     "source": "server"
   },
   "designHistory": [
+    {
+      "id": "p2volpryzp98u12nfhvv",
+      "name": "未命名宝可梦",
+      "height": 1,
+      "weight": 10,
+      "types": [],
+      "description": "暂无描述",
+      "abilities": [
+        {
+          "name": "",
+          "description": ""
+        },
+        {
+          "name": "",
+          "description": ""
+        },
+        {
+          "name": "",
+          "description": "",
+          "isHidden": true
+        }
+      ],
+      "stats": {
+        "hp": 50,
+        "attack": 50,
+        "defense": 50,
+        "specialAttack": 50,
+        "specialDefense": 50,
+        "speed": 50
+      },
+      "signatureMove": {
+        "name": "",
+        "type": "",
+        "category": "physical",
+        "power": 0,
+        "accuracy": 0,
+        "pp": 0,
+        "description": ""
+      },
+      "moves": {
+        "physical": [],
+        "special": [],
+        "status": []
+      },
+      "imageUrl": "meizuo.png",
+      "createdAt": "2025-04-21T12:30:39.157Z",
+      "updatedAt": "2025-04-21T12:30:39.157Z",
+      "source": "server"
+    },
     {
       "id": "l979qekgi28a8z7rtqrz7v",
       "name": "晶岩兽",
@@ -321,9 +367,6 @@
           }
         ]
       },
-      "imageUrl": "meizuo.png",
-      "createdAt": "2025-04-21T11:14:56.343Z",
-      "updatedAt": "2025-04-21T11:16:36.383Z",
       "source": "server"
     }
   ],
