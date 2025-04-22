@@ -1,45 +1,45 @@
 {
   "currentDesign": {
-    "id": "l979qekgi28a8z7rtqrz7v",
-    "name": "晶岩兽",
+    "id": "lr0c9fegwmqlu7sntaiu2s",
+    "name": "岩铠蜥",
     "height": 1.2,
     "weight": 85,
     "types": [
       "岩石",
       "钢"
     ],
-    "description": "晶岩兽是一种由特殊矿物构成的宝可梦，全身覆盖着闪耀的晶体结构。它的身体呈现出深灰色与浅蓝色的渐变，背部生长着几簇尖锐的晶簇，能够反射阳光发出炫目的光芒。晶岩兽栖息在矿山深处，以稀有矿石为食，通过吸收矿物质来强化自身的晶体装甲。",
+    "description": "岩铠蜥是一种生活在高山岩石地带的宝可梦，全身覆盖着坚硬的岩石铠甲，背部有数根突出的钢刺。它的设计灵感来源于穿山甲和古代铠甲，岩石与钢的属性组合使其具有极强的防御力。岩铠蜥的眼睛很小但炯炯有神，能够在昏暗的洞穴中看清周围环境。它的四肢短而有力，爪子锋利，可以轻易挖开坚硬的岩石。",
     "abilities": [
       {
-        "name": "晶体装甲",
-        "description": "受到物理攻击时，有30%几率使攻击方的攻击降低1级"
+        "name": "坚硬铠甲",
+        "description": "受到物理攻击时，防御力提升1级。"
       },
       {
-        "name": "坚硬",
-        "description": "不会被一击必杀招式打倒"
+        "name": "沙之力",
+        "description": "在沙暴天气下，岩石、钢和地面属性技能的威力提升30%。"
       },
       {
-        "name": "结晶反射",
-        "description": "受到特殊攻击时，有30%几率使攻击方的特攻降低1级",
+        "name": "铁棘",
+        "description": "受到接触类攻击时，对手会损失最大HP的1/8。",
         "isHidden": true
       }
     ],
     "stats": {
       "hp": 80,
       "attack": 95,
-      "defense": 110,
-      "specialAttack": 60,
-      "specialDefense": 85,
-      "speed": 50
+      "defense": 120,
+      "specialAttack": 45,
+      "specialDefense": 80,
+      "speed": 60
     },
     "signatureMove": {
-      "name": "晶簇突刺",
-      "type": "岩石",
+      "name": "岩钢冲击",
+      "type": "钢",
       "category": "physical",
       "power": 90,
       "accuracy": 95,
       "pp": 15,
-      "description": "用背部尖锐的晶簇刺向对手，有10%几率使目标防御降低1级(单体攻击)"
+      "description": "用坚硬的钢刺撞击对手，有30%的几率使对手防御力下降1级。单体攻击。"
     },
     "moves": {
       "physical": [
@@ -50,16 +50,16 @@
           "power": 75,
           "accuracy": 90,
           "pp": 10,
-          "description": "投掷巨大的岩石攻击对手，有30%几率使目标畏缩(单体攻击)"
+          "description": "投掷巨大的岩石攻击对手，有30%的几率使对手畏缩。群体攻击。"
         },
         {
-          "name": "铁头",
+          "name": "铁尾",
           "type": "钢",
           "category": "physical",
-          "power": 80,
-          "accuracy": 100,
+          "power": 100,
+          "accuracy": 75,
           "pp": 15,
-          "description": "用坚硬的头部撞击对手，有30%几率使目标畏缩(单体攻击)"
+          "description": "用坚硬的尾巴抽打对手，有30%的几率使对手防御力下降1级。单体攻击。"
         },
         {
           "name": "地震",
@@ -68,37 +68,19 @@
           "power": 100,
           "accuracy": 100,
           "pp": 10,
-          "description": "引发地震攻击周围所有宝可梦(群体攻击)"
+          "description": "引发地震攻击周围的对手。群体攻击。"
         },
         {
-          "name": "金属爪",
-          "type": "钢",
+          "name": "挖洞",
+          "type": "地面",
           "category": "physical",
-          "power": 50,
-          "accuracy": 95,
-          "pp": 35,
-          "description": "用钢铁之爪撕裂对手，有10%几率提升自身攻击1级(单体攻击)"
-        }
-      ],
-      "special": [
-        {
-          "name": "力量宝石",
-          "type": "岩石",
-          "category": "special",
-          "power": 80,
-          "accuracy": 100,
-          "pp": 20,
-          "description": "发射宝石般的光芒攻击对手(单体攻击)"
-        },
-        {
-          "name": "加农光炮",
-          "type": "钢",
-          "category": "special",
           "power": 80,
           "accuracy": 100,
           "pp": 10,
-          "description": "发射强烈的光束攻击对手，有10%几率降低目标特防1级(单体攻击)"
-        },
+          "description": "第1回合钻入地下，第2回合攻击对手。单体攻击。"
+        }
+      ],
+      "special": [
         {
           "name": "大地之力",
           "type": "地面",
@@ -106,37 +88,37 @@
           "power": 90,
           "accuracy": 100,
           "pp": 10,
-          "description": "引发大地的力量攻击对手，有10%几率降低目标特防1级(单体攻击)"
+          "description": "向对手脚下释放能量，有10%的几率使对手特防下降1级。单体攻击。"
         },
-        {
-          "name": "原始之力",
-          "type": "岩石",
-          "category": "special",
-          "power": 60,
-          "accuracy": 100,
-          "pp": 5,
-          "description": "用原始的力量攻击对手，有10%几率提升自身所有能力1级(单体攻击)"
-        }
-      ],
-      "status": [
         {
           "name": "铁壁",
           "type": "钢",
-          "category": "status",
+          "category": "special",
           "power": 0,
           "accuracy": 100,
           "pp": 15,
-          "description": "使身体变得像钢铁一样坚硬，大幅提升自身防御2级"
+          "description": "将身体变得如钢铁般坚硬，大幅提升自己的防御力。"
         },
         {
-          "name": "岩石打磨",
+          "name": "沙暴",
           "type": "岩石",
-          "category": "status",
+          "category": "special",
           "power": 0,
           "accuracy": 100,
-          "pp": 20,
-          "description": "打磨身体减少空气阻力，大幅提升自身速度2级"
+          "pp": 10,
+          "description": "召唤沙暴天气，持续5回合。岩石、钢和地面属性宝可梦的特防提升50%。全场效果。"
         },
+        {
+          "name": "金属音",
+          "type": "钢",
+          "category": "special",
+          "power": 0,
+          "accuracy": 85,
+          "pp": 40,
+          "description": "发出刺耳的金属音，使对手特防大幅下降2级。单体攻击。"
+        }
+      ],
+      "status": [
         {
           "name": "隐形岩",
           "type": "岩石",
@@ -144,112 +126,247 @@
           "power": 0,
           "accuracy": 100,
           "pp": 20,
-          "description": "在对手场地撒下尖锐的岩石，替换上场的宝可梦会受到伤害(全场效果)"
+          "description": "在对手场地布满尖锐的岩石，对手替换宝可梦时会受到伤害。全场效果。"
         },
         {
-          "name": "金属音",
-          "type": "钢",
+          "name": "诅咒",
+          "type": "幽灵",
           "category": "status",
           "power": 0,
-          "accuracy": 85,
-          "pp": 40,
-          "description": "发出刺耳的金属音，大幅降低对手特防2级(单体效果)"
+          "accuracy": 100,
+          "pp": 10,
+          "description": "幽灵属性宝可梦使用时，消耗自身最大HP的50%使对手进入诅咒状态；其他属性宝可梦使用时，自身攻击和防御提升1级，速度下降1级。单体效果。"
+        },
+        {
+          "name": "睡觉",
+          "type": "超能力",
+          "category": "status",
+          "power": 0,
+          "accuracy": 100,
+          "pp": 10,
+          "description": "连续睡2回合，回复全部HP并治愈异常状态。自身效果。"
+        },
+        {
+          "name": "吼叫",
+          "type": "一般",
+          "category": "status",
+          "power": 0,
+          "accuracy": 100,
+          "pp": 20,
+          "description": "吼叫对手，强制替换对手的宝可梦。优先度-6。单体效果。"
         }
       ]
     },
+    "imageUrl": "meizuo.png",
+    "createdAt": "2025-04-22T12:49:02.071Z",
+    "updatedAt": "2025-04-22T12:50:38.044Z",
     "source": "server"
   },
   "designHistory": [
     {
-      "id": "p2volpryzp98u12nfhvv",
-      "name": "未命名宝可梦",
-      "height": 1,
-      "weight": 10,
-      "types": [],
-      "description": "暂无描述",
-      "abilities": [
-        {
-          "name": "",
-          "description": ""
-        },
-        {
-          "name": "",
-          "description": ""
-        },
-        {
-          "name": "",
-          "description": "",
-          "isHidden": true
-        }
-      ],
-      "stats": {
-        "hp": 50,
-        "attack": 50,
-        "defense": 50,
-        "specialAttack": 50,
-        "specialDefense": 50,
-        "speed": 50
-      },
-      "signatureMove": {
-        "name": "",
-        "type": "",
-        "category": "physical",
-        "power": 0,
-        "accuracy": 0,
-        "pp": 0,
-        "description": ""
-      },
-      "moves": {
-        "physical": [],
-        "special": [],
-        "status": []
-      },
-      "imageUrl": "meizuo.png",
-      "createdAt": "2025-04-21T12:30:39.157Z",
-      "updatedAt": "2025-04-21T12:30:39.157Z",
-      "source": "server"
-    },
-    {
-      "id": "l979qekgi28a8z7rtqrz7v",
-      "name": "晶岩兽",
+      "id": "vbdmlji6i1dmklz6i6csm",
+      "name": "棘甲兽",
       "height": 1.2,
-      "weight": 85,
+      "weight": 45.5,
       "types": [
-        "岩石",
+        "草",
         "钢"
       ],
-      "description": "晶岩兽是一种由特殊矿物构成的宝可梦，全身覆盖着闪耀的晶体结构。它的身体呈现出深灰色与浅蓝色的渐变，背部生长着几簇尖锐的晶簇，能够反射阳光发出炫目的光芒。晶岩兽栖息在矿山深处，以稀有矿石为食，通过吸收矿物质来强化自身的晶体装甲。",
+      "description": "棘甲兽是一种覆盖着坚硬金属刺的草系宝可梦。它的身体由类似仙人掌的植物组织构成，表面覆盖着银灰色的金属鳞片和尖锐的棘刺。这些棘刺可以吸收阳光进行光合作用，同时也能作为防御武器。它的眼睛呈现琥珀色，在夜间会发出微弱的荧光。设计灵感来源于沙漠植物与装甲生物的融合，体现了自然与金属的奇妙结合。",
       "abilities": [
         {
-          "name": "晶体装甲",
-          "description": "受到物理攻击时，有30%几率使攻击方的攻击降低1级"
+          "name": "铁棘",
+          "description": "受到接触类攻击时，会反弹1/8伤害给攻击方"
         },
         {
-          "name": "坚硬",
-          "description": "不会被一击必杀招式打倒"
+          "name": "光合作用",
+          "description": "晴天时每回合恢复1/8最大HP"
         },
         {
-          "name": "结晶反射",
-          "description": "受到特殊攻击时，有30%几率使攻击方的特攻降低1级",
+          "name": "金属防护",
+          "description": "钢系技能对其伤害减半",
           "isHidden": true
         }
       ],
       "stats": {
-        "hp": 80,
-        "attack": 95,
-        "defense": 110,
+        "hp": 75,
+        "attack": 90,
+        "defense": 100,
         "specialAttack": 60,
-        "specialDefense": 85,
-        "speed": 50
+        "specialDefense": 80,
+        "speed": 75
       },
       "signatureMove": {
-        "name": "晶簇突刺",
-        "type": "岩石",
+        "name": "金属棘雨",
+        "type": "钢",
         "category": "physical",
         "power": 90,
         "accuracy": 95,
         "pp": 15,
-        "description": "用背部尖锐的晶簇刺向对手，有10%几率使目标防御降低1级(单体攻击)"
+        "description": "发射大量金属棘刺攻击对手(单体)。有30%几率使对手防御降低1级。"
+      },
+      "moves": {
+        "physical": [
+          {
+            "name": "铁尾",
+            "type": "钢",
+            "category": "physical",
+            "power": 100,
+            "accuracy": 75,
+            "pp": 15,
+            "description": "用坚硬的尾巴摔打对手进行攻击(单体)。有30%几率使对手防御降低1级。"
+          },
+          {
+            "name": "种子炸弹",
+            "type": "草",
+            "category": "physical",
+            "power": 80,
+            "accuracy": 100,
+            "pp": 15,
+            "description": "向对手发射坚硬的种子进行攻击(单体)。"
+          },
+          {
+            "name": "尖刺防御",
+            "type": "草",
+            "category": "physical",
+            "power": 0,
+            "accuracy": 100,
+            "pp": 10,
+            "description": "完全抵挡对手的攻击(单体)。如果成功抵挡，会使接触的对手受到伤害。"
+          },
+          {
+            "name": "金属爪",
+            "type": "钢",
+            "category": "physical",
+            "power": 50,
+            "accuracy": 95,
+            "pp": 35,
+            "description": "用钢铁之爪撕裂对手进行攻击(单体)。有10%几率使自身攻击提升1级。"
+          }
+        ],
+        "special": [
+          {
+            "name": "能量球",
+            "type": "草",
+            "category": "special",
+            "power": 90,
+            "accuracy": 100,
+            "pp": 10,
+            "description": "发射生命能量进行攻击(单体)。有10%几率使对手特防降低1级。"
+          },
+          {
+            "name": "加农光炮",
+            "type": "钢",
+            "category": "special",
+            "power": 80,
+            "accuracy": 100,
+            "pp": 10,
+            "description": "发射银色光线进行攻击(单体)。有10%几率使对手特攻降低1级。"
+          },
+          {
+            "name": "日光束",
+            "type": "草",
+            "category": "special",
+            "power": 120,
+            "accuracy": 100,
+            "pp": 10,
+            "description": "第1回合收集阳光，第2回合发射光束攻击(单体)。晴天时无需蓄力。"
+          },
+          {
+            "name": "金属音",
+            "type": "钢",
+            "category": "special",
+            "power": 0,
+            "accuracy": 85,
+            "pp": 40,
+            "description": "发出刺耳的声音，使对手特防大幅降低2级(单体)。"
+          }
+        ],
+        "status": [
+          {
+            "name": "光合作用",
+            "type": "草",
+            "category": "status",
+            "power": 0,
+            "accuracy": 100,
+            "pp": 5,
+            "description": "回复自身最大HP的1/2。晴天时回复2/3，雨天/沙暴/冰雹时回复1/4。"
+          },
+          {
+            "name": "铁壁",
+            "type": "钢",
+            "category": "status",
+            "power": 0,
+            "accuracy": 100,
+            "pp": 15,
+            "description": "将皮肤变得坚硬如铁，大幅提高自身防御2级。"
+          },
+          {
+            "name": "扎根",
+            "type": "草",
+            "category": "status",
+            "power": 0,
+            "accuracy": 100,
+            "pp": 20,
+            "description": "在脚下扎根，每回合回复1/16HP。期间无法交换或逃走。"
+          },
+          {
+            "name": "剑舞",
+            "type": "普通",
+            "category": "status",
+            "power": 0,
+            "accuracy": 100,
+            "pp": 20,
+            "description": "激烈地跳起战舞提高气势，大幅提升自身攻击2级。"
+          }
+        ]
+      },
+      "imageUrl": "meizuo.png",
+      "createdAt": "2025-04-22T11:59:05.041Z",
+      "updatedAt": "2025-04-22T12:00:23.690Z",
+      "source": "server"
+    },
+    {
+      "id": "68ppymaeym4lf60aqkz99m",
+      "name": "岩铠兽",
+      "height": 1.8,
+      "weight": 250,
+      "types": [
+        "岩石",
+        "钢"
+      ],
+      "description": "岩铠兽是一种生活在高山地区的宝可梦，全身覆盖着坚硬的岩石铠甲，铠甲上有着金属般的光泽。它的设计灵感来源于古代的铠甲武士和山岳生物，结合了岩石的厚重感和金属的坚固性。岩铠兽的双眼在铠甲缝隙中闪烁着红光，显得威严而神秘。",
+      "abilities": [
+        {
+          "name": "坚硬铠甲",
+          "description": "受到物理攻击时，防御力提升1级。"
+        },
+        {
+          "name": "岩石之心",
+          "description": "在沙暴天气下，速度和防御力提升1级。"
+        },
+        {
+          "name": "金属防护",
+          "description": "受到特殊攻击时，特防提升1级。",
+          "isHidden": true
+        }
+      ],
+      "stats": {
+        "hp": 85,
+        "attack": 100,
+        "defense": 110,
+        "specialAttack": 60,
+        "specialDefense": 80,
+        "speed": 65
+      },
+      "signatureMove": {
+        "name": "岩钢冲击",
+        "type": "钢",
+        "category": "physical",
+        "power": 90,
+        "accuracy": 95,
+        "pp": 15,
+        "description": "岩铠兽用全身的铠甲撞击对手，有30%的几率使对手防御力下降1级。单体攻击。"
       },
       "moves": {
         "physical": [
@@ -260,7 +377,7 @@
             "power": 75,
             "accuracy": 90,
             "pp": 10,
-            "description": "投掷巨大的岩石攻击对手，有30%几率使目标畏缩(单体攻击)"
+            "description": "投掷巨大的岩石攻击对手，有30%的几率使对手畏缩。单体攻击。"
           },
           {
             "name": "铁头",
@@ -269,7 +386,7 @@
             "power": 80,
             "accuracy": 100,
             "pp": 15,
-            "description": "用坚硬的头部撞击对手，有30%几率使目标畏缩(单体攻击)"
+            "description": "用坚硬的头部撞击对手，有30%的几率使对手畏缩。单体攻击。"
           },
           {
             "name": "地震",
@@ -278,36 +395,36 @@
             "power": 100,
             "accuracy": 100,
             "pp": 10,
-            "description": "引发地震攻击周围所有宝可梦(群体攻击)"
+            "description": "引发地震攻击周围的对手。群体攻击。"
           },
           {
-            "name": "金属爪",
-            "type": "钢",
+            "name": "重踏",
+            "type": "地面",
             "category": "physical",
-            "power": 50,
-            "accuracy": 95,
-            "pp": 35,
-            "description": "用钢铁之爪撕裂对手，有10%几率提升自身攻击1级(单体攻击)"
+            "power": 60,
+            "accuracy": 100,
+            "pp": 20,
+            "description": "用力踩踏地面攻击对手，降低对手速度1级。单体攻击。"
           }
         ],
         "special": [
           {
-            "name": "力量宝石",
+            "name": "岩石爆击",
             "type": "岩石",
             "category": "special",
-            "power": 80,
-            "accuracy": 100,
-            "pp": 20,
-            "description": "发射宝石般的光芒攻击对手(单体攻击)"
+            "power": 25,
+            "accuracy": 90,
+            "pp": 10,
+            "description": "发射坚硬的岩石攻击对手，连续攻击2-5次。单体攻击。"
           },
           {
-            "name": "加农光炮",
+            "name": "钢翼",
             "type": "钢",
             "category": "special",
-            "power": 80,
-            "accuracy": 100,
-            "pp": 10,
-            "description": "发射强烈的光束攻击对手，有10%几率降低目标特防1级(单体攻击)"
+            "power": 70,
+            "accuracy": 90,
+            "pp": 25,
+            "description": "用钢铁般的翅膀攻击对手，有10%的几率提升自身防御1级。单体攻击。"
           },
           {
             "name": "大地之力",
@@ -316,16 +433,16 @@
             "power": 90,
             "accuracy": 100,
             "pp": 10,
-            "description": "引发大地的力量攻击对手，有10%几率降低目标特防1级(单体攻击)"
+            "description": "引发大地的力量攻击对手，有10%的几率降低对手特防1级。单体攻击。"
           },
           {
-            "name": "原始之力",
-            "type": "岩石",
+            "name": "金属音",
+            "type": "钢",
             "category": "special",
-            "power": 60,
-            "accuracy": 100,
-            "pp": 5,
-            "description": "用原始的力量攻击对手，有10%几率提升自身所有能力1级(单体攻击)"
+            "power": 0,
+            "accuracy": 85,
+            "pp": 40,
+            "description": "发出刺耳的金属音，降低对手特防2级。单体攻击。"
           }
         ],
         "status": [
@@ -336,16 +453,25 @@
             "power": 0,
             "accuracy": 100,
             "pp": 15,
-            "description": "使身体变得像钢铁一样坚硬，大幅提升自身防御2级"
+            "description": "使身体变得像钢铁一样坚硬，大幅提升自身防御力2级。"
           },
           {
-            "name": "岩石打磨",
+            "name": "沙暴",
             "type": "岩石",
             "category": "status",
             "power": 0,
             "accuracy": 100,
-            "pp": 20,
-            "description": "打磨身体减少空气阻力，大幅提升自身速度2级"
+            "pp": 10,
+            "description": "召唤沙暴天气，持续5回合。岩石、地面和钢属性宝可梦的特防提升1.5倍。"
+          },
+          {
+            "name": "自我再生",
+            "type": "普通",
+            "category": "status",
+            "power": 0,
+            "accuracy": 100,
+            "pp": 10,
+            "description": "恢复自身最大HP的一半。"
           },
           {
             "name": "隐形岩",
@@ -354,33 +480,178 @@
             "power": 0,
             "accuracy": 100,
             "pp": 20,
-            "description": "在对手场地撒下尖锐的岩石，替换上场的宝可梦会受到伤害(全场效果)"
+            "description": "在对手场地布满尖锐的岩石，对手替换宝可梦时会受到伤害。"
+          }
+        ]
+      },
+      "createdAt": "2025-04-22T13:06:23.176Z",
+      "updatedAt": "2025-04-22T13:07:29.381Z",
+      "imageUrl": "meizuo.png",
+      "source": "server"
+    },
+    {
+      "id": "lr0c9fegwmqlu7sntaiu2s",
+      "name": "岩铠蜥",
+      "height": 1.2,
+      "weight": 85,
+      "types": [
+        "岩石",
+        "钢"
+      ],
+      "description": "岩铠蜥是一种生活在高山岩石地带的宝可梦，全身覆盖着坚硬的岩石铠甲，背部有数根突出的钢刺。它的设计灵感来源于穿山甲和古代铠甲，岩石与钢的属性组合使其具有极强的防御力。岩铠蜥的眼睛很小但炯炯有神，能够在昏暗的洞穴中看清周围环境。它的四肢短而有力，爪子锋利，可以轻易挖开坚硬的岩石。",
+      "abilities": [
+        {
+          "name": "坚硬铠甲",
+          "description": "受到物理攻击时，防御力提升1级。"
+        },
+        {
+          "name": "沙之力",
+          "description": "在沙暴天气下，岩石、钢和地面属性技能的威力提升30%。"
+        },
+        {
+          "name": "铁棘",
+          "description": "受到接触类攻击时，对手会损失最大HP的1/8。",
+          "isHidden": true
+        }
+      ],
+      "stats": {
+        "hp": 80,
+        "attack": 95,
+        "defense": 120,
+        "specialAttack": 45,
+        "specialDefense": 80,
+        "speed": 60
+      },
+      "signatureMove": {
+        "name": "岩钢冲击",
+        "type": "钢",
+        "category": "physical",
+        "power": 90,
+        "accuracy": 95,
+        "pp": 15,
+        "description": "用坚硬的钢刺撞击对手，有30%的几率使对手防御力下降1级。单体攻击。"
+      },
+      "moves": {
+        "physical": [
+          {
+            "name": "岩崩",
+            "type": "岩石",
+            "category": "physical",
+            "power": 75,
+            "accuracy": 90,
+            "pp": 10,
+            "description": "投掷巨大的岩石攻击对手，有30%的几率使对手畏缩。群体攻击。"
+          },
+          {
+            "name": "铁尾",
+            "type": "钢",
+            "category": "physical",
+            "power": 100,
+            "accuracy": 75,
+            "pp": 15,
+            "description": "用坚硬的尾巴抽打对手，有30%的几率使对手防御力下降1级。单体攻击。"
+          },
+          {
+            "name": "地震",
+            "type": "地面",
+            "category": "physical",
+            "power": 100,
+            "accuracy": 100,
+            "pp": 10,
+            "description": "引发地震攻击周围的对手。群体攻击。"
+          },
+          {
+            "name": "挖洞",
+            "type": "地面",
+            "category": "physical",
+            "power": 80,
+            "accuracy": 100,
+            "pp": 10,
+            "description": "第1回合钻入地下，第2回合攻击对手。单体攻击。"
+          }
+        ],
+        "special": [
+          {
+            "name": "大地之力",
+            "type": "地面",
+            "category": "special",
+            "power": 90,
+            "accuracy": 100,
+            "pp": 10,
+            "description": "向对手脚下释放能量，有10%的几率使对手特防下降1级。单体攻击。"
+          },
+          {
+            "name": "铁壁",
+            "type": "钢",
+            "category": "special",
+            "power": 0,
+            "accuracy": 100,
+            "pp": 15,
+            "description": "将身体变得如钢铁般坚硬，大幅提升自己的防御力。"
+          },
+          {
+            "name": "沙暴",
+            "type": "岩石",
+            "category": "special",
+            "power": 0,
+            "accuracy": 100,
+            "pp": 10,
+            "description": "召唤沙暴天气，持续5回合。岩石、钢和地面属性宝可梦的特防提升50%。全场效果。"
           },
           {
             "name": "金属音",
             "type": "钢",
-            "category": "status",
+            "category": "special",
             "power": 0,
             "accuracy": 85,
             "pp": 40,
-            "description": "发出刺耳的金属音，大幅降低对手特防2级(单体效果)"
+            "description": "发出刺耳的金属音，使对手特防大幅下降2级。单体攻击。"
+          }
+        ],
+        "status": [
+          {
+            "name": "隐形岩",
+            "type": "岩石",
+            "category": "status",
+            "power": 0,
+            "accuracy": 100,
+            "pp": 20,
+            "description": "在对手场地布满尖锐的岩石，对手替换宝可梦时会受到伤害。全场效果。"
+          },
+          {
+            "name": "诅咒",
+            "type": "幽灵",
+            "category": "status",
+            "power": 0,
+            "accuracy": 100,
+            "pp": 10,
+            "description": "幽灵属性宝可梦使用时，消耗自身最大HP的50%使对手进入诅咒状态；其他属性宝可梦使用时，自身攻击和防御提升1级，速度下降1级。单体效果。"
+          },
+          {
+            "name": "睡觉",
+            "type": "超能力",
+            "category": "status",
+            "power": 0,
+            "accuracy": 100,
+            "pp": 10,
+            "description": "连续睡2回合，回复全部HP并治愈异常状态。自身效果。"
+          },
+          {
+            "name": "吼叫",
+            "type": "一般",
+            "category": "status",
+            "power": 0,
+            "accuracy": 100,
+            "pp": 20,
+            "description": "吼叫对手，强制替换对手的宝可梦。优先度-6。单体效果。"
           }
         ]
       },
+      "imageUrl": "meizuo.png",
+      "createdAt": "2025-04-22T12:49:02.071Z",
+      "updatedAt": "2025-04-22T12:50:38.044Z",
       "source": "server"
     }
   ],
-  "apiSettings": {
-    "aiProvider": "deepseek",
-    "deepseekApiKey": "",
-    "deepseekModel": "deepseek-chat",
-    "customApiEndpoint": "",
-    "customApiKey": "",
-    "customModelName": "",
-    "artProvider": "none",
-    "customArtEndpoint": "",
-    "customArtKey": "",
-    "temperature": 1,
-    "modeltextlength": "1"
-  }
+  "apiSettings": {}
 }

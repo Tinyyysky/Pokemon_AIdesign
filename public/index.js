@@ -20,6 +20,47 @@ const pokemonTypes = [
     { name: '钢', color: 'var(--steel)' },
     { name: '妖精', color: 'var(--fairy)' }
 ];
+// 获取默认设计模板
+function getDefaultDesign() {
+    return {
+        id: generateId(),
+        name: '未命名宝可梦',
+        height: 1.0,
+        weight: 10.0,
+        types: [],
+        description: '暂无描述',
+        abilities: [
+            { name: '', description: '' },
+            { name: '', description: '' },
+            { name: '', description: '', isHidden: true }
+        ],
+        stats: {
+            hp: 50,
+            attack: 50,
+            defense: 50,
+            specialAttack: 50,
+            specialDefense: 50,
+            speed: 50
+        },
+        signatureMove: {
+            name: '',
+            type: '',
+            category: 'physical',
+            power: 0,
+            accuracy: 0,
+            pp: 0,
+            description: ''
+        },
+        moves: {
+            physical: [],
+            special: [],
+            status: []
+        },
+        imageUrl: 'meizuo.png',
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+    };
+}
 
 // 当前设计数据
 let currentDesign = {
@@ -181,15 +222,20 @@ document.addEventListener('DOMContentLoaded', () => {
             showMessage('切换模式', 'success');
             btn.classList.add('active');
             const mode = btn.dataset.mode;
+            if(mode=="local"){
+                currentDesign=getDefaultDesign();
+                renderDesign(currentDesign);
+                showMessage('当前为本地设计', 'success');
+            }
             filterDesignsByMode(mode);
         });
     });
 
-    // // 默认显示本地设计
-    // document.querySelector('.view-mode-btn[data-mode="local"]').classList.add('active');
-    // filterDesignsByMode('local');
-    document.querySelector('.view-mode-btn[data-mode="server"]').classList.add('active');
-    filterDesignsByMode('server');
+    // 默认显示本地设计
+    document.querySelector('.view-mode-btn[data-mode="local"]').classList.add('active');
+    filterDesignsByMode('local');
+    // document.querySelector('.view-mode-btn[data-mode="server"]').classList.add('active');
+    // filterDesignsByMode('server');
     // 搜索功能
     const searchInput = document.querySelector('.design-search input');
     const searchBtn = document.querySelector('.design-search button');
@@ -275,11 +321,10 @@ async function loadData() {
                 designHistory = data.designHistory.map(d => ({...d, source: 'server'}));
                 renderHistoryList();
             }
-            
-            if (data.apiSettings) {
-                apiSettings = data.apiSettings;
+                const savedApiSettings = localStorage.getItem('pokemonDesignApiSettings');
+                console.log('apiSettings',savedApiSettings);
+                apiSettings = JSON.parse(savedApiSettings);
                 updateApiSettingsForm();
-            }
             
             if (data.currentDesign) {
                 currentDesign = {...data.currentDesign, source: 'server'};
@@ -401,7 +446,6 @@ async function saveData() {
                 body: JSON.stringify({
                     currentDesign: {...currentDesign, source: 'server'},
                     designHistory: designHistory.filter(d => d.source === 'server'),
-                    apiSettings
                 })
             });
             
@@ -566,42 +610,68 @@ function initMoveTabs() {
 
     // 上传设计到服务器
     async function uploadToServer() {
-        // const mode = document.querySelector('.view-mode-btn.active')?.dataset.mode || 'local';
-        // if (mode !== 'local') {
-        //     showMessage('当前设计不是本地设计', 'warning');
-        //     return;
-        // }
+        const mode = document.querySelector('.view-mode-btn.active')?.dataset.mode || 'local';
+        if (mode !== 'local') {
+            showMessage('当前设计不是本地设计', 'warning');
+            return;
+        }
+        if (currentDesign.name === '未命名宝可梦' && currentDesign.types.length === 0) {
+            showMessage('请先设计', 'warning');
+            return;
+        }
+        if(currentDesign.source==='serve'){
+            showMessage('当前设计是服务器设计', 'warning');
+            return
+        }
+        try {
+            const ser_response = await fetch('/api/data');
+            if (!ser_response.ok) throw new Error('加载服务器数据失败');
+            const data = await ser_response.json();
+           // 2. 检查是否已存在相同ID的设计
+            const existingIndex = data.designHistory.findIndex(d => d.id === currentDesign.id);
+        
+        if (existingIndex >= 0) {
+            // 替换现有设计
+            data.designHistory[existingIndex] = {...currentDesign, source: 'server'};
+            showMessage('服务器上的设计已更新', 'success');
+        } else {
+            // 添加新设计
+            data.designHistory.push({...currentDesign, source: 'server'});
+            showMessage('设计已上传到服务器', 'success');
+        }
+            // console.log('history',data.designHistory);
+            // console.log(currentDesign);
+            const response = await fetch('/api/data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    currentDesign: {...currentDesign, source: 'server'},
+                    designHistory: data.designHistory
+                })
+            });
+            
+            if (!response.ok) throw new Error('上传到服务器失败');
+            
+            // // 更新当前设计的source
+            // currentDesign.source = 'server';
+            
+            // // 添加到设计历史
+            // const existingIndex = designHistory.findIndex(d => d.id === currentDesign.id);
+            // if (existingIndex >= 0) {
+            //     designHistory[existingIndex] = {...currentDesign};
+            // } else {
+            //     designHistory.push({...currentDesign});
+            // }
+            
+            // showMessage('设计已上传到服务器', 'success');
+        } catch (error) {
+            console.error('上传设计到服务器失败:', error);
+            showMessage('上传到服务器失败', 'warning');
+        }
 
-        // try {
-        //     const response = await fetch('/api/data', {
-        //         method: 'POST',
-        //         headers: {
-        //             'Content-Type': 'application/json',
-        //         },
-        //         body: JSON.stringify({
-        //             currentDesign: {...currentDesign, source: 'server'},
-        //             designHistory: designHistory
-        //         })
-        //     });
-            
-        //     if (!response.ok) throw new Error('上传到服务器失败');
-            
-        //     // 更新当前设计的source
-        //     currentDesign.source = 'server';
-            
-        //     // 添加到设计历史
-        //     const existingIndex = designHistory.findIndex(d => d.id === currentDesign.id);
-        //     if (existingIndex >= 0) {
-        //         designHistory[existingIndex] = {...currentDesign};
-        //     } else {
-        //         designHistory.push({...currentDesign});
-        //     }
-            
-        //     showMessage('设计已上传到服务器', 'success');
-        // } catch (error) {
-        //     console.error('上传设计到服务器失败:', error);
-        //     showMessage('上传到服务器失败', 'warning');
-        // }
+
     }
 
 // 分享设计
@@ -686,6 +756,11 @@ function bindEvents() {
     });
     // 新建设计
     newDesignBtn.addEventListener('click', () => {
+        const mode = document.querySelector('.view-mode-btn.active')?.dataset.mode || 'local';
+        if(mode === 'server') {
+            showMessage('当前为服务器，请切换本地', 'warning');
+            return;
+        }
         // 如果当前设计有实际内容，则保存到历史记录
         if (currentDesign.name !== '未命名宝可梦' || currentDesign.types.length > 0) {
             // designHistory.push({...currentDesign});
@@ -700,50 +775,14 @@ function bindEvents() {
         showMessage('已创建新设计', 'success');
     });
 
-    // 获取默认设计模板
-    function getDefaultDesign() {
-        return {
-            id: generateId(),
-            name: '未命名宝可梦',
-            height: 1.0,
-            weight: 10.0,
-            types: [],
-            description: '暂无描述',
-            abilities: [
-                { name: '', description: '' },
-                { name: '', description: '' },
-                { name: '', description: '', isHidden: true }
-            ],
-            stats: {
-                hp: 50,
-                attack: 50,
-                defense: 50,
-                specialAttack: 50,
-                specialDefense: 50,
-                speed: 50
-            },
-            signatureMove: {
-                name: '',
-                type: '',
-                category: 'physical',
-                power: 0,
-                accuracy: 0,
-                pp: 0,
-                description: ''
-            },
-            moves: {
-                physical: [],
-                special: [],
-                status: []
-            },
-            imageUrl: 'meizuo.png',
-            createdAt: new Date().toISOString(),
-            updatedAt: new Date().toISOString()
-        };
-    }
     
     // 保存设计
     saveDesignBtn.addEventListener('click', () => {
+        const mode = document.querySelector('.view-mode-btn.active')?.dataset.mode || 'local';
+        if(mode === 'server') {
+            showMessage('当前为服务器，请切换本地', 'warning');
+            return;
+        }
         // 检查是否已存在相同ID的设计
         const existingIndex = designHistory.findIndex(d => d.id === currentDesign.id);
         
@@ -762,6 +801,11 @@ function bindEvents() {
     
     // 生成立绘
     generateArtBtn.addEventListener('click', () => {
+        const mode = document.querySelector('.view-mode-btn.active')?.dataset.mode || 'local';
+        if(mode === 'server') {
+            showMessage('当前为服务器，请切换本地', 'warning');
+            return;
+        }
         if (apiSettings.artProvider === 'none') {
             generateArt();
             return;
@@ -773,8 +817,19 @@ function bindEvents() {
     });
     
     // AI对话提交
-    aiSubmit.addEventListener('click', sendAiMessage);
+    aiSubmit.addEventListener('click',()=>{
+        const mode = document.querySelector('.view-mode-btn.active')?.dataset.mode || 'local';
+         if(mode === 'server') {
+        showMessage('当前为服务器，请切换本地', 'warning');
+        return;
+    }
+    sendAiMessage()});
     aiInput.addEventListener('keydown', (e) => {
+        const mode = document.querySelector('.view-mode-btn.active')?.dataset.mode || 'local';
+        if(mode === 'server') {
+            showMessage('当前为服务器，请切换本地', 'warning');
+            return;
+        }
         if (e.key === 'Enter' && e.ctrlKey) {
             e.preventDefault();
             sendAiMessage();
@@ -809,6 +864,11 @@ function bindEvents() {
     imageUpload.addEventListener('change', handleImageUpload);
 
     saveDesignForm.addEventListener('click', () => {
+        const mode = document.querySelector('.view-mode-btn.active')?.dataset.mode || 'local';
+        if(mode === 'server') {
+            showMessage('当前为服务器，请切换本地', 'warning');
+            return;
+        }
         updateDesignFromForm();
         designFormModal.classList.remove('active');
         renderDesign(currentDesign);
@@ -1148,7 +1208,7 @@ function getMoveCategoryName(category) {
 }
 
 // 渲染历史记录列表
-function renderHistoryList() {
+async function renderHistoryList() {
     historyList.innerHTML = '';
     
     designHistory.forEach(design => {
@@ -1188,6 +1248,10 @@ function renderHistoryList() {
         
         deleteBtn.addEventListener('click', (e) => {
             e.stopPropagation();
+            if (design.source === 'server') {
+                showMessage('无法删除服务器设计', 'warning');
+                return;
+            }
             if (confirm(`确定要删除设计 "${design.name}" 吗?`)) {
                 designHistory = designHistory.filter(d => d.id !== design.id);
                 saveData();
@@ -1341,13 +1405,24 @@ function updateDesignFromForm() {
 
 // 发送AI消息
 async function sendAiMessage() {
+    const mode = document.querySelector('.view-mode-btn.active')?.dataset.mode || 'local';
+    if(mode === 'server') {
+        aiInput.disabled = true;
+        aiSubmit.disabled = true;
+        showMessage('当前为服务器，请切换本地', 'warning');
+        return;
+    }
+    if (mode ==='local'){
+        aiInput.disabled = false;
+        aiSubmit.disabled = false;
+    }
     const message = aiInput.value.trim();
     if (!message) return;
     
     // 禁用输入和按钮
     aiInput.disabled = true;
     aiSubmit.disabled = true;
-    
+    document.querySelectorAll('.view-mode-btn').forEach(b =>b.disabled=true)
         // 添加用户消息到对话
         addUserMessage(message);
         aiInput.value = '';
@@ -1368,7 +1443,7 @@ async function sendAiMessage() {
             <div class="dot"></div>
             <div class="dot"></div>
         </div>
-        AI正在思考...如果不想设计被覆盖，<strong>请新建设计！</strong>
+        AI正在思考...无法切换视图模式。如果不想设计被覆盖，<strong>请新建设计！</strong>
     `;
     aiConversation.appendChild(loadingMessage);
     aiConversation.scrollTop = aiConversation.scrollHeight;
@@ -1596,6 +1671,7 @@ async function sendAiMessage() {
          
          renderHistoryList();
          saveData();
+        document.querySelectorAll('.view-mode-btn').forEach(b =>b.disabled=false)
         showMessage('设计已保存,AI设计已应用', 'success');
 
     } catch (error) {
@@ -1650,6 +1726,7 @@ async function messages_callDeepSeekApi(systemPrompt,messages) {
     if (!apiSettings.deepseekApiKey) {
         throw new Error('未配置DeepSeek API Key');
     }
+    console.log('apikey',apiSettings.deepseekApiKey)
     const apiMessages = messages.map(({ role, content }) => ({
         role,
         content: typeof content === 'string' ? content : JSON.stringify(content) // 确保 content 是字符串
