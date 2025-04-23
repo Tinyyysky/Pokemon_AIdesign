@@ -29,6 +29,9 @@ https://www.bilibili.com/video/BV1Cv5XzgEGX
 - **8**.开发者b站@皮皮灭 githubID：Tinyyysky
 - **9**.仅供娱乐~
 
+## 4.23更新
+支持了全局搜索，增加了相关问题回答
+
 ## 环境要求
 - **Node.js**：建议使用 16.x 或更高版本。
 - **npm**：建议使用最新版本
