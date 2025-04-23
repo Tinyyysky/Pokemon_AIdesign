@@ -404,7 +404,7 @@ async function loadData() {
                 renderHistoryList();
             }
                 const savedApiSettings = localStorage.getItem('pokemonDesignApiSettings');
-                console.log('apiSettings',savedApiSettings);
+                // console.log('apiSettings',savedApiSettings);
                 apiSettings = JSON.parse(savedApiSettings);
                 updateApiSettingsForm();
             

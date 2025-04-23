@@ -1,57 +1,48 @@
 {
   "currentDesign": {
-    "id": "1p8lk4c09v1h6x7dl1bnzp",
-    "name": "晶岩蜥",
-    "height": 1.2,
-    "weight": 45,
+    "id": "68ppymaeym4lf60aqkz99m",
+    "name": "岩铠兽",
+    "height": 1.8,
+    "weight": 250,
     "types": [
       "岩石",
-      "龙"
+      "钢"
     ],
-    "description": "晶岩蜥是一种生活在高海拔山区的宝可梦，全身覆盖着类似水晶的坚硬鳞片，能够反射阳光形成绚丽的光晕。它的背部生长着几排锯齿状的晶簇，尾巴末端有一个发光的能量核心。设计灵感来源于高山蜥蜴和水晶矿物，结合了龙属性的神秘感。",
+    "description": "岩铠兽是一种生活在高山地区的宝可梦，全身覆盖着坚硬的岩石铠甲，铠甲上有着金属般的光泽。它的设计灵感来源于古代的铠甲武士和山岳生物，结合了岩石的厚重感和金属的坚固性。岩铠兽的双眼在铠甲缝隙中闪烁着红光，显得威严而神秘。",
     "abilities": [
       {
-        "name": "晶化皮肤",
-        "description": "受到物理攻击时，有30%几率使攻击方速度降低1级"
+        "name": "坚硬铠甲",
+        "description": "受到物理攻击时，防御力提升1级。"
       },
       {
-        "name": "坚硬脑袋",
-        "description": "不会受到反作用力伤害"
+        "name": "岩石之心",
+        "description": "在沙暴天气下，速度和防御力提升1级。"
       },
       {
-        "name": "能量折射",
-        "description": "受到特殊攻击时，有30%几率使攻击方特攻降低1级",
+        "name": "金属防护",
+        "description": "受到特殊攻击时，特防提升1级。",
         "isHidden": true
       }
     ],
     "stats": {
-      "hp": 75,
-      "attack": 95,
-      "defense": 85,
-      "specialAttack": 70,
+      "hp": 85,
+      "attack": 100,
+      "defense": 110,
+      "specialAttack": 60,
       "specialDefense": 80,
-      "speed": 75
+      "speed": 65
     },
     "signatureMove": {
-      "name": "晶爆冲击",
-      "type": "岩石",
+      "name": "岩钢冲击",
+      "type": "钢",
       "category": "physical",
       "power": 90,
       "accuracy": 95,
       "pp": 15,
-      "description": "用结晶化的身体猛烈撞击对手。有20%几率使目标防御降低1级(单体)"
+      "description": "岩铠兽用全身的铠甲撞击对手，有30%的几率使对手防御力下降1级。单体攻击。"
     },
     "moves": {
       "physical": [
-        {
-          "name": "龙爪",
-          "type": "龙",
-          "category": "physical",
-          "power": 80,
-          "accuracy": 100,
-          "pp": 15,
-          "description": "用锋利的爪子撕裂对手(单体)"
-        },
         {
           "name": "岩崩",
           "type": "岩石",
@@ -59,16 +50,16 @@
           "power": 75,
           "accuracy": 90,
           "pp": 10,
-          "description": "投掷大岩石攻击对手(群体)"
+          "description": "投掷巨大的岩石攻击对手，有30%的几率使对手畏缩。单体攻击。"
         },
         {
-          "name": "铁尾",
+          "name": "铁头",
           "type": "钢",
           "category": "physical",
-          "power": 100,
-          "accuracy": 75,
+          "power": 80,
+          "accuracy": 100,
           "pp": 15,
-          "description": "用坚硬的尾巴拍打对手(单体)"
+          "description": "用坚硬的头部撞击对手，有30%的几率使对手畏缩。单体攻击。"
         },
         {
           "name": "地震",
@@ -77,27 +68,36 @@
           "power": 100,
           "accuracy": 100,
           "pp": 10,
-          "description": "引发地震攻击周围所有宝可梦(全场)"
+          "description": "引发地震攻击周围的对手。群体攻击。"
+        },
+        {
+          "name": "重踏",
+          "type": "地面",
+          "category": "physical",
+          "power": 60,
+          "accuracy": 100,
+          "pp": 20,
+          "description": "用力踩踏地面攻击对手，降低对手速度1级。单体攻击。"
         }
       ],
       "special": [
         {
-          "name": "龙息",
-          "type": "龙",
-          "category": "special",
-          "power": 60,
-          "accuracy": 100,
-          "pp": 20,
-          "description": "向对手喷射强烈的气息(单体)"
-        },
-        {
-          "name": "力量宝石",
+          "name": "岩石爆击",
           "type": "岩石",
           "category": "special",
-          "power": 80,
-          "accuracy": 100,
-          "pp": 20,
-          "description": "发射宝石般的光芒攻击(单体)"
+          "power": 25,
+          "accuracy": 90,
+          "pp": 10,
+          "description": "发射坚硬的岩石攻击对手，连续攻击2-5次。单体攻击。"
+        },
+        {
+          "name": "钢翼",
+          "type": "钢",
+          "category": "special",
+          "power": 70,
+          "accuracy": 90,
+          "pp": 25,
+          "description": "用钢铁般的翅膀攻击对手，有10%的几率提升自身防御1级。单体攻击。"
         },
         {
           "name": "大地之力",
@@ -106,36 +106,45 @@
           "power": 90,
           "accuracy": 100,
           "pp": 10,
-          "description": "利用大地的力量攻击对手(单体)"
+          "description": "引发大地的力量攻击对手，有10%的几率降低对手特防1级。单体攻击。"
         },
         {
-          "name": "原始之力",
-          "type": "岩石",
+          "name": "金属音",
+          "type": "钢",
           "category": "special",
-          "power": 60,
-          "accuracy": 100,
-          "pp": 5,
-          "description": "用原始的力量攻击(单体)"
+          "power": 0,
+          "accuracy": 85,
+          "pp": 40,
+          "description": "发出刺耳的金属音，降低对手特防2级。单体攻击。"
         }
       ],
       "status": [
         {
-          "name": "龙之舞",
-          "type": "龙",
+          "name": "铁壁",
+          "type": "钢",
           "category": "status",
           "power": 0,
           "accuracy": 100,
-          "pp": 20,
-          "description": "跳起神秘的舞蹈，提升攻击和速度各1级"
+          "pp": 15,
+          "description": "使身体变得像钢铁一样坚硬，大幅提升自身防御力2级。"
         },
         {
-          "name": "岩石打磨",
+          "name": "沙暴",
           "type": "岩石",
           "category": "status",
           "power": 0,
           "accuracy": 100,
-          "pp": 20,
-          "description": "打磨身体减少空气阻力，大幅提高速度"
+          "pp": 10,
+          "description": "召唤沙暴天气，持续5回合。岩石、地面和钢属性宝可梦的特防提升1.5倍。"
+        },
+        {
+          "name": "自我再生",
+          "type": "普通",
+          "category": "status",
+          "power": 0,
+          "accuracy": 100,
+          "pp": 10,
+          "description": "恢复自身最大HP的一半。"
         },
         {
           "name": "隐形岩",
@@ -144,22 +153,13 @@
           "power": 0,
           "accuracy": 100,
           "pp": 20,
-          "description": "在对手场地撒下尖锐的岩石"
-        },
-        {
-          "name": "自我再生",
-          "type": "一般",
-          "category": "status",
-          "power": 0,
-          "accuracy": 100,
-          "pp": 10,
-          "description": "恢复最大HP的一半"
+          "description": "在对手场地布满尖锐的岩石，对手替换宝可梦时会受到伤害。"
         }
       ]
     },
-    "createdAt": "2025-04-23T04:14:41.358Z",
-    "updatedAt": "2025-04-23T04:50:13.673Z",
-    "imageUrl": "https://image.pollinations.ai/prompt/A%20Pokemon%20named%20Crystalisk,%201.2m%20tall,%2045kg,%20Rock/Dragon-type,%20living%20in%20high-altitude%20mountains,%20covered%20in%20hard%20crystalline%20scales%20that%20reflect%20sunlight%20to%20create%20colorful%20auras,%20with%20jagged%20crystal%20clusters%20on%20its%20back%20and%20a%20glowing%20energy%20core%20at%20the%20tip%20of%20its%20tail,%20inspired%20by%20alpine%20lizards%20and%20crystal%20minerals,%20combining%20mystical%20dragon%20elements,%20official%20Pokemon%20style,%20clear%20silhouette,%20vibrant%20colors,%20dynamic%20pose,%20simplified%20lines,%20no%20text?width=1024&height=1024&seed=100&model=flux&nologo=true&private=true",
+    "imageUrl": "meizuo.png",
+    "createdAt": "2025-04-22T13:06:23.176Z",
+    "updatedAt": "2025-04-22T13:07:29.381Z",
     "source": "server"
   },
   "designHistory": [
