@@ -3131,6 +3131,531 @@
         "designId": "7cr2xexyn4cn5utkiei9fq",
         "timestamp": "2025/4/22 23:26:46"
       }
+    ],
+    "6uc3677e4oks3j1sg3i3t": [
+      {
+        "role": "user",
+        "content": "123",
+        "designId": "6uc3677e4oks3j1sg3i3t",
+        "timestamp": "2025/4/23 12:14:35"
+      }
+    ],
+    "1p8lk4c09v1h6x7dl1bnzp": [
+      {
+        "role": "user",
+        "content": "123",
+        "designId": "1p8lk4c09v1h6x7dl1bnzp",
+        "timestamp": "2025/4/23 12:14:48"
+      },
+      {
+        "role": "assistant",
+        "content": {
+          "name": "晶岩蜥",
+          "height": 1.2,
+          "weight": 45,
+          "types": [
+            "岩石",
+            "龙"
+          ],
+          "description": "晶岩蜥是一种生活在高海拔山区的宝可梦，全身覆盖着类似水晶的坚硬鳞片，能够反射阳光形成绚丽的光晕。它的背部生长着几排锯齿状的晶簇，尾巴末端有一个发光的能量核心。设计灵感来源于高山蜥蜴和水晶矿物，结合了龙属性的神秘感。",
+          "abilities": [
+            {
+              "name": "晶化皮肤",
+              "description": "受到物理攻击时，有30%几率使攻击方速度降低1级"
+            },
+            {
+              "name": "坚硬脑袋",
+              "description": "不会受到反作用力伤害"
+            },
+            {
+              "name": "能量折射",
+              "description": "受到特殊攻击时，有30%几率使攻击方特攻降低1级",
+              "isHidden": true
+            }
+          ],
+          "stats": {
+            "hp": 75,
+            "attack": 95,
+            "defense": 85,
+            "specialAttack": 70,
+            "specialDefense": 80,
+            "speed": 75
+          },
+          "signatureMove": {
+            "name": "晶爆冲击",
+            "type": "岩石",
+            "category": "physical",
+            "power": 90,
+            "accuracy": 95,
+            "pp": 15,
+            "description": "用结晶化的身体猛烈撞击对手。有20%几率使目标防御降低1级(单体)"
+          },
+          "moves": {
+            "physical": [
+              {
+                "name": "龙爪",
+                "type": "龙",
+                "category": "physical",
+                "power": 80,
+                "accuracy": 100,
+                "pp": 15,
+                "description": "用锋利的爪子撕裂对手(单体)"
+              },
+              {
+                "name": "岩崩",
+                "type": "岩石",
+                "category": "physical",
+                "power": 75,
+                "accuracy": 90,
+                "pp": 10,
+                "description": "投掷大岩石攻击对手(群体)"
+              },
+              {
+                "name": "铁尾",
+                "type": "钢",
+                "category": "physical",
+                "power": 100,
+                "accuracy": 75,
+                "pp": 15,
+                "description": "用坚硬的尾巴拍打对手(单体)"
+              },
+              {
+                "name": "地震",
+                "type": "地面",
+                "category": "physical",
+                "power": 100,
+                "accuracy": 100,
+                "pp": 10,
+                "description": "引发地震攻击周围所有宝可梦(全场)"
+              }
+            ],
+            "special": [
+              {
+                "name": "龙息",
+                "type": "龙",
+                "category": "special",
+                "power": 60,
+                "accuracy": 100,
+                "pp": 20,
+                "description": "向对手喷射强烈的气息(单体)"
+              },
+              {
+                "name": "力量宝石",
+                "type": "岩石",
+                "category": "special",
+                "power": 80,
+                "accuracy": 100,
+                "pp": 20,
+                "description": "发射宝石般的光芒攻击(单体)"
+              },
+              {
+                "name": "大地之力",
+                "type": "地面",
+                "category": "special",
+                "power": 90,
+                "accuracy": 100,
+                "pp": 10,
+                "description": "利用大地的力量攻击对手(单体)"
+              },
+              {
+                "name": "原始之力",
+                "type": "岩石",
+                "category": "special",
+                "power": 60,
+                "accuracy": 100,
+                "pp": 5,
+                "description": "用原始的力量攻击(单体)"
+              }
+            ],
+            "status": [
+              {
+                "name": "龙之舞",
+                "type": "龙",
+                "category": "status",
+                "power": 0,
+                "accuracy": 100,
+                "pp": 20,
+                "description": "跳起神秘的舞蹈，提升攻击和速度各1级"
+              },
+              {
+                "name": "岩石打磨",
+                "type": "岩石",
+                "category": "status",
+                "power": 0,
+                "accuracy": 100,
+                "pp": 20,
+                "description": "打磨身体减少空气阻力，大幅提高速度"
+              },
+              {
+                "name": "隐形岩",
+                "type": "岩石",
+                "category": "status",
+                "power": 0,
+                "accuracy": 100,
+                "pp": 20,
+                "description": "在对手场地撒下尖锐的岩石"
+              },
+              {
+                "name": "自我再生",
+                "type": "一般",
+                "category": "status",
+                "power": 0,
+                "accuracy": 100,
+                "pp": 10,
+                "description": "恢复最大HP的一半"
+              }
+            ]
+          }
+        },
+        "designId": "1p8lk4c09v1h6x7dl1bnzp",
+        "timestamp": "2025/4/23 12:15:33"
+      },
+      {
+        "role": "user",
+        "content": "456",
+        "designId": "1p8lk4c09v1h6x7dl1bnzp",
+        "timestamp": "2025/4/23 12:16:28"
+      },
+      {
+        "role": "user",
+        "content": "456",
+        "designId": "1p8lk4c09v1h6x7dl1bnzp",
+        "timestamp": "2025/4/23 12:49:21"
+      },
+      {
+        "role": "assistant",
+        "content": {
+          "name": "焰铠兽",
+          "height": 1.2,
+          "weight": 45.5,
+          "types": [
+            "火",
+            "钢"
+          ],
+          "description": "焰铠兽是一种外形类似穿山甲的宝可梦，全身覆盖着由特殊金属和火焰构成的铠甲。它的背部有六片可以展开的火焰鳞片，在战斗时会喷射出高温火焰。设计灵感来自火山熔岩冷却后形成的玄武岩结构，结合了生物装甲的防御特性与火山的爆发力。",
+          "abilities": [
+            {
+              "name": "熔火装甲",
+              "description": "受到物理攻击时，有30%几率使攻击方灼伤"
+            },
+            {
+              "name": "火焰之躯",
+              "description": "接触类招式有30%几率使攻击方灼伤"
+            },
+            {
+              "name": "熔岩核心",
+              "description": "HP低于1/3时，火属性招式威力提升50%",
+              "isHidden": true
+            }
+          ],
+          "stats": {
+            "hp": 75,
+            "attack": 90,
+            "defense": 100,
+            "specialAttack": 70,
+            "specialDefense": 80,
+            "speed": 65
+          },
+          "signatureMove": {
+            "name": "熔岩爆裂",
+            "type": "火",
+            "category": "physical",
+            "power": 90,
+            "accuracy": 95,
+            "pp": 15,
+            "description": "用熔岩包裹全身撞击对手，有20%几率使目标灼伤(单体攻击)"
+          },
+          "moves": {
+            "physical": [
+              {
+                "name": "铁头",
+                "type": "钢",
+                "category": "physical",
+                "power": 80,
+                "accuracy": 100,
+                "pp": 15,
+                "description": "用钢铁般坚硬的头部撞击对手，有30%几率使目标畏缩(单体攻击)"
+              },
+              {
+                "name": "火焰牙",
+                "type": "火",
+                "category": "physical",
+                "power": 65,
+                "accuracy": 95,
+                "pp": 15,
+                "description": "用燃烧的牙齿咬住对手，有10%几率使目标灼伤或畏缩(单体攻击)"
+              },
+              {
+                "name": "钢爪",
+                "type": "钢",
+                "category": "physical",
+                "power": 50,
+                "accuracy": 95,
+                "pp": 35,
+                "description": "用锋利的钢爪撕裂对手，有10%几率提升自身攻击(单体攻击)"
+              },
+              {
+                "name": "地震",
+                "type": "地面",
+                "category": "physical",
+                "power": 100,
+                "accuracy": 100,
+                "pp": 10,
+                "description": "引发地震攻击周围所有宝可梦(群体攻击)"
+              }
+            ],
+            "special": [
+              {
+                "name": "喷射火焰",
+                "type": "火",
+                "category": "special",
+                "power": 90,
+                "accuracy": 100,
+                "pp": 15,
+                "description": "向对手发射猛烈火焰进行攻击，有10%几率使目标灼伤(单体攻击)"
+              },
+              {
+                "name": "加农光炮",
+                "type": "钢",
+                "category": "special",
+                "power": 80,
+                "accuracy": 100,
+                "pp": 10,
+                "description": "将身体的光能集中后发射出去，有10%几率降低对手特防(单体攻击)"
+              },
+              {
+                "name": "热风",
+                "type": "火",
+                "category": "special",
+                "power": 95,
+                "accuracy": 90,
+                "pp": 10,
+                "description": "将炎热的气息吹向对手进行攻击，有10%几率使目标灼伤(群体攻击)"
+              },
+              {
+                "name": "金属音",
+                "type": "钢",
+                "category": "special",
+                "power": 0,
+                "accuracy": 85,
+                "pp": 40,
+                "description": "发出刺耳的声音，大幅降低对手的特防(单体攻击)"
+              }
+            ],
+            "status": [
+              {
+                "name": "铁壁",
+                "type": "钢",
+                "category": "status",
+                "power": 0,
+                "accuracy": 100,
+                "pp": 15,
+                "description": "将皮肤变得坚硬如铁，大幅提高自己的防御"
+              },
+              {
+                "name": "鬼火",
+                "type": "火",
+                "category": "status",
+                "power": 0,
+                "accuracy": 85,
+                "pp": 15,
+                "description": "放出诡异的火焰，使对手陷入灼伤状态"
+              },
+              {
+                "name": "冥想",
+                "type": "超能力",
+                "category": "status",
+                "power": 0,
+                "accuracy": 100,
+                "pp": 20,
+                "description": "静心凝神，提高自己的特攻和特防"
+              },
+              {
+                "name": "守住",
+                "type": "一般",
+                "category": "status",
+                "power": 0,
+                "accuracy": 100,
+                "pp": 10,
+                "description": "完全抵挡对手的攻击，连续使用容易失败"
+              }
+            ]
+          }
+        },
+        "designId": "1p8lk4c09v1h6x7dl1bnzp",
+        "timestamp": "2025/4/23 12:50:13"
+      }
+    ],
+    "hbagv8hsc3uz4bhs7wexx": [
+      {
+        "role": "user",
+        "content": "很长的宝可梦",
+        "designId": "hbagv8hsc3uz4bhs7wexx",
+        "timestamp": "2025/4/23 13:09:53"
+      },
+      {
+        "role": "assistant",
+        "content": {
+          "name": "长脊龙",
+          "height": 4.2,
+          "weight": 120,
+          "types": [
+            "龙",
+            "地面"
+          ],
+          "description": "长脊龙是一种远古时期的宝可梦，身体修长如蛇，覆盖着坚硬的骨板。它的背部有一排锋利的骨刺，尾巴末端呈锤状。长脊龙生活在开阔的平原，用长长的身体缠绕猎物。设计灵感来自史前蛇颈龙和现代蟒蛇的结合体。",
+          "abilities": [
+            {
+              "name": "沙之力",
+              "description": "沙暴天气时，岩石、地面和钢属性招式威力提升30%"
+            },
+            {
+              "name": "蜕皮",
+              "description": "每回合有30%几率治愈自身异常状态"
+            },
+            {
+              "name": "长躯优势",
+              "description": "攻击范围增加，近身攻击招式可以攻击到更远的目标",
+              "isHidden": true
+            }
+          ],
+          "stats": {
+            "hp": 85,
+            "attack": 95,
+            "defense": 80,
+            "specialAttack": 60,
+            "specialDefense": 70,
+            "speed": 90
+          },
+          "signatureMove": {
+            "name": "长尾横扫",
+            "type": "地面",
+            "category": "physical",
+            "power": 90,
+            "accuracy": 100,
+            "pp": 15,
+            "description": "用长长的尾巴横扫前方，攻击敌方全体目标"
+          },
+          "moves": {
+            "physical": [
+              {
+                "name": "地震",
+                "type": "地面",
+                "category": "physical",
+                "power": 100,
+                "accuracy": 100,
+                "pp": 10,
+                "description": "引发地震，攻击周围所有目标"
+              },
+              {
+                "name": "龙尾",
+                "type": "龙",
+                "category": "physical",
+                "power": 60,
+                "accuracy": 90,
+                "pp": 10,
+                "description": "用强力的尾巴攻击目标，并强制替换对手宝可梦"
+              },
+              {
+                "name": "铁尾",
+                "type": "钢",
+                "category": "physical",
+                "power": 100,
+                "accuracy": 75,
+                "pp": 15,
+                "description": "用坚硬的尾巴猛击目标，有几率降低目标防御"
+              },
+              {
+                "name": "咬碎",
+                "type": "恶",
+                "category": "physical",
+                "power": 80,
+                "accuracy": 100,
+                "pp": 15,
+                "description": "用利齿咬住目标，有几率降低目标防御"
+              }
+            ],
+            "special": [
+              {
+                "name": "大地之力",
+                "type": "地面",
+                "category": "special",
+                "power": 90,
+                "accuracy": 100,
+                "pp": 10,
+                "description": "向目标脚下释放能量，有几率降低目标特防"
+              },
+              {
+                "name": "龙之波动",
+                "type": "龙",
+                "category": "special",
+                "power": 85,
+                "accuracy": 100,
+                "pp": 10,
+                "description": "释放龙之能量冲击目标"
+              },
+              {
+                "name": "泥巴射击",
+                "type": "地面",
+                "category": "special",
+                "power": 55,
+                "accuracy": 95,
+                "pp": 15,
+                "description": "投掷泥巴攻击目标，降低目标速度"
+              },
+              {
+                "name": "原始之力",
+                "type": "岩石",
+                "category": "special",
+                "power": 60,
+                "accuracy": 100,
+                "pp": 5,
+                "description": "用远古力量攻击目标，有几率提升自身所有能力"
+              }
+            ],
+            "status": [
+              {
+                "name": "盘蜷",
+                "type": "毒",
+                "category": "status",
+                "power": 0,
+                "accuracy": 100,
+                "pp": 20,
+                "description": "蜷缩身体集中精神，提升攻击、防御和命中率"
+              },
+              {
+                "name": "沙暴",
+                "type": "岩石",
+                "category": "status",
+                "power": 0,
+                "accuracy": 100,
+                "pp": 10,
+                "description": "掀起沙暴，持续5回合，对非岩石、地面和钢属性宝可梦造成伤害"
+              },
+              {
+                "name": "隐形岩",
+                "type": "岩石",
+                "category": "status",
+                "power": 0,
+                "accuracy": 100,
+                "pp": 20,
+                "description": "在对手场地撒下尖锐岩石，对手替换宝可梦时会受到伤害"
+              },
+              {
+                "name": "龙之舞",
+                "type": "龙",
+                "category": "status",
+                "power": 0,
+                "accuracy": 100,
+                "pp": 20,
+                "description": "跳起神秘的舞蹈，提升攻击和速度"
+              }
+            ]
+          }
+        },
+        "designId": "hbagv8hsc3uz4bhs7wexx",
+        "timestamp": "2025/4/23 13:10:41"
+      }
     ]
   }
 }

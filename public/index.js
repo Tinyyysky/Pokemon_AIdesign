@@ -528,6 +528,7 @@ async function saveData() {
                 body: JSON.stringify({
                     currentDesign: {...currentDesign, source: 'server'},
                     designHistory: designHistory.filter(d => d.source === 'server'),
+                    // apiSettings:apiSettings
                 })
             });
             
@@ -703,6 +704,9 @@ function initMoveTabs() {
         }
         if(currentDesign.source==='serve'){
             showMessage('当前设计是服务器设计', 'warning');
+            return
+        }
+        if(!confirm('确认要上传当前设计到服务器吗')){
             return
         }
         try {
@@ -937,6 +941,10 @@ function bindEvents() {
     
     // 设计表单
     saveDesignBtn.addEventListener('click', () => {
+        const mode = document.querySelector('.view-mode-btn.active')?.dataset.mode || 'local';
+        if(mode === 'server') {
+            return;
+        }
         designFormModal.classList.add('active');
         populateDesignForm();
     });
@@ -1550,7 +1558,7 @@ async function sendAiMessage() {
             <div class="dot"></div>
             <div class="dot"></div>
         </div>
-        AI正在思考...无法切换视图模式。如果不想设计被覆盖，<strong>请新建设计！</strong>
+        AI正在思考...无法切换视图模式，请不要新建设计！
     `;
     aiConversation.appendChild(loadingMessage);
     aiConversation.scrollTop = aiConversation.scrollHeight;

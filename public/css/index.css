@@ -313,33 +313,52 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
-    margin-top: 15px;
-    padding: 10px;
-    border-radius: 5px;
+    gap: 8px;
+    padding: 12px 15px;
+    margin-bottom: 8px;
+    background-color: var(--background);
+    border-radius: 8px;
+    transition: all 0.2s;
+    margin: 0;
 }
 
 .collapsed .pagination-controls {
     display: none;
 }
+
 .pagination-controls button {
-    padding: 5px 10px;
-    background-color: #4CAF50;
+    padding: 6px 12px;
+    background-color: var(--primary-color, #28a745);
     color: white;
     border: none;
-    border-radius: 3px;
+    border-radius: 6px;
     cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.pagination-controls button:hover:not(:disabled) {
+    background-color: var(--primary-hover, #218838);
+    transform: translateY(-1px);
+}
+
+.pagination-controls button:active:not(:disabled) {
+    transform: translateY(0);
 }
 
 .pagination-controls button:disabled {
-    background-color: #cccccc;
+    background-color: var(--disabled-bg, #e9ecef);
+    color: var(--disabled-text, #6c757d);
     cursor: not-allowed;
 }
 
 .pagination-controls span {
     font-size: 14px;
-    color: #666;
+    color: var(--text-color);
+    font-weight: 500;
+    margin: 0 5px;
 }
+
 /* 主内容区样式 */
 .main-content {
     flex: 1;
@@ -943,6 +962,11 @@ body {
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.2s;
+}
+.text-link {
+    color: #3a5bef;
+    text-decoration: none;
+    font-weight: 500;
 }
 
 .image-upload-label:hover {
