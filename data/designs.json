@@ -1,45 +1,45 @@
 {
   "currentDesign": {
-    "id": "65nzx5taxk9eltesh9fei",
-    "name": "焰晶兽",
-    "height": 1.8,
-    "weight": 95,
+    "id": "duc75pcbbscx9gp9limgo",
+    "name": "微晶灵",
+    "height": 0.2,
+    "weight": 0.8,
     "types": [
-      "火",
-      "岩石"
+      "岩石",
+      "妖精"
     ],
-    "description": "栖息在火山深处的神秘生物，身体由燃烧的结晶构成。它的核心温度高达2000℃，能够将周围的岩石熔化成岩浆。外观类似四足猛兽，全身覆盖着半透明的红色晶体，晶体内部流动着熔岩般的能量。设计灵感结合了火山矿物和掠食动物的特征，晶体结构参考了石榴石的棱面形态。",
+    "description": "微晶灵是一种由天然水晶孕育而成的微型宝可梦。它的身体由半透明的粉色水晶构成，内部闪烁着星尘般的光芒。头部有一对小巧的晶状耳朵，能够感知周围最细微的振动。虽然体型极小，但能够通过共鸣将水晶能量放大。设计灵感来源于矿物结晶和微型精灵的概念。",
     "abilities": [
       {
-        "name": "熔岩装甲",
-        "description": "受到物理攻击时，有30%几率使攻击方灼伤"
+        "name": "晶体共鸣",
+        "description": "受到特殊攻击时，有30%几率将伤害的50%反弹给攻击者"
       },
       {
-        "name": "日照",
-        "description": "出场时天气变为晴天"
+        "name": "魔法防守",
+        "description": "不会受到攻击以外的伤害"
       },
       {
-        "name": "晶核爆发",
-        "description": "HP低于1/3时，火系和岩石系技能威力提升50%",
+        "name": "晶核之力",
+        "description": "HP低于1/3时，岩石和妖精属性招式威力提升50%",
         "isHidden": true
       }
     ],
     "stats": {
-      "hp": 90,
-      "attack": 120,
-      "defense": 100,
+      "hp": 45,
+      "attack": 30,
+      "defense": 80,
       "specialAttack": 110,
-      "specialDefense": 80,
-      "speed": 100
+      "specialDefense": 120,
+      "speed": 125
     },
     "signatureMove": {
-      "name": "晶爆熔流",
-      "type": "火",
+      "name": "星光折射",
+      "type": "妖精",
       "category": "special",
-      "power": 120,
-      "accuracy": 85,
-      "pp": 10,
-      "description": "释放体内储存的熔岩能量攻击单体目标，有20%几率使目标灼伤并降低其特防1级"
+      "power": 80,
+      "accuracy": 100,
+      "pp": 15,
+      "description": "利用水晶折射星光攻击对手。必定先制攻击(先制度+1)，单体攻击"
     },
     "moves": {
       "physical": [
@@ -50,45 +50,18 @@
           "power": 25,
           "accuracy": 90,
           "pp": 10,
-          "description": "连续攻击2-5次，每次命中率独立计算"
-        },
-        {
-          "name": "火焰牙",
-          "type": "火",
-          "category": "physical",
-          "power": 65,
-          "accuracy": 95,
-          "pp": 15,
-          "description": "用燃烧的利齿咬住目标，有10%几率使目标灼伤或畏缩"
-        },
-        {
-          "name": "尖石攻击",
-          "type": "岩石",
-          "category": "physical",
-          "power": 100,
-          "accuracy": 80,
-          "pp": 5,
-          "description": "用尖锐的岩石刺向目标，容易击中要害"
-        },
-        {
-          "name": "闪焰冲锋",
-          "type": "火",
-          "category": "physical",
-          "power": 120,
-          "accuracy": 100,
-          "pp": 15,
-          "description": "全身包裹火焰冲向目标，自身也会受到1/3反伤"
+          "description": "向对手连续发射小岩石进行攻击。2-5次连续攻击"
         }
       ],
       "special": [
         {
-          "name": "喷射火焰",
-          "type": "火",
+          "name": "月亮之力",
+          "type": "妖精",
           "category": "special",
-          "power": 90,
+          "power": 95,
           "accuracy": 100,
           "pp": 15,
-          "description": "向目标喷射高温火焰，有10%几率使目标灼伤"
+          "description": "借用月亮的力量攻击对手。有10%几率降低对手特攻"
         },
         {
           "name": "力量宝石",
@@ -97,69 +70,42 @@
           "power": 80,
           "accuracy": 100,
           "pp": 20,
-          "description": "发射宝石般的光芒攻击目标"
+          "description": "发射宝石般的光芒进行攻击。单体攻击"
         },
         {
-          "name": "大地之力",
-          "type": "地面",
+          "name": "魔法闪耀",
+          "type": "妖精",
           "category": "special",
-          "power": 90,
+          "power": 80,
           "accuracy": 100,
           "pp": 10,
-          "description": "引发大地的力量攻击目标，有10%几率降低目标特防1级"
-        },
-        {
-          "name": "过热",
-          "type": "火",
-          "category": "special",
-          "power": 130,
-          "accuracy": 90,
-          "pp": 5,
-          "description": "释放全部热量攻击目标，使用后自身特攻降低2级"
+          "description": "发出强光攻击对手。攻击目标周围所有宝可梦"
         }
       ],
       "status": [
         {
-          "name": "岩石打磨",
-          "type": "岩石",
+          "name": "光墙",
+          "type": "超能力",
+          "category": "status",
+          "power": 0,
+          "accuracy": 100,
+          "pp": 30,
+          "description": "5回合内使我方受到的特殊攻击伤害减半"
+        },
+        {
+          "name": "冥想",
+          "type": "超能力",
           "category": "status",
           "power": 0,
           "accuracy": 100,
           "pp": 20,
-          "description": "打磨身体减少空气阻力，自身速度提升2级"
-        },
-        {
-          "name": "隐形岩",
-          "type": "岩石",
-          "category": "status",
-          "power": 0,
-          "accuracy": 100,
-          "pp": 20,
-          "description": "在对手场地撒下尖锐岩石，对手交换宝可梦时会受到伤害"
-        },
-        {
-          "name": "大晴天",
-          "type": "火",
-          "category": "status",
-          "power": 0,
-          "accuracy": 100,
-          "pp": 5,
-          "description": "5回合内阳光变得强烈，火系技能威力提升50%，水系技能威力减半"
-        },
-        {
-          "name": "硬撑",
-          "type": "一般",
-          "category": "status",
-          "power": 0,
-          "accuracy": 100,
-          "pp": 10,
-          "description": "解除自身所有异常状态，之后2回合内攻击必定命中"
+          "description": "静心凝神，提高自己的特攻和特防"
         }
       ]
     },
+    "createdAt": "2025-04-22T15:25:07.797Z",
+    "updatedAt": "2025-04-22T15:27:24.561Z",
     "imageUrl": "meizuo.png",
-    "createdAt": "2025-04-04T14:37:24.687Z",
-    "updatedAt": "2025-04-04T14:41:38.620Z",
     "source": "server"
   },
   "designHistory": [

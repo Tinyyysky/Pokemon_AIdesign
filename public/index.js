@@ -286,12 +286,92 @@ function filterDesignsByMode(mode) {
 
 // 按搜索词过滤设计
 function filterDesignsBySearch(searchTerm) {
+    historyList.innerHTML = '';
+    
+    designHistory.forEach(design => {
+        const historyItem = document.createElement('li');
+        historyItem.className = 'history-item';
+        historyItem.dataset.id = design.id;
+        historyItem.dataset.source = design.source || 'local'; // 使用设计中的source字段
+        if (design.id === currentDesign.id) {
+            historyItem.classList.add('active');
+        }
+        
+        const nameSpan = document.createElement('span');
+        nameSpan.className = 'history-item-name';
+        nameSpan.textContent = design.name || '未命名宝可梦';
+        
+        // 添加ID显示
+        const idSpan = document.createElement('span');
+        idSpan.className = 'history-item-id';
+        idSpan.textContent = `ID: ${design.id.substring(0, 3)}...`;
+        idSpan.title = design.id;
+        
+        // 添加复制按钮
+        const copyBtn = document.createElement('button');
+        copyBtn.className = 'copy-id-btn';
+        copyBtn.dataset.id = design.id;
+        copyBtn.innerHTML = '<i class="far fa-copy"></i>';
+        copyBtn.title = '复制ID';
+        
+        const dateSpan = document.createElement('span');
+        dateSpan.className = 'history-item-date';
+        dateSpan.textContent = new Date(design.createdAt).toLocaleDateString();
+        
+        const deleteBtn = document.createElement('button');
+        deleteBtn.className = 'history-item-delete';
+        deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
+        deleteBtn.title = '删除设计';
+        
+        deleteBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (design.source === 'server') {
+                showMessage('无法删除服务器设计', 'warning');
+                return;
+            }
+            if (confirm(`确定要删除设计 "${design.name}" 吗?`)) {
+                designHistory = designHistory.filter(d => d.id !== design.id);
+                saveData();
+                renderHistoryList();
+                showMessage('设计已删除', 'success');
+                
+                // 如果删除的是当前设计，重置为默认设计
+                if (design.id === currentDesign.id) {
+                    currentDesign = getDefaultDesign()
+                    renderDesign(currentDesign);
+                }
+            }
+        });
+
+        nameSpan.appendChild(idSpan);
+        nameSpan.appendChild(copyBtn);
+        historyItem.appendChild(nameSpan);
+        historyItem.appendChild(dateSpan);
+        historyItem.appendChild(deleteBtn);
+        
+        historyItem.addEventListener('click', () => {
+            currentDesign = {...design};
+            renderDesign(currentDesign);
+            
+            // 更新活动状态
+            document.querySelectorAll('.history-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            historyItem.classList.add('active');
+            
+            showMessage(`已加载设计: ${design.name}`, 'success');
+        });
+        
+        historyList.appendChild(historyItem);
+    });
     const historyItems = document.querySelectorAll('.history-item');
+    const paginationControls = document.querySelector('.pagination-controls');
     if (!searchTerm) {
         historyItems.forEach(item => item.style.display = 'flex');
+        renderHistoryList()
         return;
     }
-
+    if (paginationControls) paginationControls.style.display = 'none';
     historyItems.forEach(item => {
         const name = item.querySelector('.history-item-name').textContent.toLowerCase();
         const id = item.dataset.id || '';
@@ -808,6 +888,10 @@ function bindEvents() {
             showMessage('当前为服务器，请切换本地', 'warning');
             return;
         }
+        if (currentDesign.name === '未命名宝可梦' || currentDesign.types.length == 0){
+            showMessage('请先设计','warning')
+            return
+        }
         if (apiSettings.artProvider === 'none') {
             generateArt();
             return;
@@ -1266,44 +1350,7 @@ async function renderHistoryList() {
                 showMessage('设计已删除', 'success');
                 
                 if (design.id === currentDesign.id) {
-                    currentDesign = {
-                        id: generateId(),
-                        name: '未命名宝可梦',
-                        height: 1.0,
-                        weight: 10.0,
-                        types: [],
-                        description: '暂无描述',
-                        abilities: [
-                            { name: '', description: '' },
-                            { name: '', description: '' },
-                            { name: '', description: '', isHidden: true }
-                        ],
-                        stats: {
-                            hp: 50,
-                            attack: 50,
-                            defense: 50,
-                            specialAttack: 50,
-                            specialDefense: 50,
-                            speed: 50
-                        },
-                        signatureMove: {
-                            name: '',
-                            type: '',
-                            category: 'physical',
-                            power: 0,
-                            accuracy: 0,
-                            pp: 0,
-                            description: ''
-                        },
-                        moves: {
-                            physical: [],
-                            special: [],
-                            status: []
-                        },
-                        imageUrl: 'meizuo.png',
-                        createdAt: new Date().toISOString(),
-                        updatedAt: new Date().toISOString()
-                    };
+                    currentDesign = getDefaultDesign()
                     renderDesign(currentDesign);
                 }
             }
@@ -1614,7 +1661,7 @@ async function sendAiMessage() {
         if (apiSettings.aiProvider === 'deepseek') {
             // response = await callDeepSeekApi(systemPrompt, message);//无上下文调用
             response =await messages_callDeepSeekApi(systemPrompt,await getConversationHistory(currentDesign.id));//有上下文调用
-            console.log(response)
+            // console.log(response)
         } else {
             response = await callCustomAiApi(systemPrompt, message);
         }
@@ -1706,7 +1753,7 @@ async function sendAiMessage() {
         // 添加AI消息到对话
         // const aiMessage = `已根据你的要求生成了新的宝可梦设计: ${designData.name}`;
         const aiMessage = designData;// design全部内容
-        console.log(aiMessage)
+        // console.log(aiMessage)
         // console.log(aiMessage)
         addAiMessage(aiMessage);
 
@@ -1794,7 +1841,7 @@ async function messages_callDeepSeekApi(systemPrompt,messages) {
     console.log('apimessages',apiMessages)
     const postmessages = [{ role: 'system', content: systemPrompt },
         ...(apiMessages.slice(-apiSettings.modeltextlength)) ]
-        console.log('postmessages',postmessages)
+        // console.log('postmessages',postmessages)
     const response = await fetch('https://api.deepseek.com/chat/completions', {
         method: 'POST',
         headers: {
@@ -1891,7 +1938,6 @@ async function generateArt() {
         
         // 假设API返回图像的URL
         const data = await response
-        console.log(data)
         // console.log(data)
         if (data) {
             currentDesign.imageUrl = data;
@@ -2003,6 +2049,11 @@ function addAiMessage(content) {
         message.appendChild(restoreButton);
         restoreButton.addEventListener('click', () => {
             //是否还原设计
+            const mode = document.querySelector('.view-mode-btn.active')?.dataset.mode || 'local';
+            if(mode === 'server') {
+            showMessage('当前为服务器，请切换本地', 'warning');
+            return;
+            }
             const confirmRestore = confirm('是否还原设计？');
             if (confirmRestore) {
                 if (jsonData.name&&jsonData.types&&jsonData.stats) {
