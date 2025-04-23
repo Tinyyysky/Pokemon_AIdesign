@@ -224,6 +224,8 @@ document.addEventListener('DOMContentLoaded', () => {
             showMessage('切换模式', 'success');
             btn.classList.add('active');
             const mode = btn.dataset.mode;
+            const paginationControls = document.querySelector('.pagination-controls');
+            if (paginationControls) paginationControls.style.display = 'none';
             if(mode=="local"){
                 currentDesign=getDefaultDesign();
                 renderDesign(currentDesign);
