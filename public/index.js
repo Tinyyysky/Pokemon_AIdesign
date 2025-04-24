@@ -491,6 +491,7 @@ async function loadConversationHistory(designId) {
                 <li>对话数据已被删除</li>
                 <li>服务器暂时不可用</li>
             </ul>
+            <p>在API设置里填入DeepSeek API key，即可对话。第一次使用？<a href="faq.html"class='text-link'target='_blank'>点击查看相关问题 </a></p>
         `;
         aiConversation.appendChild(errorMsg);
         
