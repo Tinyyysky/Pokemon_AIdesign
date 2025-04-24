@@ -42,7 +42,7 @@
         <!-- 主内容区 -->
         <div class="main-content">
             <div class="header">
-                <h1 class="header-title">AI宝可梦设计工坊</h1>
+                <h1 class="header-title">宝可梦AI设计工坊</h1>
                 
                 <a href="faq.html"class='text-link'target='_blank'><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M19 21L12 16L5 21V5C5 4.46957 5.21071 3.96086 5.58579 3.58579C5.96086 3.21071 6.46957 3 7 3H17C17.5304 3 18.0391 3.21071 18.4142 3.58579C18.7893 3.96086 19 4.46957 19 5V21Z" 
@@ -52,18 +52,23 @@
             </div>
             <div class="header">
                 <div class="header-actions">
-                    <button class="btn btn-outline" id="uploadToServerBtn" title="上传当前设计到服务器">
+                    <button class="btn btn-primary" id="uploadToServerBtn" title="上传当前设计到服务器">
                         <i class="fas fa-cloud-upload-alt"></i> 上传到服务器
-                    </button>
-                    <button class="btn btn-outline" id="saveDesignBtn">
-                        <i class="fas fa-save"></i> 保存设计
-                    </button>
-                    <button class="btn btn-secondary" id="shareBtn">
-                        <i class="fas fa-share-alt"></i> 分享设计
                     </button>
                     <button class="btn btn-secondary" id="generateArtBtn">
                         <i class="fas fa-magic"></i> 生成立绘
                     </button>
+                    <button class="btn btn-outline" id="saveDesignBtn">
+                        <i class="fas fa-save"></i> 保存
+                    </button>
+                    <button class="btn btn-outline" id="penDesignBtn">
+                        <i class="fas fa-pencil"></i>编辑
+                    </button>
+                    
+                    <button class="btn btn-secondary" id="shareBtn">
+                        <i class="fas fa-share-alt"></i> 分享
+                    </button>
+                    
                 </div>
             </div>
 
@@ -472,7 +477,7 @@
                 <textarea class="form-input" id="designMoveDescription" rows="3"></textarea>
             </div>
 
-            <button class="btn btn-primary" id="saveDesignForm">保存更改</button>
+            <button class="btn btn-primary" id="saveDesignForm">仅更改</button>
         </div>
     </div>
 </body>

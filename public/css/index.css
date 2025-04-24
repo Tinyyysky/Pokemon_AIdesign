@@ -381,6 +381,7 @@ body {
 .header-actions {
     display: flex;
     gap: 10px;
+    /* word-break: break-all; */
 }
 
 .btn {
@@ -1059,11 +1060,11 @@ body {
     right: 60px;
     width: 50px;
     height: 50px;
-    background-color: white;
+    background-color:#f0f6f2;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     color: var(--black);
     border-radius: 50%;
-    border: 3px solid var(--border);
+    /* border: 3px solid var(--border); */
     text-align: center;
     line-height: 50px;
     font-size: 20px;

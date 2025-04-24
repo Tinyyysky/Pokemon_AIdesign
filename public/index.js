@@ -181,7 +181,7 @@ const designMoveAccuracy = document.getElementById('designMoveAccuracy');
 const designMovePp = document.getElementById('designMovePp');
 const designMoveDescription = document.getElementById('designMoveDescription');
 const saveDesignForm = document.getElementById('saveDesignForm');
-
+const penDesignBtn=document.getElementById('penDesignBtn')
 // API设置
 let apiSettings = {
     aiProvider: 'deepseek',
@@ -954,9 +954,10 @@ function bindEvents() {
     saveApiSettings.addEventListener('click', saveApiSettingsHandler);
     
     // 设计表单
-    saveDesignBtn.addEventListener('click', () => {
+    penDesignBtn.addEventListener('click', () => {
         const mode = document.querySelector('.view-mode-btn.active')?.dataset.mode || 'local';
         if(mode === 'server') {
+            showMessage('当前是服务器，请切换本地','warning')
             return;
         }
         designFormModal.classList.add('active');
@@ -1968,7 +1969,7 @@ async function generateArt() {
             pokemonImageContainer.querySelector('.message-loading').style.display='none';
             pokemonImage.style.display = 'block';
             // pokemonImageContainer.innerHTML=`<img src="${data}" alt="宝可梦立绘" class="pokemon-image" id="pokemonImage">`; // 清除加载指示器
-            showMessage('立绘生成成功,点击保存设计以保存当前立绘', 'success');
+            showMessage('立绘生成成功,点击保存以保存当前立绘', 'success');
             
         } else {
             throw new Error('API未返回图像URL');
