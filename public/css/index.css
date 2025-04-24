@@ -1101,7 +1101,7 @@ body {
         height: auto;
         border-right: none;
         border-bottom: 0px ;
-        z-index: 99999;
+        z-index: 9;
     }
     .collapsed .explain{
         display: none;
