@@ -769,10 +769,21 @@ function shareDesign() {
     const copyImageBtn = document.getElementById('copyImageBtn');
     const saveImageBtn = document.getElementById('saveImageBtn');
     const closeShareModal = document.getElementById('closeShareModal');
-    const signatureMoves=document.getElementById('signatureMoves');
-    const physicalmove=document.getElementById('physicalMoves');
-    const specialmove=document.getElementById('specialMoves');
-    const statusmove=document.getElementById('statusMoves');
+    const signatureMoves = document.getElementById('signatureMoves');
+    const physicalmove = document.getElementById('physicalMoves');
+    const specialmove = document.getElementById('specialMoves');
+    const statusmove = document.getElementById('statusMoves');
+
+    // 先移除之前的事件监听器，避免重复添加
+    copyImageBtn.replaceWith(copyImageBtn.cloneNode(true));
+    saveImageBtn.replaceWith(saveImageBtn.cloneNode(true));
+    closeShareModal.replaceWith(closeShareModal.cloneNode(true));
+    
+    // 重新获取元素引用
+    const newCopyImageBtn = document.getElementById('copyImageBtn');
+    const newSaveImageBtn = document.getElementById('saveImageBtn');
+    const newCloseShareModal = document.getElementById('closeShareModal');
+
     // 显示加载状态
     sharePreview.innerHTML = '<div class="message-loading"><div class="loading-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>生成分享图片中...</div>';
     shareModal.classList.add('active');
@@ -780,19 +791,20 @@ function shareDesign() {
     specialmove.classList.add('active');
     statusmove.classList.add('active');
     signatureMoves.classList.add('active');
+
     // 使用html2canvas截图
     html2canvas(document.getElementById('pokemonCard'), {
         width: 430,
         windowWidth: 500,
         scale: 2,
-        useCORS:true,
+        useCORS: true,
         // backgroundColor: '#ffffff'
     }).then(canvas => {
         sharePreview.innerHTML = '';
         sharePreview.appendChild(canvas);
         
         // 复制图片功能
-        copyImageBtn.addEventListener('click', () => {
+        newCopyImageBtn.addEventListener('click', () => {
             canvas.toBlob(blob => {
                 navigator.clipboard.write([
                     new ClipboardItem({ 'image/png': blob })
@@ -805,7 +817,7 @@ function shareDesign() {
         });
         
         // 保存图片功能
-        saveImageBtn.addEventListener('click', () => {
+        newSaveImageBtn.addEventListener('click', () => {
             const link = document.createElement('a');
             link.download = `${currentDesign.name || 'pokemon-design'}.png`;
             link.href = canvas.toDataURL('image/png');
@@ -817,7 +829,7 @@ function shareDesign() {
     });
     
     // 关闭模态框
-    closeShareModal.addEventListener('click', () => {
+    newCloseShareModal.addEventListener('click', () => {
         shareModal.classList.remove('active');
         physicalmove.classList.remove('active');
         specialmove.classList.remove('active');
@@ -1919,8 +1931,8 @@ async function generateArt() {
     document.querySelectorAll('.view-mode-btn').forEach(b =>b.disabled=true)
     try {
         // 显示加载指示器
-        pokemonImageContainer.innerHTML = '<div class="message-loading"><div class="loading-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>生成立绘中...</div>';
-        
+        pokemonImageContainer.querySelector('.message-loading').style.display='block';
+        pokemonImage.style.display = 'none';       
         // 构建提示词
         const art_prompt=`你现在是一个ai宝可梦立绘图片生成大师，宝可梦立绘生成大师需要遵守以下规则：
         轮廓辨识度：剪影需清晰独特，避免复杂细节模糊造型。
@@ -1953,7 +1965,9 @@ async function generateArt() {
             currentDesign.imageUrl = data;
             // console.log('当前设计',currentDesign.imageUrl)
             pokemonImage.src = data;
-            pokemonImageContainer.innerHTML=`<img src="${data}" alt="宝可梦立绘" class="pokemon-image" id="pokemonImage">`; // 清除加载指示器
+            pokemonImageContainer.querySelector('.message-loading').style.display='none';
+            pokemonImage.style.display = 'block';
+            // pokemonImageContainer.innerHTML=`<img src="${data}" alt="宝可梦立绘" class="pokemon-image" id="pokemonImage">`; // 清除加载指示器
             showMessage('立绘生成成功,点击保存设计以保存当前立绘', 'success');
             
         } else {
