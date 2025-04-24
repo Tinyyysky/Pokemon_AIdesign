@@ -405,10 +405,10 @@ async function loadData() {
                 designHistory = data.designHistory.map(d => ({...d, source: 'server'}));
                 renderHistoryList();
             }
-                const savedApiSettings = localStorage.getItem('pokemonDesignApiSettings');
-                // console.log('apiSettings',savedApiSettings);
-                apiSettings = JSON.parse(savedApiSettings);
-                updateApiSettingsForm();
+                // const savedApiSettings = localStorage.getItem('pokemonDesignApiSettings');
+                // // console.log('apiSettings',savedApiSettings);
+                // apiSettings = JSON.parse(savedApiSettings);
+                // updateApiSettingsForm();
             
             if (data.currentDesign) {
                 currentDesign = {...data.currentDesign, source: 'server'};
@@ -1854,9 +1854,9 @@ async function callDeepSeekApi(systemPrompt, userMessage) {
 //有上下文调用DeepSeek API
 async function messages_callDeepSeekApi(systemPrompt,messages) {
     if (!apiSettings.deepseekApiKey) {
-        throw new Error('未配置DeepSeek API Key');
+        throw new Error('未配置DeepSeek API Key。没有Key？点击页面右上角的相关问题，查看如何获取');
     }
-    console.log('apikey',apiSettings.deepseekApiKey)
+    // console.log('apikey',apiSettings.deepseekApiKey)
     const apiMessages = messages.map(({ role, content }) => ({
         role,
         content: typeof content === 'string' ? content : JSON.stringify(content) // 确保 content 是字符串
