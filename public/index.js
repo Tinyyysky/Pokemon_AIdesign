@@ -2076,10 +2076,10 @@ function addAiMessage(content) {
         restoreButton.addEventListener('click', () => {
             //是否还原设计
             const mode = document.querySelector('.view-mode-btn.active')?.dataset.mode || 'local';
-            if(mode === 'server') {
-            showMessage('当前为服务器，请切换本地', 'warning');
-            return;
-            }
+            // if(mode === 'server') {
+            // showMessage('当前为服务器，请切换本地', 'warning');
+            // return;
+            // }
             const confirmRestore = confirm('是否还原设计？');
             if (confirmRestore) {
                 if (jsonData.name&&jsonData.types&&jsonData.stats) {
@@ -2088,7 +2088,7 @@ function addAiMessage(content) {
                     updatedAt: currentDesign.updatedAt,
                     imageUrl:currentDesign.imageUrl}; // 还原设计数据
                 renderDesign(currentDesign); // 渲染设计
-                saveData(); // 保存数据
+                // saveData(); // 保存数据
                 showMessage('设计已还原', 'success'); // 显示成功消息
                 // 还原设计逻辑
                 }else {
