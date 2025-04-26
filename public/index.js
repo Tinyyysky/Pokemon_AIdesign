@@ -425,7 +425,7 @@ async function loadData() {
         const savedApiSettings = localStorage.getItem('pokemonDesignApiSettings');
         
         if (savedHistory) {
-            designHistory = JSON.parse(savedHistory).map(d => ({...d, source: 'local'}));
+            designHistory = JSON.parse(savedHistory);
             renderHistoryList();
         }
         
@@ -546,9 +546,8 @@ async function saveData() {
     
     // 总是保存到本地存储
     localStorage.setItem('pokemonDesignHistory', 
-        JSON.stringify(designHistory.filter(d => d.source === 'local')));
+        JSON.stringify(designHistory));
     localStorage.setItem('pokemonDesignApiSettings', JSON.stringify(apiSettings));
-    
     // 确保当前设计有正确的source
     currentDesign.source = mode === 'server' ? 'server' : 'local';
 }
