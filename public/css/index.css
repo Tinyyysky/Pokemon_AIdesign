@@ -599,6 +599,8 @@ body {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
 }
 
 .stat-label {
@@ -612,6 +614,8 @@ body {
     background-color: #f0f0f0;
     border-radius: 6px;
     overflow: hidden;
+    position: relative;
+    z-index: 1;
 }
 
 .stat-bar {
@@ -619,6 +623,7 @@ body {
     border-radius: 6px;
     transition: width 0.5s ease;
     position: relative;
+    z-index: 1;
 }
 
 .stat-value {
@@ -628,8 +633,8 @@ body {
     transform: translateY(-50%);
     font-size: 0.8rem;
     color: white;
-    text-shadow: 
-        1px 1px 5px black; /* 黑色阴影（偏移X|偏移Y|模糊半径|颜色） */
+    text-shadow: 1px 1px 5px black;
+    z-index: 2;
 }
 .stat-value-SHEN {
     /* position: absolute;
@@ -699,6 +704,7 @@ body {
     font-size: 0.8rem;
     font-weight: 500;
     color: white;
+    text-align: center;
 }
 
 .move-stats {
@@ -907,21 +913,64 @@ body {
     font-weight: 500;
 }
 
-.form-input {
+/* 表单基础样式优化 */
+.form-input, .form-select {
     width: 100%;
     padding: 10px 12px;
     border: 1px solid var(--border);
     border-radius: 8px;
     font-size: 1rem;
+    line-height: 1.5;
+    min-height: 40px;
+    height: auto;
+    box-sizing: border-box;
+    font-family: inherit;
 }
 
+/* 选择框特殊样式 */
 .form-select {
-    width: 100%;
-    padding: 10px 12px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    font-size: 1rem;
     background-color: white;
+    cursor: pointer;
+    padding-right: 25px; /* 为下拉箭头留出空间 */
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24'%3E%3Cpath fill='%23333333' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.form-select option {
+    padding: 10px;
+    line-height: 1.5;
+}
+
+/* 输入框聚焦状态样式 */
+.form-input:focus, 
+.form-select:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(74, 107, 255, 0.2);
+}
+
+/* 调整编辑区域选择框和输入框行高 */
+.edit-move-item input,
+.edit-move-item select,
+.edit-move-item textarea {
+    padding: 8px 12px;
+    line-height: 1.5;
+    font-family: inherit;
+}
+
+/* 修复移动设备上的选择框显示问题 */
+@media (max-width: 768px) {
+    .form-select {
+        font-size: 16px; /* 防止iOS上缩放 */
+    }
+    
+    .form-input {
+        font-size: 16px;
+    }
 }
 
 .form-row {
@@ -1034,11 +1083,12 @@ body {
     background-color: white;
     border-radius: 16px;
     width: 90%;
-    max-width: 500px;
-    max-height: 60vh;
+    max-width: 600px;
+    max-height: 90vh;
     overflow-y: auto;
     padding: 30px;
     position: relative;
+    z-index: 1001;
 }
 
 .modal-close {
@@ -1057,6 +1107,112 @@ body {
     font-weight: 600;
     margin-bottom: 20px;
 }
+
+/* 所有技能显示样式 */
+.all-moves-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.moves-category {
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.moves-category h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.moves-category h4 i {
+    color: var(--primary);
+}
+
+.moves-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 15px;
+}
+
+.move-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    width: 100%; /* 确保宽度适应容器 */
+    max-width: 300px; /* 限制最大宽度，避免卡片过大 */
+    margin: 10px auto; /* 居中显示 */
+}
+
+.move-card:hover {
+    transform: translateY(-2px);
+}
+
+.move-card .move-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.move-card .move-name {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.move-card .move-category-icon {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    margin-left: 12px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 6px 12px;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    transition: all 0.2s ease;
+}
+
+.move-card .move-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+
+.move-card .move-stat {
+    display: flex;
+    flex-direction: column;
+}
+
+.move-card .move-stat-label {
+    color: var(--text-light);
+    font-size: 0.8rem;
+}
+
+.move-card .move-desc {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    line-height: 1.4;
+}
+
+#showAllMoves {
+    transition: color 0.2s;
+}
+
+#showAllMoves:hover {
+    color: var(--primary);
+}
+
 #back-to-top {
     position: fixed;
     bottom: 10px;
@@ -1151,4 +1307,232 @@ body {
     .ai-title img{
         display: block;
     }
+    .move-card {
+        padding: 12px; /* 减少内边距 */
+        margin: 10px auto; /* 调整外边距 */
+        max-width: 80%; /* 允许卡片宽度占满屏幕 */
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); /* 更柔和的阴影 */
+    }
+}
+
+/* 分享模式下的技能分类标题 */
+.temp-category-title {
+    background-color: var(--background);
+    padding: 12px 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    border-left: 4px solid var(--primary);
+}
+
+.temp-category-title i {
+    margin-right: 10px;
+    color: var(--primary);
+}
+
+/* 空技能提示 */
+.empty-message {
+    padding: 15px;
+    color: var(--text-light);
+    text-align: center;
+    font-style: italic;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    margin: 10px 0;
+}
+
+/* 修改模态框内的种族值样式 */
+.modal .form-group input[type="number"] {
+    max-width: 100%;
+    appearance: textfield; /* 去除默认的上下箭头 */
+}
+
+/* 确保选择框中的文字显示完整 */
+.form-select {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-overflow: ellipsis;
+}
+
+/* 确保模态框内部内容不超出 */
+.modal .form-row {
+    flex-wrap: wrap;
+}
+
+/* 设计表单模态框布局优化 */
+#designFormModal .modal-content {
+    overflow-y: auto;
+    max-height: 90vh;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 模态框内部滚动容器 */
+.design-form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding-right: 5px;
+}
+
+/* 技能修改相关样式 */
+.skills-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* 技能编辑标签页 */
+.edit-move-tabs {
+    position: flex;
+    top: 0;
+    display: flex;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 15px;
+    background-color: white;
+    z-index: 5;
+    padding-top: 10px;
+}
+
+.edit-move-tab {
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: 500;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+}
+
+.edit-move-tab.active {
+    border-bottom-color: var(--primary);
+    color: var(--primary);
+}
+
+.edit-move-tab:hover:not(.active) {
+    background-color: #f0f0f0;
+}
+
+.edit-move-list {
+    display: none;
+}
+
+.edit-move-list.active {
+    display: block;
+}
+
+/* 移除内部容器的滚动条，让主滚动条处理所有滚动 */
+.edit-moves-container {
+    margin-bottom: 15px;
+    max-height: none;
+    overflow-y: visible;
+}
+
+.edit-move-item {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-left: 4px solid; /* 移除固定颜色，由JS控制 */
+    transition: all 0.2s ease;
+}
+
+.edit-move-item:hover {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.edit-move-item input, 
+.edit-move-item select, 
+.edit-move-item textarea {
+    background-color: white;
+}
+
+.edit-move-header {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.edit-move-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.add-move-btn {
+    width: 100%;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.delete-move-btn {
+    color: var(--danger);
+    border-color: var(--danger);
+    padding: 6px 12px;
+    font-size: 0.9rem;
+}
+
+.delete-move-btn:hover {
+    background-color: rgba(244, 67, 54, 0.1);
+}
+
+/* 输入框自适应优化 */
+.edit-move-item textarea {
+    min-height: 60px;
+    height: auto;
+    resize: vertical;
+    overflow-y: hidden; /* 隐藏滚动条，使用JS自动调整高度 */
+    transition: height 0.2s ease;
+}
+
+.edit-move-item input[type="text"] {
+    min-height: 40px;
+    transition: height 0.2s ease;
+}
+
+/* 长文本输入框样式优化 */
+.form-input.edit-move-description {
+    line-height: 1.5;
+    padding: 10px;
+    font-family: inherit;
+}
+
+/* 统一表单组件样式 */
+.section-divider {
+    height: 1px;
+    background-color: var(--border);
+    margin: 10px 0 20px;
+}
+
+/* 表单分组和布局优化 */
+.form-section {
+    padding: 15px;
+    background-color: #fafafa;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.form-section-title {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    color: var(--primary);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* 表单提交按钮优化 */
+#saveDesignForm {
+    position: sticky;
+    bottom: 0;
+    margin-top: 20px;
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
 }

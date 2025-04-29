@@ -109,7 +109,7 @@
                     </div>
 
                     <div class="attribute-section">
-                        <h3 class="section-title"><i class="fas fa-star"></i> 特性</h3>
+                        <h3 class="section-title"><i class="fas fa-dna"></i> 特性</h3>
                         <ul class="abilities-list" id="abilitiesList">
                             <!-- 特性将通过JavaScript动态生成 -->
                         </ul>
@@ -124,7 +124,7 @@
                 </div>
 
                 <div class="moves-section">
-                    <h3 class="section-title"><i class="fas fa-bolt"></i> 技能</h3>
+                    <h3 class="section-title" style="cursor: pointer;" id="showAllMoves"><i class="fas fa-bolt"></i> 技能池 </h3>
                     <div class="move-tabs">
                         <div class="move-tab active" data-tab="signature">专属技能</div>
                         <div class="move-tab" data-tab="physical">物理技能</div>
@@ -296,6 +296,7 @@
         <div class="modal-content">
             <button class="modal-close" id="closeShareModal">&times;</button>
             <h3 class="modal-title">分享宝可梦设计</h3>
+            <small style="text-align: center;">移动端预览不全,但图片完整.部分浏览器无法保存</small>
             <div class="share-actions">
                 <button class="btn btn-primary" id="copyImageBtn">
                     <i class="fas fa-copy"></i> 复制图片
@@ -315,167 +316,319 @@
             <button class="modal-close" id="closeDesignFormModal">&times;</button>
             <h3 class="modal-title">编辑宝可梦设计</h3>
             
-            <div class="form-group">
-                <label class="form-label">宝可梦图片</label>
-                <div class="image-upload-container">
-                    <div class="image-preview" id="imagePreview">
-                        <img src="" alt="图片预览" class="preview-image" id="previewImage">
+            <div class="design-form-container">
+                <!-- 基本信息 -->
+                <div class="form-section">
+                    <div class="form-section-title">
+                        <i class="fas fa-info-circle"></i> 基本信息
                     </div>
-                    <input type="file" id="imageUpload" accept="image/*" class="image-upload-input">
-                    <label for="imageUpload" class="image-upload-label">
-                        <i class="fas fa-upload"></i> 选择图片
-                    </label>
-                </div>
-            </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">宝可梦图片</label>
+                        <div class="image-upload-container">
+                            <div class="image-preview" id="imagePreview">
+                                <img src="" alt="图片预览" class="preview-image" id="previewImage">
+                            </div>
+                            <input type="file" id="imageUpload" accept="image/*" class="image-upload-input">
+                            <label for="imageUpload" class="image-upload-label">
+                                <i class="fas fa-upload"></i> 选择图片
+                            </label>
+                        </div>
+                    </div>
 
-            <div class="form-group">
-                <label class="form-label">宝可梦名称</label>
-                <input type="text" class="form-input" id="designName" placeholder="输入宝可梦名称">
-            </div>
+                    <div class="form-group">
+                        <label class="form-label">宝可梦名称</label>
+                        <input type="text" class="form-input" id="designName" placeholder="输入宝可梦名称">
+                    </div>
 
-            <div class="form-row">
-                <div class="form-col">
-                    <div class="form-group">
-                        <label class="form-label">身高 (m)</label>
-                        <input type="number" class="form-input" id="designHeight" step="0.1" min="0">
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label class="form-label">身高 (m)</label>
+                                <input type="number" class="form-input" id="designHeight" step="0.1" min="0">
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label class="form-label">体重 (kg)</label>
+                                <input type="number" class="form-input" id="designWeight" step="0.1" min="0">
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="form-col">
-                    <div class="form-group">
-                        <label class="form-label">体重 (kg)</label>
-                        <input type="number" class="form-input" id="designWeight" step="0.1" min="0">
-                    </div>
-                </div>
-            </div>
 
-            <div class="form-group"style="max-width: 400px;">
-                <label class="form-label">属性</label>
-                <div class="pokemon-types" id="designTypes">
-                    <!-- 类型选择将通过JavaScript动态生成 -->
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label">图鉴描述</label>
-                <textarea class="form-input" id="designDescription" rows="3"></textarea>
-            </div>
-
-            <h4 class="section-title" style="margin: 20px 0 10px;">特性</h4>
-            <div class="form-row">
-                <div class="form-col">
-                    <div class="form-group">
-                        <label class="form-label">特性1</label>
-                        <input type="text" class="form-input" id="designAbility1" placeholder="特性名称">
-                        <textarea class="form-input" id="designAbilityDesc1" rows="2" placeholder="特性描述"></textarea>
-                    </div>
-                </div>
-                <div class="form-col">
-                    <div class="form-group">
-                        <label class="form-label">特性2</label>
-                        <input type="text" class="form-input" id="designAbility2" placeholder="特性名称">
-                        <textarea class="form-input" id="designAbilityDesc2" rows="2" placeholder="特性描述"></textarea>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="form-label">隐藏特性</label>
-                <input type="text" class="form-input" id="designAbilityHidden" placeholder="隐藏特性名称">
-                <textarea class="form-input" id="designAbilityHiddenDesc" rows="2" placeholder="隐藏特性描述"></textarea>
-            </div>
-
-            <h4 class="section-title" style="margin: 20px 0 10px;">种族值</h4>
-            <div class="form-row">
-                <div class="form-col">
-                    <div class="form-group">
-                        <label class="form-label">HP</label>
-                        <input type="number" class="form-input" id="designStatHp" min="1" max="255">
-                    </div>
-                </div>
-                <div class="form-col">
-                    <div class="form-group">
-                        <label class="form-label">攻击</label>
-                        <input type="number" class="form-input" id="designStatAtk" min="1" max="255">
-                    </div>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-col">
-                    <div class="form-group">
-                        <label class="form-label">防御</label>
-                        <input type="number" class="form-input" id="designStatDef" min="1" max="255">
-                    </div>
-                </div>
-                <div class="form-col">
-                    <div class="form-group">
-                        <label class="form-label">特攻</label>
-                        <input type="number" class="form-input" id="designStatSpAtk" min="1" max="255">
-                    </div>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-col">
-                    <div class="form-group">
-                        <label class="form-label">特防</label>
-                        <input type="number" class="form-input" id="designStatSpDef" min="1" max="255">
-                    </div>
-                </div>
-                <div class="form-col">
-                    <div class="form-group">
-                        <label class="form-label">速度</label>
-                        <input type="number" class="form-input" id="designStatSpeed" min="1" max="255">
-                    </div>
-                </div>
-            </div>
-
-            <h4 class="section-title" style="margin: 20px 0 10px;">专属技能</h4>
-            <div class="form-group">
-                <label class="form-label">技能名称</label>
-                <input type="text" class="form-input" id="designMoveName" placeholder="技能名称">
-            </div>
-            <div class="form-row">
-                <div class="form-col">
-                    <div class="form-group">
+                    <div class="form-group"style="max-width: 400px;">
                         <label class="form-label">属性</label>
-                        <select class="form-select" id="designMoveType">
-                            <!-- 类型选项将通过JavaScript动态生成 -->
-                        </select>
+                        <div class="pokemon-types" id="designTypes">
+                            <!-- 类型选择将通过JavaScript动态生成 -->
+                        </div>
                     </div>
-                </div>
-                <div class="form-col">
-                    <div class="form-group">
-                        <label class="form-label">技能类型</label>
-                        <select class="form-select" id="designMoveCategory">
-                            <option value="physical">物理</option>
-                            <option value="special">特殊</option>
-                            <option value="status">变化</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-col">
-                    <div class="form-group">
-                        <label class="form-label">威力</label>
-                        <input type="number" class="form-input" id="designMovePower" min="0" max="255">
-                    </div>
-                </div>
-                <div class="form-col">
-                    <div class="form-group">
-                        <label class="form-label">命中率</label>
-                        <input type="number" class="form-input" id="designMoveAccuracy" min="0" max="100">
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="form-label">PP</label>
-                <input type="number" class="form-input" id="designMovePp" min="1" max="40">
-            </div>
-            <div class="form-group">
-                <label class="form-label">技能描述</label>
-                <textarea class="form-input" id="designMoveDescription" rows="3"></textarea>
-            </div>
 
-            <button class="btn btn-primary" id="saveDesignForm">仅更改</button>
+                    <div class="form-group">
+                        <label class="form-label">图鉴描述</label>
+                        <textarea class="form-input" id="designDescription" rows="2"></textarea>
+                    </div>
+                </div>
+
+                <!-- 特性 -->
+                <div class="form-section">
+                    <div class="form-section-title">
+                        <i class="fas fa-star"></i> 特性
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label class="form-label">特性1</label>
+                                <input type="text" class="form-input" id="designAbility1" placeholder="特性名称">
+                                <textarea class="form-input" id="designAbilityDesc1" rows="2" placeholder="特性描述"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label class="form-label">特性2</label>
+                                <input type="text" class="form-input" id="designAbility2" placeholder="特性名称">
+                                <textarea class="form-input" id="designAbilityDesc2" rows="2" placeholder="特性描述"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">隐藏特性</label>
+                        <input type="text" class="form-input" id="designAbilityHidden" placeholder="隐藏特性名称">
+                        <textarea class="form-input" id="designAbilityHiddenDesc" rows="2" placeholder="隐藏特性描述"></textarea>
+                    </div>
+                </div>
+
+                <!-- 种族值 -->
+                <div class="form-section">
+                    <div class="form-section-title">
+                        <i class="fas fa-chart-bar"></i> 种族值
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label class="form-label">HP</label>
+                                <input type="number" class="form-input" id="designStatHp" min="1" max="255">
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label class="form-label">攻击</label>
+                                <input type="number" class="form-input" id="designStatAtk" min="1" max="255">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label class="form-label">防御</label>
+                                <input type="number" class="form-input" id="designStatDef" min="1" max="255">
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label class="form-label">特攻</label>
+                                <input type="number" class="form-input" id="designStatSpAtk" min="1" max="255">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label class="form-label">特防</label>
+                                <input type="number" class="form-input" id="designStatSpDef" min="1" max="255">
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label class="form-label">速度</label>
+                                <input type="number" class="form-input" id="designStatSpeed" min="1" max="255">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 专属技能 -->
+                <div class="form-section">
+                    <div class="form-section-title">
+                        <i class="fas fa-bolt"></i> 专属技能
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">技能名称</label>
+                        <input type="text" class="form-input" id="designMoveName" placeholder="技能名称">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label class="form-label">属性</label>
+                                <select class="form-select" id="designMoveType">
+                                    <!-- 类型选项将通过JavaScript动态生成 -->
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label class="form-label">技能类型</label>
+                                <select class="form-select" id="designMoveCategory">
+                                    <option value="physical">物理</option>
+                                    <option value="special">特殊</option>
+                                    <option value="status">变化</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label class="form-label">威力</label>
+                                <input type="number" class="form-input" id="designMovePower" min="0" max="255">
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label class="form-label">命中率</label>
+                                <input type="number" class="form-input" id="designMoveAccuracy" min="0" max="100">
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label class="form-label">PP</label>
+                                <input type="number" class="form-input" id="designMovePp" min="1" max="40">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">技能描述</label>
+                        <textarea class="form-input" id="designMoveDescription" rows="2"></textarea>
+                    </div>
+                </div>
+
+                <!-- 其他技能 -->
+                <div class="skills-section">
+                    <div class="form-section-title">
+                        <i class="fas fa-list"></i> 其他技能
+                    </div>
+                    
+                    <!-- 技能类型切换标签 -->
+                    <div class="edit-move-tabs">
+                        <div class="edit-move-tab active" data-tab="physical">物理技能</div>
+                        <div class="edit-move-tab" data-tab="special">特殊技能</div>
+                        <div class="edit-move-tab" data-tab="status">变化技能</div>
+                    </div>
+                    
+                    <!-- 物理技能编辑区 -->
+                    <div class="edit-move-list active" data-tab-content="physical">
+                        <div class="edit-moves-container" id="editPhysicalMoves">
+                            <!-- 物理技能列表将通过JavaScript动态生成 -->
+                        </div>
+                        <button class="btn btn-outline add-move-btn" data-category="physical">
+                            <i class="fas fa-plus"></i> 添加物理技能
+                        </button>
+                    </div>
+                    
+                    <!-- 特殊技能编辑区 -->
+                    <div class="edit-move-list" data-tab-content="special">
+                        <div class="edit-moves-container" id="editSpecialMoves">
+                            <!-- 特殊技能列表将通过JavaScript动态生成 -->
+                        </div>
+                        <button class="btn btn-outline add-move-btn" data-category="special">
+                            <i class="fas fa-plus"></i> 添加特殊技能
+                        </button>
+                    </div>
+                    
+                    <!-- 变化技能编辑区 -->
+                    <div class="edit-move-list" data-tab-content="status">
+                        <div class="edit-moves-container" id="editStatusMoves">
+                            <!-- 变化技能列表将通过JavaScript动态生成 -->
+                        </div>
+                        <button class="btn btn-outline add-move-btn" data-category="status">
+                            <i class="fas fa-plus"></i> 添加变化技能
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 技能编辑模板 (隐藏) -->
+                <div id="moveEditTemplate" style="display: none;">
+                    <div class="edit-move-item">
+                        <div class="edit-move-header">
+                            <div class="form-row">
+                                <div class="form-col">
+                                    <div class="form-group">
+                                        <label class="form-label">技能名称</label>
+                                        <input type="text" class="form-input edit-move-name" placeholder="技能名称">
+                                    </div>
+                                </div>
+                                <div class="form-col">
+                                    <div class="form-group">
+                                        <label class="form-label">属性</label>
+                                        <select class="form-select edit-move-type">
+                                            <!-- 类型选项将通过JavaScript动态生成 -->
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-col">
+                                    <div class="form-group">
+                                        <label class="form-label">威力</label>
+                                        <input type="number" class="form-input edit-move-power" min="0" max="255">
+                                    </div>
+                                </div>
+                                <div class="form-col">
+                                    <div class="form-group">
+                                        <label class="form-label">命中率</label>
+                                        <input type="number" class="form-input edit-move-accuracy" min="0" max="100">
+                                    </div>
+                                </div>
+                                <div class="form-col">
+                                    <div class="form-group">
+                                        <label class="form-label">PP</label>
+                                        <input type="number" class="form-input edit-move-pp" min="1" max="40">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">技能描述</label>
+                                <textarea class="form-input edit-move-description" rows="2" placeholder="技能描述"></textarea>
+                            </div>
+                            <div class="edit-move-actions">
+                                <button class="btn btn-outline delete-move-btn">
+                                    <i class="fas fa-trash"></i> 删除
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" id="saveDesignForm">仅更改</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 添加所有技能显示模态框 -->
+    <div class="modal" id="allMovesModal">
+        <div class="modal-content" style="max-width: 800px;">
+            <button class="modal-close" id="closeAllMovesModal">&times;</button>
+            <h3 class="modal-title">所有技能列表</h3>
+            <div class="all-moves-container">
+                <div class="moves-category">
+                    <h4><i class="fas fa-star"></i> 专属技能</h4>
+                    <div class="moves-grid" id="allSignatureMoves"></div>
+                </div>
+                <div class="moves-category">
+                    <h4><i class="fas fa-fist-raised"></i> 物理技能</h4>
+                    <div class="moves-grid" id="allPhysicalMoves"></div>
+                </div>
+                <div class="moves-category">
+                    <h4><i class="fas fa-magic"></i> 特殊技能</h4>
+                    <div class="moves-grid" id="allSpecialMoves"></div>
+                </div>
+                <div class="moves-category">
+                    <h4><i class="fas fa-shield-alt"></i> 变化技能</h4>
+                    <div class="moves-grid" id="allStatusMoves"></div>
+                </div>
+            </div>
         </div>
     </div>
 </body>

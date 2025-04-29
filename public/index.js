@@ -679,17 +679,34 @@ function initTypeSelection() {
 function initMoveTabs() {
     moveTabs.forEach(tab => {
         tab.addEventListener('click', () => {
-            // 移除所有活动标签
+            // 移除所有激活状态
             moveTabs.forEach(t => t.classList.remove('active'));
-            // 添加当前活动标签
-            tab.classList.add('active');
-            
-            // 隐藏所有内容
             moveLists.forEach(list => list.classList.remove('active'));
-            // 显示当前内容
-            const tabContent = document.querySelector(`.move-list[data-tab-content="${tab.dataset.tab}"]`);
+            
+            // 激活当前选中的标签和内容
+            tab.classList.add('active');
+            const tabContent = document.querySelector(`[data-tab-content="${tab.dataset.tab}"]`);
             tabContent.classList.add('active');
         });
+    });
+    
+    // 初始化编辑区技能标签切换
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('edit-move-tab') || e.target.closest('.edit-move-tab')) {
+            const tab = e.target.classList.contains('edit-move-tab') ? e.target : e.target.closest('.edit-move-tab');
+            const tabContainer = tab.parentElement;
+            const tabs = tabContainer.querySelectorAll('.edit-move-tab');
+            
+            // 移除所有激活状态
+            tabs.forEach(t => t.classList.remove('active'));
+            const lists = document.querySelectorAll('.edit-move-list');
+            lists.forEach(list => list.classList.remove('active'));
+            
+            // 激活当前选中的标签和内容
+            tab.classList.add('active');
+            const tabName = tab.dataset.tab;
+            document.querySelector(`.edit-move-list[data-tab-content="${tabName}"]`).classList.add('active');
+        }
     });
 }
 
@@ -769,10 +786,50 @@ function shareDesign() {
     const copyImageBtn = document.getElementById('copyImageBtn');
     const saveImageBtn = document.getElementById('saveImageBtn');
     const closeShareModal = document.getElementById('closeShareModal');
-    const signatureMoves = document.getElementById('signatureMoves');
-    const physicalmove = document.getElementById('physicalMoves');
-    const specialmove = document.getElementById('specialMoves');
-    const statusmove = document.getElementById('statusMoves');
+    
+    // 保存原始技能显示状态
+    const moveTabsContainer = document.querySelector('.move-tabs');
+    const moveTabs = document.querySelectorAll('.move-tab');
+    const originalActiveTab = document.querySelector('.move-tab.active');
+    const originalActiveTabId = originalActiveTab ? originalActiveTab.dataset.tab : 'signature';
+    
+    // 显示所有技能分类
+    document.querySelectorAll('.move-list').forEach(item => {
+        item.classList.add('active');
+    });
+    
+    // 添加技能分类标题以区分不同类型的技能
+    const moveListContainers = document.querySelectorAll('.move-list');
+    moveListContainers.forEach(container => {
+        const categoryId = container.dataset.tabContent;
+        const categoryTitle = document.createElement('h3');
+        categoryTitle.className = 'temp-category-title section-title';
+        
+        switch(categoryId) {
+            case 'signature':
+                categoryTitle.innerHTML = '<i class="fas fa-star"></i> 专属技能';
+                break;
+            case 'physical':
+                categoryTitle.innerHTML = '<i class="fas fa-fist-raised"></i> 物理技能';
+                break;
+            case 'special':
+                categoryTitle.innerHTML = '<i class="fas fa-magic"></i> 特殊技能';
+                break;
+            case 'status':
+                categoryTitle.innerHTML = '<i class="fas fa-shield-alt"></i> 变化技能';
+                break;
+        }
+        
+        // 将标题添加到技能列表的开始
+        if (!container.querySelector('.temp-category-title')) {
+            container.insertBefore(categoryTitle, container.firstChild);
+        }
+    });
+    
+    // 暂时隐藏技能标签页
+    if (moveTabsContainer) {
+        moveTabsContainer.style.display = 'none';
+    }
 
     // 先移除之前的事件监听器，避免重复添加
     copyImageBtn.replaceWith(copyImageBtn.cloneNode(true));
@@ -787,15 +844,11 @@ function shareDesign() {
     // 显示加载状态
     sharePreview.innerHTML = '<div class="message-loading"><div class="loading-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>生成分享图片中...</div>';
     shareModal.classList.add('active');
-    physicalmove.classList.add('active');
-    specialmove.classList.add('active');
-    statusmove.classList.add('active');
-    signatureMoves.classList.add('active');
 
     // 使用html2canvas截图
     html2canvas(document.getElementById('pokemonCard'), {
-        width: 430,
-        windowWidth: 500,
+        width: 500,
+        windowWidth: 570,
         scale: 2,
         useCORS: true,
         // backgroundColor: '#ffffff'
@@ -830,11 +883,31 @@ function shareDesign() {
     
     // 关闭模态框
     newCloseShareModal.addEventListener('click', () => {
+        // 恢复原始的技能显示状态
+        document.querySelectorAll('.move-list').forEach(item => {
+            item.classList.remove('active');
+        });
+        
+        // 只显示原来激活的标签页
+        document.querySelector(`.move-list[data-tab-content="${originalActiveTabId}"]`)?.classList.add('active');
+        
+        // 移除临时添加的分类标题
+        document.querySelectorAll('.temp-category-title').forEach(el => el.remove());
+        
+        // 恢复标签页显示
+        if (moveTabsContainer) {
+            moveTabsContainer.style.display = '';
+        }
+        
+        // 恢复原始激活的标签
+        moveTabs.forEach(tab => {
+            tab.classList.remove('active');
+            if (tab.dataset.tab === originalActiveTabId) {
+                tab.classList.add('active');
+            }
+        });
+        
         shareModal.classList.remove('active');
-        physicalmove.classList.remove('active');
-        specialmove.classList.remove('active');
-        statusmove.classList.remove('active');
-        // signatureMoves.classList.remove('active');
     });
 }
 
@@ -842,6 +915,13 @@ function shareDesign() {
 function bindEvents() {
     uploadToServerBtn.addEventListener('click', uploadToServer);
     shareBtn.addEventListener('click', shareDesign);
+    
+    // 显示所有技能
+    document.getElementById('showAllMoves').addEventListener('click', showAllMoves);
+    document.getElementById('closeAllMovesModal').addEventListener('click', () => {
+        document.getElementById('allMovesModal').classList.remove('active');
+    });
+    
     // 侧边栏切换
     toggleSidebarBtn.addEventListener('click', () => {
         sidebar.classList.toggle('collapsed');
@@ -854,6 +934,25 @@ function bindEvents() {
             icon.classList.add('fa-chevron-left');
         }
     });
+    
+    // 绑定技能表单按钮事件
+    document.addEventListener('click', function(e) {
+        // 添加技能按钮
+        if (e.target.classList.contains('add-move-btn') || e.target.closest('.add-move-btn')) {
+            const btn = e.target.classList.contains('add-move-btn') ? e.target : e.target.closest('.add-move-btn');
+            addNewMove(btn.dataset.category);
+        }
+        
+        // 删除技能按钮
+        if (e.target.classList.contains('delete-move-btn') || e.target.closest('.delete-move-btn')) {
+            const btn = e.target.classList.contains('delete-move-btn') ? e.target : e.target.closest('.delete-move-btn');
+            const moveItem = btn.closest('.edit-move-item');
+            const category = moveItem.dataset.category;
+            const index = parseInt(moveItem.dataset.index);
+            deleteMove(category, index);
+        }
+    });
+    
     // 新建设计
     newDesignBtn.addEventListener('click', () => {
         const mode = document.querySelector('.view-mode-btn.active')?.dataset.mode || 'local';
@@ -863,8 +962,6 @@ function bindEvents() {
         }
         // 如果当前设计有实际内容，则保存到历史记录
         if (currentDesign.name !== '未命名宝可梦' || currentDesign.types.length > 0) {
-            // designHistory.push({...currentDesign});
-            // renderHistoryList();
             saveData();
         }
         
@@ -874,7 +971,6 @@ function bindEvents() {
         renderDesign(currentDesign);
         showMessage('已创建新设计', 'success');
     });
-
     
     // 保存设计
     saveDesignBtn.addEventListener('click', () => {
@@ -913,21 +1009,21 @@ function bindEvents() {
         if (apiSettings.artProvider === 'none') {
             generateArt();
             return;
-        }else if (apiSettings.artProvider === 'custom') {
+        } else if (apiSettings.artProvider === 'custom') {
             showMessage('请先配置自定义立绘生成API', 'warning');
         }
-        
-        // generateArt();
     });
     
     // AI对话提交
-    aiSubmit.addEventListener('click',()=>{
+    aiSubmit.addEventListener('click', () => {
         const mode = document.querySelector('.view-mode-btn.active')?.dataset.mode || 'local';
-         if(mode === 'server') {
-        showMessage('当前为服务器，请切换本地', 'warning');
-        return;
-    }
-    sendAiMessage()});
+        if(mode === 'server') {
+            showMessage('当前为服务器，请切换本地', 'warning');
+            return;
+        }
+        sendAiMessage();
+    });
+    
     aiInput.addEventListener('keydown', (e) => {
         const mode = document.querySelector('.view-mode-btn.active')?.dataset.mode || 'local';
         if(mode === 'server') {
@@ -953,17 +1049,25 @@ function bindEvents() {
     artProvider.addEventListener('change', toggleArtProviderSettings);
     saveApiSettings.addEventListener('click', saveApiSettingsHandler);
     
-    // 设计表单
+    // 设计表单初始化
     penDesignBtn.addEventListener('click', () => {
         const mode = document.querySelector('.view-mode-btn.active')?.dataset.mode || 'local';
         if(mode === 'server') {
             showMessage('当前是服务器，请切换本地','warning')
             return;
         }
+        
+        // 显示模态框
         designFormModal.classList.add('active');
+        
+        // 填充表单内容
         populateDesignForm();
+        
+        // 滚动到顶部
+        designFormModal.querySelector('.modal-content').scrollTop = 0;
     });
     
+    // 关闭表单模态框
     closeDesignFormModal.addEventListener('click', () => {
         designFormModal.classList.remove('active');
     });
@@ -1493,6 +1597,253 @@ function populateDesignForm() {
     designMoveAccuracy.value = currentDesign.signatureMove.accuracy;
     designMovePp.value = currentDesign.signatureMove.pp;
     designMoveDescription.value = currentDesign.signatureMove.description;
+    
+    // 渲染编辑区的其他技能
+    renderEditMoves();
+    
+    // 为表单中所有文本区域添加自动调整高度
+    setTimeout(setupFormTextareas, 100); // 短暂延迟确保DOM已更新
+    
+    // 为技能类型切换添加事件监听
+    document.querySelectorAll('.edit-move-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.edit-move-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            
+            const tabName = tab.dataset.tab;
+            document.querySelectorAll('.edit-move-list').forEach(list => {
+                list.classList.remove('active');
+            });
+            document.querySelector(`.edit-move-list[data-tab-content="${tabName}"]`).classList.add('active');
+        });
+    });
+    
+    // // 为添加技能按钮添加事件监听
+    // document.querySelectorAll('.add-move-btn').forEach(btn => {
+    //     btn.addEventListener('click', () => {
+    //         addNewMove(btn.dataset.category);
+    //     });
+    // });
+}
+
+// 渲染编辑区的其他技能
+function renderEditMoves() {
+    const editPhysicalMovesContainer = document.getElementById('editPhysicalMoves');
+    const editSpecialMovesContainer = document.getElementById('editSpecialMoves');
+    const editStatusMovesContainer = document.getElementById('editStatusMoves');
+    
+    // 清空容器
+    editPhysicalMovesContainer.innerHTML = '';
+    editSpecialMovesContainer.innerHTML = '';
+    editStatusMovesContainer.innerHTML = '';
+    
+    // 渲染物理技能
+    if (currentDesign.moves.physical.length === 0) {
+        editPhysicalMovesContainer.innerHTML = '<div class="empty-message">暂无物理技能</div>';
+    } else {
+        currentDesign.moves.physical.forEach((move, index) => {
+            editPhysicalMovesContainer.appendChild(createEditMoveElement(move, 'physical', index));
+        });
+    }
+    
+    // 渲染特殊技能
+    if (currentDesign.moves.special.length === 0) {
+        editSpecialMovesContainer.innerHTML = '<div class="empty-message">暂无特殊技能</div>';
+    } else {
+        currentDesign.moves.special.forEach((move, index) => {
+            editSpecialMovesContainer.appendChild(createEditMoveElement(move, 'special', index));
+        });
+    }
+    
+    // 渲染变化技能
+    if (currentDesign.moves.status.length === 0) {
+        editStatusMovesContainer.innerHTML = '<div class="empty-message">暂无变化技能</div>';
+    } else {
+        currentDesign.moves.status.forEach((move, index) => {
+            editStatusMovesContainer.appendChild(createEditMoveElement(move, 'status', index));
+        });
+    }
+    
+    // 为所有文本区域添加自动调整高度功能
+    setupTextareaAutoResize();
+}
+
+// 设置文本区域自动调整高度
+function setupTextareaAutoResize() {
+    const textareas = document.querySelectorAll('.edit-move-item textarea');
+    textareas.forEach(textarea => {
+        // 设置初始高度
+        adjustTextareaHeight(textarea);
+        
+        // 添加输入事件监听器
+        textarea.addEventListener('input', function() {
+            adjustTextareaHeight(this);
+        });
+    });
+    
+    // 为长文本输入框添加自动调整高度
+    const textInputs = document.querySelectorAll('.edit-move-name');
+    textInputs.forEach(input => {
+        input.addEventListener('input', function() {
+            this.style.height = 'auto';
+            const newHeight = Math.max(40, Math.min(80, this.scrollHeight));
+            this.style.height = newHeight + 'px';
+        });
+        
+        // 初始化高度
+        input.dispatchEvent(new Event('input'));
+    });
+}
+
+// 调整文本区域高度
+function adjustTextareaHeight(textarea) {
+    // 重置高度以获取正确的scrollHeight
+    textarea.style.height = 'auto';
+    
+    // 计算新高度，使用scrollHeight作为基础值
+    const newHeight = textarea.scrollHeight;
+    
+    // 设置新高度
+    textarea.style.height = newHeight + 'px';
+}
+
+// 为表单中所有文本区域添加自动调整高度
+function setupFormTextareas() {
+    const allTextareas = document.querySelectorAll('#designFormModal textarea');
+    
+    allTextareas.forEach(textarea => {
+        // 设置初始高度
+        adjustTextareaHeight(textarea);
+        
+        // 添加输入事件监听器
+        textarea.addEventListener('input', function() {
+            adjustTextareaHeight(this);
+        });
+    });
+}
+
+// 创建技能编辑元素
+function createEditMoveElement(move, category, index) {
+    // 克隆模板
+    const template = document.getElementById('moveEditTemplate');
+    const moveItem = template.querySelector('.edit-move-item').cloneNode(true);
+    
+    // 设置数据属性
+    moveItem.dataset.category = category;
+    moveItem.dataset.index = index;
+    
+    // 设置输入值
+    const nameInput = moveItem.querySelector('.edit-move-name');
+    const typeSelect = moveItem.querySelector('.edit-move-type');
+    const powerInput = moveItem.querySelector('.edit-move-power');
+    const accuracyInput = moveItem.querySelector('.edit-move-accuracy');
+    const ppInput = moveItem.querySelector('.edit-move-pp');
+    const descriptionInput = moveItem.querySelector('.edit-move-description');
+    const deleteBtn = moveItem.querySelector('.delete-move-btn');
+    
+    nameInput.value = move.name;
+    populateTypeOptions(typeSelect);
+    typeSelect.value = move.type;
+    powerInput.value = move.power;
+    accuracyInput.value = move.accuracy;
+    ppInput.value = move.pp;
+    descriptionInput.value = move.description;
+    
+    // 设置左边框颜色为技能类型的颜色
+    const typeColor = pokemonTypes.find(t => t.name === move.type)?.color || 'var(--primary)';
+    moveItem.style.borderLeftColor = typeColor;
+    
+    // 当类型选择改变时更新边框颜色
+    typeSelect.addEventListener('change', (e) => {
+        const selectedType = e.target.value;
+        const newColor = pokemonTypes.find(t => t.name === selectedType)?.color || 'var(--primary)';
+        moveItem.style.borderLeftColor = newColor;
+    });
+    
+    // // 为删除按钮添加事件监听
+    // deleteBtn.addEventListener('click', () => {
+    //     deleteMove(category, index);
+    // });
+    
+    // 为输入字段添加事件监听以实时更新数据
+    const inputs = [nameInput, typeSelect, powerInput, accuracyInput, ppInput, descriptionInput];
+    inputs.forEach(input => {
+        input.dataset.category = category;
+        input.dataset.index = index;
+        input.dataset.field = input.classList[1].replace('edit-move-', '');
+        
+        input.addEventListener('change', (e) => {
+            updateMove(e.target.dataset.category, e.target.dataset.index, e.target.dataset.field, e.target.value);
+        });
+        
+        // 为文本区域添加输入事件监听
+        if (input.tagName === 'TEXTAREA') {
+            input.addEventListener('input', (e) => {
+                updateMove(e.target.dataset.category, e.target.dataset.index, e.target.dataset.field, e.target.value);
+            });
+        }
+    });
+    
+    return moveItem;
+}
+
+// 删除技能
+function deleteMove(category, index) {
+    if (confirm(`确定要删除这个${getMoveCategoryName(category)}技能吗？`)) {
+        currentDesign.moves[category].splice(index, 1);
+        renderEditMoves();
+    }
+}
+
+// 更新技能数据
+function updateMove(category, index, field, value) {
+    // 转换数值型数据
+    if (field === 'power' || field === 'accuracy' || field === 'pp') {
+        value = parseInt(value) || 0;
+    }
+    
+    // 更新数据
+    currentDesign.moves[category][index][field] = value;
+}
+
+// 添加新技能
+function addNewMove(category) {
+    // 创建新技能
+    const newMove = {
+        name: `新${getMoveCategoryName(category)}技能`,
+        type: pokemonTypes[0].name, // 默认为第一个类型
+        category: category,
+        power: category === 'status' ? 0 : 60,
+        accuracy: 100,
+        pp: 15,
+        description: ''
+    };
+    
+    // 添加到数据中
+    currentDesign.moves[category].push(newMove);
+    
+    // 重新渲染
+    renderEditMoves();
+    
+    // 滚动到新添加的技能
+    const container = document.getElementById(`edit${capitalizeFirstLetter(category)}Moves`);
+    container.scrollIntoView({ behavior: 'smooth', block: 'end' });
+}
+
+// 首字母大写
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+// 为类型选择框填充选项
+function populateTypeOptions(selectElement) {
+    selectElement.innerHTML = '';
+    pokemonTypes.forEach(type => {
+        const option = document.createElement('option');
+        option.value = type.name;
+        option.textContent = type.name;
+        selectElement.appendChild(option);
+    });
 }
 
 // 从表单更新设计
@@ -1529,6 +1880,8 @@ function updateDesignFromForm() {
         pp: parseInt(designMovePp.value) || 0,
         description: designMoveDescription.value
     };
+    
+    // 其他技能已经通过实时更新保存
     
     currentDesign.updatedAt = new Date().toISOString();
 }
@@ -2280,4 +2633,146 @@ function updateTemperature(val) {
     document.getElementById("temperature-value").textContent = val;
     document.getElementById("model-temperature").value = val;
     console.log('模型温度:', temperaturevalue.value);
+}
+
+// 显示所有技能
+function showAllMoves() {
+    const allMovesModal = document.getElementById('allMovesModal');
+    const allSignatureMoves = document.getElementById('allSignatureMoves');
+    const allPhysicalMoves = document.getElementById('allPhysicalMoves');
+    const allSpecialMoves = document.getElementById('allSpecialMoves');
+    const allStatusMoves = document.getElementById('allStatusMoves');
+    
+    // 清空现有内容
+    allSignatureMoves.innerHTML = '';
+    allPhysicalMoves.innerHTML = '';
+    allSpecialMoves.innerHTML = '';
+    allStatusMoves.innerHTML = '';
+    
+    // 添加专属技能
+    if (currentDesign.signatureMove.name) {
+        allSignatureMoves.appendChild(createMoveCard(currentDesign.signatureMove));
+    } else {
+        allSignatureMoves.innerHTML = '<div class="empty-message">暂无专属技能</div>';
+    }
+    
+    // 添加物理技能
+    if (currentDesign.moves.physical.length > 0) {
+        currentDesign.moves.physical.forEach(move => {
+            allPhysicalMoves.appendChild(createMoveCard(move));
+        });
+    } else {
+        allPhysicalMoves.innerHTML = '<div class="empty-message">暂无物理技能</div>';
+    }
+    
+    // 添加特殊技能
+    if (currentDesign.moves.special.length > 0) {
+        currentDesign.moves.special.forEach(move => {
+            allSpecialMoves.appendChild(createMoveCard(move));
+        });
+    } else {
+        allSpecialMoves.innerHTML = '<div class="empty-message">暂无特殊技能</div>';
+    }
+    
+    // 添加变化技能
+    if (currentDesign.moves.status.length > 0) {
+        currentDesign.moves.status.forEach(move => {
+            allStatusMoves.appendChild(createMoveCard(move));
+        });
+    } else {
+        allStatusMoves.innerHTML = '<div class="empty-message">暂无变化技能</div>';
+    }
+    
+    // 显示模态框
+    allMovesModal.classList.add('active');
+}
+
+// 创建技能卡片
+function createMoveCard(move) {
+    const moveCard = document.createElement('div');
+    moveCard.className = 'move-card';
+    
+    const moveHeader = document.createElement('div');
+    moveHeader.className = 'move-header';
+    
+    const moveNameContainer = document.createElement('div');
+    moveNameContainer.className = 'move-name-container';
+    
+    const moveName = document.createElement('div');
+    moveName.className = 'move-name';
+    moveName.textContent = move.name;
+    
+    const moveType = document.createElement('div');
+    moveType.className = 'move-type';
+    moveType.textContent = move.type;
+    
+    // 查找类型颜色
+    const type = pokemonTypes.find(t => t.name === move.type);
+    if (type) {
+        moveType.style.backgroundColor = type.color;
+    }
+    
+    moveNameContainer.appendChild(moveName);
+    moveNameContainer.appendChild(moveType);
+    
+    const categoryIcon = document.createElement('div');
+    categoryIcon.className = 'move-category-icon';
+    switch (move.category) {
+        case 'physical':
+            categoryIcon.innerHTML = '类型：物理</i>';
+            // categoryIcon.style.backgroundColor = '#ff4444';
+            break;
+        case 'special':
+            categoryIcon.innerHTML = '类型：特殊</i>';
+            // categoryIcon.style.backgroundColor = '#5d9cec';
+            break;
+        case 'status':
+            categoryIcon.innerHTML = '类型：变化</i>';
+            // categoryIcon.style.backgroundColor = '#a0d468';
+            break;
+    }
+    
+    moveHeader.appendChild(moveNameContainer);
+    moveHeader.appendChild(categoryIcon);
+    
+    const moveStats = document.createElement('div');
+    moveStats.className = 'move-stats';
+    
+    // 威力
+    const movePower = document.createElement('div');
+    movePower.className = 'move-stat';
+    movePower.innerHTML = `
+        <span class="move-stat-label">威力</span>
+        <span>${move.power || '-'}</span>
+    `;
+    
+    // 命中
+    const moveAccuracy = document.createElement('div');
+    moveAccuracy.className = 'move-stat';
+    moveAccuracy.innerHTML = `
+        <span class="move-stat-label">命中</span>
+        <span>${move.accuracy || '-'}%</span>
+    `;
+    
+    // PP
+    const movePp = document.createElement('div');
+    movePp.className = 'move-stat';
+    movePp.innerHTML = `
+        <span class="move-stat-label">PP</span>
+        <span>${move.pp}</span>
+    `;
+    
+    moveStats.appendChild(movePower);
+    moveStats.appendChild(moveAccuracy);
+    moveStats.appendChild(movePp);
+    
+    const moveDesc = document.createElement('div');
+    moveDesc.className = 'move-desc';
+    moveDesc.textContent = move.description;
+    
+    moveCard.appendChild(moveHeader);
+    moveCard.appendChild(moveStats);
+    moveCard.appendChild(moveDesc);
+    
+    return moveCard;
 }
