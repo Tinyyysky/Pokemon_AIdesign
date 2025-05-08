@@ -201,7 +201,8 @@ let apiSettings = {
 document.addEventListener('DOMContentLoaded', () => {
     // 从本地存储加载数据
     loadData();
-    
+    initComments()
+
     // 渲染当前设计
     renderDesign(currentDesign);
     
@@ -1038,6 +1039,11 @@ function bindEvents() {
     
     // API设置
     aiSettingsBtn.addEventListener('click', () => {
+        const mode = document.querySelector('.view-mode-btn.active')?.dataset.mode || 'local';
+        if(mode === 'server') {
+            showMessage('当前为服务器，请切换本地', 'warning');
+            return;
+        }
         apiSettingsModal.classList.add('active');
     });
     
@@ -1123,6 +1129,8 @@ function renderDesign(design) {
     loadConversationHistory(design.id);
     // 更新设计表单
     populateDesignForm();
+    loadLikeStatus(design.id);
+    loadDesignComments(design.id);
 }
 
 // 渲染宝可梦类型
@@ -1515,10 +1523,20 @@ function renderPaginationControls() {
     // 如果只有一页，不需要显示分页控件
     if (totalPages <= 1) {
         document.querySelector('.pagination-controls')?.remove();
-        return;}
+        return;
+    }
     
     const paginationContainer = document.createElement('div');
     paginationContainer.className = 'pagination-controls';
+    
+    // 首页按钮
+    const firstButton = document.createElement('button');
+    firstButton.textContent = '首页';
+    firstButton.disabled = currentPage === 1;
+    firstButton.addEventListener('click', () => {
+        currentPage = 1;
+        renderHistoryList();
+    });
     
     // 上一页按钮
     const prevButton = document.createElement('button');
@@ -1546,9 +1564,20 @@ function renderPaginationControls() {
         }
     });
     
+    // 尾页按钮
+    const lastButton = document.createElement('button');
+    lastButton.textContent = '尾页';
+    lastButton.disabled = currentPage === totalPages;
+    lastButton.addEventListener('click', () => {
+        currentPage = totalPages;
+        renderHistoryList();
+    });
+    
+    paginationContainer.appendChild(firstButton);
     paginationContainer.appendChild(prevButton);
     paginationContainer.appendChild(pageInfo);
     paginationContainer.appendChild(nextButton);
+    paginationContainer.appendChild(lastButton);
     
     // 添加到历史记录列表后面
     const historyContainer = historyList.parentNode;
@@ -2775,4 +2804,251 @@ function createMoveCard(move) {
     moveCard.appendChild(moveDesc);
     
     return moveCard;
+}
+// 生成或获取客户端唯一ID
+function getClientId() {
+    let clientId = localStorage.getItem('clientId');
+    if (!clientId) {
+        clientId = 'client_' + Math.random().toString(36).substr(2, 9);
+        localStorage.setItem('clientId', clientId);
+    }
+    return clientId;
+}
+
+// 点赞按钮点击处理
+async function handleLike() {
+    const clientId = getClientId();
+    console.log('点赞的设计ID:', currentDesign.id);
+    try {
+        const response = await fetch(`/api/likes/${currentDesign.id}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ clientId })
+        });
+        
+        const result = await response.json();
+        updateLikeUI( result.likeCount, result.isLiked);
+        loadLikeStatus(currentDesign.id); // 更新点赞状态
+    } catch (error) {
+        console.error('点赞失败:', error);
+    }
+}
+
+// 获取点赞状态
+async function loadLikeStatus(designId) {
+    const clientId = getClientId();
+    
+    try {
+        const response = await fetch(`/api/likes/${designId}?clientId=${clientId}`);
+        const result = await response.json();
+        updateLikeUI( result.likeCount, result.isLiked);
+        // console.log('点赞状态:', result);
+    } catch (error) {
+        console.error('获取点赞状态失败:', error);
+    }
+}
+
+// 更新UI
+function updateLikeUI( count, isLiked) {
+    const likeButton = document.querySelector(`.like-btn`);
+    const likeCount = document.querySelector(`.like-count`);
+    // console.log('更新点赞UI:', likeCount);
+    if (likeButton) {
+        likeButton.classList.toggle('liked', isLiked);
+    }
+    
+    if (likeCount) {
+        likeCount.textContent = count;
+    }
+}
+// 获取DOM元素
+const commentFormContainer = document.querySelector('.comment-form-container'); // 评论表单容器
+const commentsListContainer = document.querySelector('.comments-list-container'); // 评论列表容器
+const commentForm = document.querySelector('.comment-form'); // 评论表单
+const usernameInput = document.getElementById('comment-username'); // 用户名输入框
+const commentInput = document.querySelector('.comment-input'); // 评论输入框
+const submitCommentBtn = document.querySelector('.submit-comment-btn'); // 提交评论按钮
+const commentsList = document.querySelector('.comments-list'); // 评论列表元素
+
+/**
+ * 切换评论表单显示状态
+ * @param {boolean} show - 是否显示表单（默认true）
+ */
+function toggleCommentForm(show = true) {
+    // console.log('切换评论表单显示状态:', show);
+    commentFormContainer.style.display = show ? 'block' : 'none';
+}
+
+/**
+ * 切换评论列表显示状态
+ * @param {boolean} show - 是否显示列表（默认true）
+ */
+function toggleCommentsList(show = true) {
+    commentsListContainer.style.display = show ? 'block' : 'none';
+}
+
+/**
+ * 加载特定设计的评论
+ * @param {string} designId - 设计ID
+ */
+let comments = []; // 评论数组
+async function loadComments(designId) {
+    try {
+        // 调用API获取评论数据
+        const response = await fetch(`/api/comments/${designId}`);
+        if (!response.ok) throw new Error('获取评论失败');
+        
+        comments = await response.json();
+        renderComments(comments); // 渲染评论
+    } catch (error) {
+        console.error('加载评论出错:', error);
+        commentsList.innerHTML = '<p>加载评论失败，请稍后再试</p>';
+    }
+}
+
+/**
+ * 渲染评论列表
+ * @param {Array} comments - 评论数组
+ */
+function renderComments(comments) {
+    if (!comments || comments.length === 0) {
+        commentsList.innerHTML = '<p>暂无评论，快来发表第一条评论吧！</p>';
+        return;
+    }
+
+    // 按时间倒序排序
+    const sortedComments = [...comments].sort((a, b) => 
+        new Date(b.timestamp) - new Date(a.timestamp)
+    );
+
+    // 生成评论HTML
+    commentsList.innerHTML = sortedComments.map(comment => `
+        <div class="comment" data-id="${comment.id}">
+            <div class="comment-header">
+                <span class="username">${comment.username}</span>
+                <span class="count">#${comment.count}</span>
+                <span class="timestamp">${formatDate(comment.timestamp)}</span>
+            </div>
+            <div class="comment-content">${comment.content}</div>
+            
+            
+        </div>
+    `).join('');
+    // <div class="comment-footer">
+                
+    // // <button class="like-btn" data-likes="${comment.likes}">
+    // //                 👍 ${comment.likes > 0 ? comment.likes : ''}
+    // //             </button>
+    // </div>
+}
+
+/**
+ * 格式化日期显示
+ * @param {string} dateString - ISO格式日期字符串
+ * @returns {string} 格式化后的日期
+ */
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    return date.toLocaleString(); // 使用本地化日期格式
+}
+
+/**
+ * 提交新评论
+ * @param {string} designId - 设计ID
+ */
+async function submitComment(designId) {
+    const content = commentInput.value.trim();
+    if (!content) {
+        alert('评论内容不能为空');
+        return;
+    }
+
+    const username = usernameInput.value.trim();
+    const clientId = getClientId();
+
+    try {
+        const response = await fetch(`/api/comments/${designId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                content,
+                username,
+                clientId,
+            })
+        });
+
+        if (!response.ok) throw new Error('提交评论失败');
+
+        const newComment = await response.json();
+        commentInput.value = ''; // 清空输入框
+        loadComments(designId); // 重新加载评论
+    } catch (error) {
+        console.error('提交评论出错:', error);
+        alert('提交评论失败，请稍后再试');
+    }
+}
+
+// 初始化评论功能
+function initComments() {
+    
+    // 设置表单提交事件（使用事件委托，避免重复绑定）
+    document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('submit-comment-btn')) {
+            if (currentDesign.id) {
+                submitComment(currentDesign.id);
+            } else {
+                alert('请先选择设计');
+            }
+        }// 展开/折叠按钮点击
+        else if (e.target.classList.contains('toggle-comments-btn')) {
+            toggleComments();
+        }
+    });
+
+    // 设置评论输入框回车事件
+    document.addEventListener('keypress', (e) => {
+        if (e.target.classList.contains('comment-input') && 
+            e.key === 'Enter' && !e.shiftKey && currentDesign.id) {
+            e.preventDefault();
+            submitComment(currentDesign.id);
+        }
+    });
+}
+
+/**
+ * 为特定设计加载评论
+ * @param {string} designId - 要加载评论的设计ID
+ */
+let showCommentForm = false;
+function loadDesignComments(designId) {
+    // 更新当前设计ID
+    
+    // 显示评论区域
+    toggleCommentForm(showCommentForm);
+    toggleCommentsList(showCommentForm);
+    
+    // 加载评论
+    loadComments(designId);
+    // 更新按钮文本
+    const toggleBtn = document.querySelector('.toggle-comments-btn');
+    if (toggleBtn) {
+        toggleBtn.textContent = showCommentForm ? `折叠评论(${comments.length})` : `展开评论(${comments.length})`;
+    }
+}
+let isCommentsExpanded = false; // 跟踪评论展开状态
+function toggleComments() {
+    isCommentsExpanded = !isCommentsExpanded;
+    toggleCommentForm(isCommentsExpanded);
+    toggleCommentsList(isCommentsExpanded);
+    
+    // 更新按钮文本
+    const toggleBtn = document.querySelector('.toggle-comments-btn');
+    if (toggleBtn) {
+        toggleBtn.textContent = isCommentsExpanded ? `折叠评论(${comments.length})` : `展开评论(${comments.length})`;
+        showCommentForm=isCommentsExpanded;
+    }
 }

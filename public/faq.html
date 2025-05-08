@@ -372,227 +372,323 @@
 </div>
 
 <style>
-    :root {
-        --primary-color: #4361ee;
-        --primary-hover: #3a56d4;
-        --text-color: #2b2d42;
-        --light-text: #8d99ae;
-        --bg-color: #ffffff;
-        --card-bg: #f8f9fa;
-        --border-radius: 12px;
-        --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        --transition: all 0.3s ease;
-    }
+   :root {
+    --primary-color: #4361ee;
+    --primary-hover: #3a56d4;
+    --text-color: #2b2d42;
+    --light-text: #8d99ae;
+    --bg-color: #ffffff;
+    --card-bg: #f8f9fa;
+    --border-radius: 12px;
+    --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --transition: all 0.3s ease;
+    --tap-highlight: rgba(0, 0, 0, 0.05);
+}
 
+.modern-faq {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: var(--text-color);
+}
+
+.faq-title {
+    text-align: center;
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+    font-weight: 700;
+}
+
+.faq-subtitle {
+    text-align: center;
+    color: var(--light-text);
+    margin-bottom: 2rem;
+    font-size: clamp(0.9rem, 3vw, 1rem);
+    line-height: 1.5;
+}
+
+.contact-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 0.25rem;
+    transition: var(--transition);
+}
+
+.contact-link:hover,
+.contact-link:focus {
+    text-decoration: underline;
+    color: var(--primary-hover);
+    outline: none;
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.faq-card {
+    background: var(--bg-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.faq-card:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.faq-header {
+    display: flex;
+    align-items: center;
+    padding: 1.25rem;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: var(--tap-highlight);
+}
+
+.faq-header:active {
+    background-color: var(--tap-highlight);
+}
+
+.faq-icon {
+    margin-right: 1rem;
+    color: var(--primary-color);
+    flex-shrink: 0;
+}
+
+.faq-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.faq-question {
+    margin: 0;
+    flex: 1;
+    font-size: clamp(1rem, 4vw, 1.1rem);
+    font-weight: 600;
+    text-align: left;
+}
+
+.faq-toggle {
+    background: none;
+    border: none;
+    color: var(--light-text);
+    cursor: pointer;
+    transition: var(--transition);
+    padding: 0.5rem;
+    margin-left: 0.5rem;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.faq-toggle:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+.faq-toggle svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+}
+
+.faq-content {
+    padding: 0 1.25rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.faq-card.active .faq-content {
+    padding: 0 1.25rem 1.25rem;
+    max-height: 1000px;
+}
+
+.faq-card.active .faq-toggle svg {
+    transform: rotate(180deg);
+}
+
+.faq-image {
+    margin: 1rem 0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.faq-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.faq-image img:hover {
+    transform: scale(1.02);
+}
+
+.text-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.text-link:hover,
+.text-link:focus {
+    text-decoration: underline;
+    color: var(--primary-hover);
+    outline: none;
+}
+
+.faq-steps {
+    margin: 1.5rem 0;
+}
+
+.step {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.step-number {
+    background: var(--primary-color);
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    margin-right: 1rem;
+    flex-shrink: 0;
+}
+
+.contact-methods {
+    margin: 1.5rem 0;
+}
+
+.contact-method {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 8px;
+    background: var(--card-bg);
+    margin-bottom: 1rem;
+    transition: var(--transition);
+}
+
+.contact-method:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--box-shadow);
+}
+
+.contact-method img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    margin-right: 1rem;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.contact-method h4 {
+    margin: 0 0 0.25rem 0;
+    font-size: 1rem;
+}
+
+.contact-method p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--light-text);
+}
+
+.faq-footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e9ecef;
+    color: var(--light-text);
+    font-size: 0.9rem;
+}
+
+/* 增强的响应式设计 */
+@media (max-width: 768px) {
     .modern-faq {
-        max-width: 900px;
-        margin: 0 auto;
-        padding: 2rem;
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-        color: var(--text-color);
-    }
-
-    .faq-title {
-        text-align: center;
-        font-size: 2rem;
-        margin-bottom: 0.5rem;
-        color: var(--text-color);
-    }
-
-    .faq-subtitle {
-        text-align: center;
-        color: var(--light-text);
-        margin-bottom: 2rem;
-    }
-
-    .contact-link {
-        color: var(--primary-color);
-        text-decoration: none;
-        font-weight: 500;
-        margin-left: 0.25rem;
-    }
-
-    .contact-link:hover {
-        text-decoration: underline;
-    }
-
-    .faq-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-
-    .faq-card {
-        background: var(--bg-color);
-        border-radius: var(--border-radius);
-        box-shadow: var(--box-shadow);
-        overflow: hidden;
-        transition: var(--transition);
-    }
-
-    .faq-card:hover {
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        padding: 1rem;
     }
 
     .faq-header {
-        display: flex;
-        align-items: center;
-        padding: 1.25rem;
-        cursor: pointer;
-        user-select: none;
-    }
-
-    .faq-icon {
-        margin-right: 1rem;
-        color: var(--primary-color);
+        padding: 1rem;
     }
 
     .faq-icon svg {
-        width: 24px;
-        height: 24px;
-    }
-
-    .faq-question {
-        margin: 0;
-        flex: 1;
-        font-size: 1.1rem;
-        font-weight: 600;
-    }
-
-    .faq-toggle {
-        background: none;
-        border: none;
-        color: var(--light-text);
-        cursor: pointer;
-        transition: var(--transition);
-        padding: 0.5rem;
-        margin-left: 0.5rem;
-    }
-
-    .faq-toggle svg {
         width: 20px;
         height: 20px;
     }
 
-    .faq-content {
-        padding: 0 1.25rem;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease, padding 0.3s ease;
-    }
-
-    .faq-card.active .faq-content {
-        padding: 0 1.25rem 1.25rem;
-        max-height: 1000px;
-    }
-
-    .faq-card.active .faq-toggle svg {
-        transform: rotate(180deg);
-    }
-
-    .faq-image {
-        margin: 1rem 0;
-        border-radius: 8px;
-        overflow: hidden;
-    }
-
-    .faq-image img {
-        width: 100%;
-        height: auto;
-        border-radius: 8px;
-        display: block;
-    }
-
-    .text-link {
-        color: var(--primary-color);
-        text-decoration: none;
-        font-weight: 500;
-    }
-
-    .text-link:hover {
-        text-decoration: underline;
-        color: var(--primary-hover);
-    }
-
-    .faq-steps {
-        margin: 1.5rem 0;
-    }
-
-    .step {
-        display: flex;
-        align-items: flex-start;
-        margin-bottom: 1rem;
-    }
-
-    .step-number {
-        background: var(--primary-color);
-        color: white;
-        width: 24px;
-        height: 24px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.75rem;
-        margin-right: 1rem;
-        flex-shrink: 0;
-    }
-
-    .contact-methods {
-        margin: 1.5rem 0;
-    }
-
     .contact-method {
-        display: flex;
-        align-items: center;
-        padding: 1rem;
-        border-radius: 8px;
-        background: var(--card-bg);
-        margin-bottom: 1rem;
+        flex-direction: column;
+        text-align: center;
     }
 
     .contact-method img {
-        margin-right: 1rem;
-        border-radius: 8px;
+        margin-right: 0;
+        margin-bottom: 0.75rem;
     }
 
-    .contact-method h4 {
-        margin: 0 0 0.25rem 0;
-        font-size: 1rem;
+    .step {
+        flex-direction: column;
     }
 
-    .contact-method p {
-        margin: 0;
-        font-size: 0.9rem;
-        color: var(--light-text);
+    .step-number {
+        margin-right: 0;
+        margin-bottom: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .faq-header {
+        padding: 0.75rem;
     }
 
-    .faq-footer {
-        text-align: center;
-        margin-top: 2rem;
-        padding-top: 1.5rem;
-        border-top: 1px solid #e9ecef;
-        color: var(--light-text);
+    .faq-content {
+        padding: 0 0.75rem;
     }
 
-    /* 响应式设计 */
-    @media (max-width: 768px) {
-        .modern-faq {
-            padding: 1rem;
-        }
-
-        .faq-title {
-            font-size: 1.5rem;
-        }
-
-        .faq-header {
-            padding: 1rem;
-        }
-
-        .faq-question {
-            font-size: 1rem;
-        }
+    .faq-card.active .faq-content {
+        padding: 0 0.75rem 0.75rem;
     }
+
+    .contact-method {
+        padding: 0.75rem;
+    }
+}
+
+/* 动画增强 */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.faq-card {
+    animation: fadeIn 0.3s ease forwards;
+}
+
+/* 减少运动偏好设置 */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
 </style>
 
 <script>

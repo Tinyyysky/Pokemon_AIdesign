@@ -66,7 +66,13 @@
                     <button class="btn btn-secondary" id="shareBtn">
                         <i class="fas fa-share-alt"></i> 分享
                     </button>
-                    
+                    <div class="like-container">
+                        <button class="like-btn" onclick="handleLike()">
+                          <span class="heart-icon">❤</span>
+                          <span class="like-count">0</span>
+                        </button>
+                        <span class="like-text">点赞</span>
+                      </div>
                 </div>
             </div>
 
@@ -151,6 +157,33 @@
                 <h6 style="color: rgb(160, 157, 153);">b站@皮皮灭</h6>
             </div>
 
+            <!-- 评论功能 -->
+            <div class="comments-section" data-designid="design-123">
+                <!-- 评论按钮/标题 -->
+                <div class="comments-header">
+                  <h3>评论区</h3>
+                  <button class="toggle-comments-btn">展开评论</button>
+                </div>
+                
+                <!-- 评论表单 (默认隐藏) -->
+                <div class="comment-form-container" style="display: none;">
+                  <div class="comment-form">
+                    <div class="username-input">
+                      <label for="comment-username">用户名:</label>
+                      <input type="text" id="comment-username" placeholder="留空将使用随机名字">
+                    </div>
+                    <textarea class="comment-input" placeholder="写下你的评论..."></textarea>
+                    <button class="submit-comment-btn">提交评论</button>
+                  </div>
+                </div>
+                
+                <!-- 评论列表 (默认隐藏) -->
+                <div class="comments-list-container" style="display: none;">
+                  <div class="comments-list"></div>
+                </div>
+              </div>
+
+<!-- <hr style="margin-bottom: 20px;"> -->
             <!-- AI对话部分 -->
             <div class="ai-section">
                 <div class="ai-header">
